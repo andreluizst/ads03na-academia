@@ -2,3 +2,5 @@ Seminário ENR - 04/04/2013
 
 http://www.devmedia.com.br/controla/283
 http://imasters.com.br/artigo/3480/tecnologia/ferramenta-de-apoio-ao-processo-de-desenvolvimento-de-software-em-pequ/
+
+Teste de Commit
