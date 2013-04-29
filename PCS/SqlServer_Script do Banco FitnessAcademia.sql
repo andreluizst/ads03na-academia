@@ -13,17 +13,14 @@ select * from cliente*/
 --create table Exercicio(Codigo int identity(1, 1), Nome varchar(100) not null,
 --						constraint Exercicio_PKcodigo primary key(codigo))
 --go
-/*create table NivelTreino(codNivel int identity(1,1), Nome varchar(20) not null, 
-									constraint NivelTreino_PKcodNivel primary key(codNivel))
-go
-create table Objetivo(Codigo int identity(1,1), Nome varchar(50), 
+
+/*create table Objetivo(Codigo int identity(1,1), Nome varchar(50), 
 						constraint objetivo_PKcodigo primary key(Codigo))
 go
 create table PlanoTreinamento(NumPlano int identity(1,1), codCli int not null, Data Date, Nivel int not null,
 							codObjetivo int not null,
 							constraint PlanoTreinamento_FKcodObjetivo foreign key(codObjetivo) references Objetivo(Codigo),
 							constraint PlanoTreinamento_FKcodCli foreign key(codCli) references Cliente(Codigo),
-							constraint PlanoTreinamento_FKnivel foreign key(Nivel) references NivelTreino(codNivel),
 							constraint PlanoTreinamento_PKnumPlanoCodCli primary key(NumPlano))
 go
 create table ExercicioDoPlano(numPlano int not null, seq int not null, codExercicio int not null,
