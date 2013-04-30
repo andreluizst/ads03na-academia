@@ -10,7 +10,7 @@ create table Cliente(codigo int identity(1,1), nome varchar(100) not null, CPF v
 					constraint cliente_PKcodigo primary key (codigo))
 go
 select * from cliente*/
---create table Exercicio(Codigo int identity(1, 1), Nome varchar(100) not null,
+--create table Exercicio(Codigo int identity(1, 1), Descricao varchar(100) not null,
 --						constraint Exercicio_PKcodigo primary key(codigo))
 --go
 
