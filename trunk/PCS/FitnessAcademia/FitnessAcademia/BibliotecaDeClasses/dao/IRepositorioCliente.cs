@@ -6,7 +6,7 @@ using BibliotecaDeClasses.basica;
 
 namespace BibliotecaDeClasses.dao
 {
-    interface IRepositorioCliente
+    public interface IRepositorioCliente
     {
         void incluir(Cliente c);
         void alterar(Cliente c);

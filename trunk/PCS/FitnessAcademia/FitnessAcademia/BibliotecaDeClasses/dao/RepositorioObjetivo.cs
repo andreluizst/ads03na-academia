@@ -9,9 +9,9 @@ using BibliotecaDeClasses.basica;
 
 namespace BibliotecaDeClasses.dao
 {
-    public class RepositorioObjetivo:IRepositorioObjetivo
+    public class RepositorioObjetivo : IRepositorioObjetivo
     {
-        private static RepositorioObjetivo instancia;
+        private static IRepositorioObjetivo instancia;
         private Conexao con;
 
         private RepositorioObjetivo()
@@ -19,7 +19,7 @@ namespace BibliotecaDeClasses.dao
             con = Conexao.getInstancia();
         }
 
-        public static RepositorioObjetivo obterInstancia()
+        public static IRepositorioObjetivo obterInstancia()
         {
             if (instancia == null)
                 instancia = new RepositorioObjetivo();
@@ -68,5 +68,6 @@ namespace BibliotecaDeClasses.dao
             }
             return lst;
         }
+
     }
 }

@@ -7,6 +7,10 @@ namespace BibliotecaDeClasses.basica
 {
     public class Cliente
     {
+        public const int TO_STRING_DEFAULT = 0;
+        public const int TO_STRING_FULL = 1;
+        public const int TO_STRING_NAME = 2;
+
         private int codCli;
 
         public int CodCli
@@ -136,12 +140,13 @@ namespace BibliotecaDeClasses.basica
 
         public Cliente()
         {
-
+            this.toStringBehavior = TO_STRING_DEFAULT;
         }
 
         public Cliente(int codCli)
         {
             this.codCli = codCli;
+            this.toStringBehavior = TO_STRING_DEFAULT;
         }
 
         public Cliente(int codCli, string nome)
@@ -155,14 +160,37 @@ namespace BibliotecaDeClasses.basica
             this.nome = nome;
         }
 
-        public Cliente(string cpf)
+        public Cliente(string cpf, string rg)
         {
             this.cpf = cpf;
+            this.rg = rg;
         }
 
+        private int toStringBehavior;
 
+        public int ToStringBehavior
+        {
+            get { return toStringBehavior; }
+            set { toStringBehavior = value; }
+        }
 
-
+        public override string ToString()
+        {
+            switch (toStringBehavior)
+            {
+                case TO_STRING_NAME:
+                    return this.nome;
+                    //break;
+                case TO_STRING_FULL:
+                    return "Código " + CodCli.ToString() + " " + Nome + " CPF " + Cpf + " RG " + Rg
+                        + " Data nasc. " + DataNasc.ToString() + " Endereço " + Logradouro + " - "
+                        + NumLog + " - " + Complemento + " - " + Bairro + " - " + Cidade
+                        + " - " + Uf + " - " + Cep + " F: " + Telefone + " / " + Celular
+                        + " e-mail " + Email + " Val exame médido: " + ValExameMedico.ToString();
+                    //break;
+            }
+            return CodCli + " " + Nome;
+        }
             
     }
 }
