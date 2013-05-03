@@ -9,9 +9,9 @@ using BibliotecaDeClasses.conexao;
 
 namespace BibliotecaDeClasses.dao
 {
-    public class RepositorioCliente:IRepositorioCliente
+    public class RepositorioCliente : IRepositorioCliente
     {
-        private static RepositorioCliente instancia;
+        private static IRepositorioCliente instancia;
         private Conexao con;
 
 
@@ -20,7 +20,7 @@ namespace BibliotecaDeClasses.dao
             con = Conexao.getInstancia();
         }
 
-        public static RepositorioCliente obterInstancia()
+        public static IRepositorioCliente obterInstancia()
         {
             if (instancia == null)
                 instancia = new RepositorioCliente();
@@ -43,6 +43,23 @@ namespace BibliotecaDeClasses.dao
             {
                 throw new ErroInclusao("A operação de inclusão não está disponível no momento!");
             }
+        }
+
+        public void alterar(Cliente c)
+        {
+            //código aki
+        }
+
+        public void excluir(Cliente c)
+        {
+            //código aki
+        }
+
+        public List<Cliente> pesquisar(Cliente c)
+        {
+            List<Cliente> lst = new List<Cliente>();
+
+            return lst;
         }
 
     }

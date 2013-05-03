@@ -6,7 +6,7 @@ using BibliotecaDeClasses.basica;
 
 namespace BibliotecaDeClasses.dao
 {
-    interface IRepositorioObjetivo
+    public interface IRepositorioObjetivo
     {
         void incluir(Objetivo o);
         void alterar(Objetivo o);
