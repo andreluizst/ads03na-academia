@@ -11,12 +11,12 @@ namespace BibliotecaDeClasses.basica
         public const int TO_STRING_FULL = 1;
         public const int TO_STRING_NAME = 2;
 
-        private int codCli;
+        private int codigo;
 
-        public int CodCli
+        public int Codigo
         {
-            get { return codCli; }
-            set { codCli = value; }
+            get { return codigo; }
+            set { codigo = value; }
         }
         private string nome;
 
@@ -85,8 +85,8 @@ namespace BibliotecaDeClasses.basica
 
         public string Uf
         {
-            get { return uf; }
-            set { uf = value; }
+            get { return uf.ToUpper(); }
+            set { uf = value.ToUpper(); }
         }
         private string cep;
 
@@ -95,19 +95,19 @@ namespace BibliotecaDeClasses.basica
             get { return cep; }
             set { cep = value; }
         }
-        private char estCivil;
+        private string estCivil;
 
-        public char EstCivil
+        public string EstCivil
         {
-            get { return estCivil; }
-            set { estCivil = value; }
+            get { return estCivil.ToUpper(); }
+            set { estCivil = value.ToUpper(); }
         }
-        private char sexo;
+        private string sexo;
 
-        public char Sexo
+        public string Sexo
         {
-            get { return sexo; }
-            set { sexo = value; }
+            get { return sexo.ToUpper(); }
+            set { sexo = value.ToUpper(); }
         }
         private string telefone;
 
@@ -143,16 +143,23 @@ namespace BibliotecaDeClasses.basica
             this.toStringBehavior = TO_STRING_DEFAULT;
         }
 
-        public Cliente(int codCli)
+        public Cliente(int codigo)
         {
-            this.codCli = codCli;
+            this.codigo = codigo;
             this.toStringBehavior = TO_STRING_DEFAULT;
         }
 
-        public Cliente(int codCli, string nome)
+        public Cliente(int codigo, string nome)
         {
-            this.codCli = codCli;
+            this.codigo = codigo;
             this.nome = nome;
+        }
+
+        public Cliente(int codigo, string nome, int toStringBehavior)
+        {
+            this.codigo = codigo;
+            this.nome = nome;
+            this.toStringBehavior = toStringBehavior;
         }
 
         public Cliente(string nome)
@@ -182,14 +189,14 @@ namespace BibliotecaDeClasses.basica
                     return this.nome;
                     //break;
                 case TO_STRING_FULL:
-                    return "Código " + CodCli.ToString() + " " + Nome + " CPF " + Cpf + " RG " + Rg
+                    return "Código " + Codigo.ToString() + " " + Nome + " CPF " + Cpf + " RG " + Rg
                         + " Data nasc. " + DataNasc.ToString() + " Endereço " + Logradouro + " - "
                         + NumLog + " - " + Complemento + " - " + Bairro + " - " + Cidade
                         + " - " + Uf + " - " + Cep + " F: " + Telefone + " / " + Celular
                         + " e-mail " + Email + " Val exame médido: " + ValExameMedico.ToString();
                     //break;
             }
-            return CodCli + " " + Nome;
+            return Codigo + " " + Nome;
         }
             
     }

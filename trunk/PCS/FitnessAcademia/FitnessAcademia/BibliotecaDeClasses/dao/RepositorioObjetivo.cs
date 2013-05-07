@@ -30,15 +30,16 @@ namespace BibliotecaDeClasses.dao
         public void incluir(Objetivo o)
         {
             string transName = "InsTrans";
+            string sql = "insert into objetivo(descricao) values(@descricao)";
             try
             {
                 con.abrir();
-                SqlCommand sql = new SqlCommand("insert into objetivo(descricao) values(@descricao)",
-                    con.sqlConnection, con.iniciarTransacao(transName));
-                sql.Parameters.Add("@descricao", SqlDbType.VarChar);
-                sql.Parameters["@descricao"].Value = o.Descricao;
-                sql.ExecuteNonQuery();
+                SqlCommand sqlCmd = new SqlCommand(sql, con.sqlConnection, con.iniciarTransacao(transName));
+                sqlCmd.Parameters.Add("@descricao", SqlDbType.VarChar);
+                sqlCmd.Parameters["@descricao"].Value = o.Descricao;
+                sqlCmd.ExecuteNonQuery();
                 con.concluirTransacao(transName);
+                sqlCmd.Dispose();
             }
             catch (ErroConexao e)
             {
@@ -59,19 +60,19 @@ namespace BibliotecaDeClasses.dao
 
         public void alterar(Objetivo o)
         {
-            string transName = "updtTrans";
+            string transName = "updtTrans_Objetivo";
+            string sql = "update objetivo set descricao = @descricao where codigo = @codigo";
             try
             {
                 con.abrir();
-                SqlCommand sql = new SqlCommand(
-                    "update objetivo set descricao = @descricao where codigo = @codigo",
-                    con.sqlConnection, con.iniciarTransacao(transName));
-                sql.Parameters.Add("@codigo", SqlDbType.Int);
-                sql.Parameters["@codigo"].Value = o.Codigo;
-                sql.Parameters.Add("@descricao", SqlDbType.VarChar);
-                sql.Parameters["@descricao"].Value = o.Descricao;
-                sql.ExecuteNonQuery();
+                SqlCommand sqlCmd = new SqlCommand(sql, con.sqlConnection, con.iniciarTransacao(transName));
+                sqlCmd.Parameters.Add("@codigo", SqlDbType.Int);
+                sqlCmd.Parameters["@codigo"].Value = o.Codigo;
+                sqlCmd.Parameters.Add("@descricao", SqlDbType.VarChar);
+                sqlCmd.Parameters["@descricao"].Value = o.Descricao;
+                sqlCmd.ExecuteNonQuery();
                 con.concluirTransacao(transName);
+                sqlCmd.Dispose();
             }
             catch (ErroConexao e)
             {
@@ -91,17 +92,17 @@ namespace BibliotecaDeClasses.dao
 
         public void excluir(Objetivo o)
         {
-            string transName = "delTrans";
+            string transName = "delTrans_Objetivo";
+            string sql = "delete from objetivo where codigo = @codigo";
             try
             {
                 con.abrir();
-                SqlCommand sql = new SqlCommand(
-                    "delete from objetivo where codigo = @codigo",
-                    con.sqlConnection, con.iniciarTransacao(transName));
-                sql.Parameters.Add("@codigo", SqlDbType.Int);
-                sql.Parameters["@codigo"].Value = o.Codigo;
-                sql.ExecuteNonQuery();
+                SqlCommand sqlCmd = new SqlCommand(sql, con.sqlConnection, con.iniciarTransacao(transName));
+                sqlCmd.Parameters.Add("@codigo", SqlDbType.Int);
+                sqlCmd.Parameters["@codigo"].Value = o.Codigo;
+                sqlCmd.ExecuteNonQuery();
                 con.concluirTransacao(transName);
+                sqlCmd.Dispose();
             }
             catch (ErroConexao e)
             {

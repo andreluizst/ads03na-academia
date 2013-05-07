@@ -11,6 +11,7 @@ namespace BibliotecaDeClasses.dao
         void incluir(Cliente c);
         void alterar(Cliente c);
         void excluir(Cliente c);
-        List<Cliente> pesquisar(Cliente c);
+        List<Cliente> consultar(Cliente c, int toStringBehavior);
+        List<Cliente> consultar(Cliente c);
     }
 }
