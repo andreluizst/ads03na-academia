@@ -9,7 +9,6 @@ namespace BibliotecaDeClasses.basica
     {
         public const int TO_STRING_DEFAULT = 0;
         public const int TO_STRING_DESCRICAO = 1;
-        public const int TO_STRING_FULL = 2;
 
         private int codigo;
 
@@ -57,9 +56,7 @@ namespace BibliotecaDeClasses.basica
         {
             if (this.toStringBehavior == TO_STRING_DESCRICAO)
                 return Descricao;
-            if (this.toStringBehavior == TO_STRING_FULL)
-                return Codigo + " " + Descricao;
-            return base.ToString();
+            return Codigo + " " + Descricao;
         }
     }
 }
