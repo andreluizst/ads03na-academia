@@ -4,9 +4,9 @@ use FitnessAcademia
 create table Cliente(codigo int identity(1,1), nome varchar(100) not null, CPF varchar(11), RG varchar(11),
 					DataNasc date not null, Logradouro varchar(100), numLog varchar(15),
 					Complemento varchar(50), Bairro varchar(60), Cidade varchar(60), UF char(2), CEP varchar(8),
-					EstCivil char(1), check(EstCivil='c' or EstCivil='s' or EstCivil='d' or EstCivil='v'), 
-					Sexo char(1) check(sexo='m' or sexo='f' or sexo='o'), 
-					Tefone varchar(11), Celular varchar(11), Email varchar(100), ValExameMedico Date,
+					EstCivil char(1), check(EstCivil='C' or EstCivil='S' or EstCivil='D' or EstCivil='V'), 
+					Sexo char(1) check(sexo='M' or sexo='F' or sexo='O'), 
+					Telefone varchar(11), Celular varchar(11), Email varchar(100), ValExameMedico Date,
 					constraint cliente_PKcodigo primary key (codigo))
 go
 select * from cliente*/
