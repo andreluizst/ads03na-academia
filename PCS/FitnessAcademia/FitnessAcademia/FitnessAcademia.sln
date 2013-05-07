@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaDeClasses", "Bibl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACliente", "FACliente\FACliente.csproj", "{17B5BA4D-26CA-447F-AB2F-7395AE549690}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestarFuncionalidades", "TestarFuncionalidades\TestarFuncionalidades.csproj", "{EBFC567D-391D-4E78-8327-8D9C0C06CD39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{17B5BA4D-26CA-447F-AB2F-7395AE549690}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17B5BA4D-26CA-447F-AB2F-7395AE549690}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17B5BA4D-26CA-447F-AB2F-7395AE549690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBFC567D-391D-4E78-8327-8D9C0C06CD39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBFC567D-391D-4E78-8327-8D9C0C06CD39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBFC567D-391D-4E78-8327-8D9C0C06CD39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBFC567D-391D-4E78-8327-8D9C0C06CD39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

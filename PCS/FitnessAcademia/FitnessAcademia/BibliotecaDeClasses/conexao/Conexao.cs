@@ -14,8 +14,11 @@ namespace BibliotecaDeClasses.conexao
         //http://www.connectionstrings.com/
         private string sqlSrvConnectionString = "Data Source=localhost;Initial Catalog=FitnessAcademia;UId=pcsmelo;Password=melo;";
 
+        private Dictionary<string, SqlTransaction> transacoes;
+
         private Conexao()
         {
+            transacoes = new Dictionary<string,SqlTransaction>();
         }
 
         public static Conexao getInstancia()
@@ -42,6 +45,23 @@ namespace BibliotecaDeClasses.conexao
         {
             this.sqlConnection.Close();
             this.sqlConnection.Dispose();
+        }
+
+        public SqlTransaction iniciarTransacao(string nomeDaTransacao)
+        {
+            SqlTransaction transacao = sqlConnection.BeginTransaction(nomeDaTransacao);
+            transacoes[nomeDaTransacao] = transacao;
+            return transacao;
+        }
+
+        public void concluirTransacao(string nome)
+        {
+            transacoes[nome].Commit();
+        }
+
+        public void reverterTransacao(string nome)
+        {
+            transacoes[nome].Rollback(nome);
         }
     }
 }
