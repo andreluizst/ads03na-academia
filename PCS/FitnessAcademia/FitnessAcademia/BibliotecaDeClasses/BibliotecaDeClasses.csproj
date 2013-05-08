@@ -46,8 +46,10 @@
     <Compile Include="Class1.cs" />
     <Compile Include="conexao\Conexao.cs" />
     <Compile Include="dao\IRepositorioCliente.cs" />
+    <Compile Include="dao\IRepositorioExercicio.cs" />
     <Compile Include="dao\IRepositorioObjetivo.cs" />
     <Compile Include="dao\RepositorioCliente.cs" />
+    <Compile Include="dao\RepositorioExercicio.cs" />
     <Compile Include="dao\RepositorioObjetivo.cs" />
     <Compile Include="erro\ErroAlteracao.cs" />
     <Compile Include="erro\ErroConexao.cs" />
