@@ -8,8 +8,7 @@ namespace BibliotecaDeClasses.basica
     class Exercicio
     {
         public const int TO_STRING_DEFAULT = 0;
-        public const int TO_STRING_FULL = 1;
-        public const int TO_STRING_DESCRICAO = 2;
+        public const int TO_STRING_DESCRICAO = 1;
 
         private int codigo;
 
@@ -56,9 +55,7 @@ namespace BibliotecaDeClasses.basica
         {
             if (toStringBehavior == TO_STRING_DESCRICAO)
                 return this.descricao;
-            if (toStringBehavior == TO_STRING_FULL)
-                return Codigo + " " + Descricao;
-            return base.ToString();
+            return Codigo + " " + Descricao;
         }
 
 
