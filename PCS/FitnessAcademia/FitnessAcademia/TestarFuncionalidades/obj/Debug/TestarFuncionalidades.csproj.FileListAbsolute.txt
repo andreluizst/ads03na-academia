@@ -5,3 +5,5 @@ E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\T
 E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.csprojResolveAssemblyReference.cache
 E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.exe
 E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.pdb
+E:\APS_ENR_GooleCode\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.exe
+E:\APS_ENR_GooleCode\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.pdb

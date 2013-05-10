@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace BibliotecaDeClasses.dao
 {
-    class RepositorioExercicio : IRepositorioExercicio
+    public class RepositorioExercicio : IRepositorioExercicio
     {
         private static IRepositorioExercicio instancia;
         private Conexao con;
