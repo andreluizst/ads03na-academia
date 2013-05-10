@@ -14,7 +14,7 @@ select * from cliente*/
 --						constraint Exercicio_PKcodigo primary key(codigo))
 --go
 
-/*create table Objetivo(Codigo int identity(1,1), Nome varchar(50), 
+/*create table Objetivo(Codigo int identity(1,1), Descricao varchar(50), 
 						constraint objetivo_PKcodigo primary key(Codigo))
 go
 create table PlanoTreinamento(NumPlano int identity(1,1), codCli int not null, Data Date, Nivel int not null,
