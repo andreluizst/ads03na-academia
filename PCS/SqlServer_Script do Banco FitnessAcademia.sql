@@ -33,3 +33,7 @@ insert into objetivo(nome) values('Hipertrofia')
 insert into objetivo(nome) values('Emagrecer')
 insert into objetivo(nome) values('Reabilitação física')
 select * from objetivo*/
+--select * from PlanoTreinamento
+
+--alter table PlanoTreinamento drop column nivel
+select * from PlanoTreinamento
