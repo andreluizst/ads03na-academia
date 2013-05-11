@@ -6,12 +6,12 @@ using BibliotecaDeClasses.basica;
 
 namespace BibliotecaDeClasses.dao
 {
-    interface IRepositorioExercicio
+    public interface IRepositorioExercicio
     {
         void incluir(Exercicio e);
         void alterar(Exercicio e);
-        void excluir(Cliente c);
-        List<Cliente> consultar(Exercicio e, int toStringBehavior);
-        List<Cliente> consultar(Exercicio e);
+        void excluir(Exercicio e);
+        List<Exercicio> consultar(Exercicio e, int toStringBehavior);
+        List<Exercicio> consultar(Exercicio e);
     }
 }

@@ -29,7 +29,7 @@ namespace BibliotecaDeClasses.dao
 
         public void incluir(Objetivo o)
         {
-            string transName = "InsTrans";
+            string transName = "InsTrans_Objetivo";
             string sql = "insert into objetivo(descricao) values(@descricao)";
             try
             {
@@ -44,7 +44,7 @@ namespace BibliotecaDeClasses.dao
             catch (ErroConexao e)
             {
                 con.reverterTransacao(transName);
-                throw new ErroConexao("A operação de inculsão não está disponível no momento: " + e.Message);
+                throw new ErroConexao("Erro de conexão: " + e.Message);
             }
             catch (SqlException e)
             {

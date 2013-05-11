@@ -7,6 +7,14 @@ namespace BibliotecaDeClasses.basica
 {
     public class ExercicioDoPlano
     {
+        private int numPlano;
+
+        public int NumPlano
+        {
+            get { return numPlano; }
+            set { numPlano = value; }
+        }
+
         private int seq;
 
         public int Seq
@@ -14,6 +22,23 @@ namespace BibliotecaDeClasses.basica
             get { return seq; }
             set { seq = value; }
         }
+
+        private Exercicio exercicio;
+
+        public Exercicio Exercicio
+        {
+            get { return exercicio; }
+            set { exercicio = value; }
+        }
+
+        private int series;
+
+        public int Series
+        {
+            get { return series; }
+            set { series = value; }
+        }
+
         private int numRepeticoes;
 
         public int NumRepeticoes

@@ -48,9 +48,11 @@
     <Compile Include="dao\IRepositorioCliente.cs" />
     <Compile Include="dao\IRepositorioExercicio.cs" />
     <Compile Include="dao\IRepositorioObjetivo.cs" />
+    <Compile Include="dao\IRepositorioPlanoDeTreinamento.cs" />
     <Compile Include="dao\RepositorioCliente.cs" />
     <Compile Include="dao\RepositorioExercicio.cs" />
     <Compile Include="dao\RepositorioObjetivo.cs" />
+    <Compile Include="dao\RepositorioPlanoDeTreinamento.cs" />
     <Compile Include="erro\ErroAlteracao.cs" />
     <Compile Include="erro\ErroConexao.cs" />
     <Compile Include="erro\ErroExclusao.cs" />
