@@ -153,6 +153,7 @@ namespace BibliotecaDeClasses.basica
         {
             this.codigo = codigo;
             this.nome = nome;
+            this.toStringBehavior = TO_STRING_DEFAULT;
         }
 
         public Cliente(int codigo, string nome, int toStringBehavior)
@@ -165,9 +166,11 @@ namespace BibliotecaDeClasses.basica
         public Cliente(string nome)
         {
             this.nome = nome;
+            this.toStringBehavior = TO_STRING_DEFAULT;
         }
 
         public Cliente(string cpf, string rg)
+            :this()
         {
             this.cpf = cpf;
             this.rg = rg;
@@ -196,7 +199,7 @@ namespace BibliotecaDeClasses.basica
                         + " e-mail " + Email + " Val exame médido: " + ValExameMedico.ToString();
                     //break;
             }
-            return Codigo + " " + Nome;
+            return Codigo + " - " + Nome + ", cpf " + Cpf;
         }
             
     }

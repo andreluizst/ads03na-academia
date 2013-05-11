@@ -14,12 +14,12 @@ namespace BibliotecaDeClasses.dao
         private static IRepositorioExercicio instancia;
         private Conexao con;
 
-        private RepositorioExercicio()
+        public RepositorioExercicio()
         {
             con = Conexao.getInstancia();
         }
 
-        public IRepositorioExercicio obterInstancia()
+        public static IRepositorioExercicio obterInstancia()
         {
             if (instancia == null)
                 instancia = new RepositorioExercicio();
@@ -29,17 +29,90 @@ namespace BibliotecaDeClasses.dao
 
         public void incluir(Exercicio e)
         {
-            //entrar com código
+            string transName = "InsTrans_Exercicio";
+            string sql = "insert into Exercicio(descricao) values(@descricao)";
+            try
+            {
+                con.abrir();
+                SqlCommand sqlCmd = new SqlCommand(sql, con.sqlConnection, con.iniciarTransacao(transName));
+                sqlCmd.Parameters.AddWithValue("@descricao", e.Descricao);
+                sqlCmd.ExecuteNonQuery();
+                con.concluirTransacao(transName);
+                sqlCmd.Dispose();
+            }
+            catch (ErroConexao ex)
+            {
+                con.reverterTransacao(transName);
+                throw new ErroConexao("Erro de conexão: " + ex.Message);
+            }
+            catch (SqlException ex)
+            {
+                con.reverterTransacao(transName);
+                throw new ErroPesquisar("Erro ao tentar incluir exerício: " + ex.Message);
+            }
+            finally
+            {
+                con.fechar();
+            }
         }
 
         public void alterar(Exercicio e)
         {
-            //entrar com código
+            string transName = "updtTrans_Exercicio";
+            string sql = "update Exercicio set descricao = @descricao where codigo = @codigo";
+            try
+            {
+                con.abrir();
+                SqlCommand sqlCmd = new SqlCommand(sql, con.sqlConnection, con.iniciarTransacao(transName));
+                sqlCmd.Parameters.AddWithValue("@codigo", e.Codigo);
+                sqlCmd.Parameters.AddWithValue("@descricao", e.Descricao);
+                sqlCmd.ExecuteNonQuery();
+                con.concluirTransacao(transName);
+                sqlCmd.Dispose();
+            }
+            catch (ErroConexao ex)
+            {
+                con.reverterTransacao(transName);
+                throw new ErroConexao("Erro de conexão: " + ex.Message);
+            }
+            catch (SqlException ex)
+            {
+                con.reverterTransacao(transName);
+                throw new ErroPesquisar("Erro ao tentar alterar objetivo: " + ex.Message);
+            }
+            finally
+            {
+                con.fechar();
+            }
         }
 
         public void excluir(Exercicio e)
         {
-            //entrar com código
+            string transName = "delTrans_Exercicio";
+            string sql = "delete from Exercicio where codigo = @codigo";
+            try
+            {
+                con.abrir();
+                SqlCommand sqlCmd = new SqlCommand(sql, con.sqlConnection, con.iniciarTransacao(transName));
+                sqlCmd.Parameters.AddWithValue("@codigo", e.Codigo);
+                sqlCmd.ExecuteNonQuery();
+                con.concluirTransacao(transName);
+                sqlCmd.Dispose();
+            }
+            catch (ErroConexao ex)
+            {
+                con.reverterTransacao(transName);
+                throw new ErroConexao("Erro de conexão: " + ex.Message);
+            }
+            catch (SqlException ex)
+            {
+                con.reverterTransacao(transName);
+                throw new ErroPesquisar("Erro ao tentar excluir objetivo: " + ex.Message);
+            }
+            finally
+            {
+                con.fechar();
+            }
         }
 
         public List<Exercicio> consultar(Exercicio e)
@@ -85,7 +158,7 @@ namespace BibliotecaDeClasses.dao
             }
             catch (ErroConexao ex)
             {
-                throw new ErroConexao("A operação de consulta não está disponível no momento: " + ex.Message);
+                throw new ErroConexao("Erro de conexão: " + ex.Message);
             }
             catch (SqlException ex)
             {

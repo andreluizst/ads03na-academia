@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BibliotecaDeClasses.basica
 {
-    class Exercicio
+    public class Exercicio
     {
         public const int TO_STRING_DEFAULT = 0;
         public const int TO_STRING_DESCRICAO = 1;
@@ -38,17 +38,18 @@ namespace BibliotecaDeClasses.basica
             this.toStringBehavior = TO_STRING_DEFAULT;
         }
 
-        public Exercicio(int codigo, string descricao):this()
+        public Exercicio(int codigo, string descricao)
+            :this()
         {
             this.codigo = codigo;
             this.descricao = descricao;
         }
 
         public Exercicio(int codigo, string descricao, int toStringBehavior)
+            :this()
         {
             this.codigo = codigo;
             this.descricao = descricao;
-            this.toStringBehavior = toStringBehavior;
         }
 
         public override string ToString()
