@@ -12,20 +12,20 @@ namespace BibliotecaDeClasses.dao
 {
     public class RepositorioObjetivo : IRepositorioObjetivo
     {
-        private static IRepositorioObjetivo instancia;
+        //private static IRepositorioObjetivo instancia;
         private Conexao con;
 
-        private RepositorioObjetivo()
+        public RepositorioObjetivo()
         {
             con = Conexao.getInstancia();
         }
 
-        public static IRepositorioObjetivo obterInstancia()
+        /*public static IRepositorioObjetivo obterInstancia()
         {
             if (instancia == null)
                 instancia = new RepositorioObjetivo();
             return instancia;
-        }
+        }*/
 
         public void incluir(Objetivo o)
         {
@@ -118,6 +118,21 @@ namespace BibliotecaDeClasses.dao
             {
                 con.fechar();
             }
+        }
+
+        public Objetivo pegar(int codigo)
+        {
+            return pegar(codigo, Objetivo.TO_STRING_DEFAULT);
+        }
+
+        public Objetivo pegar(int codigo, int toStringBehavior)
+        {
+            Objetivo obj = new Objetivo();
+            obj.Codigo = codigo;
+            List<Objetivo> lista = consultar(obj, toStringBehavior);
+            if (lista.Count > 0)
+                return lista[0];
+            return null;
         }
 
         public List<Objetivo> consultar(Objetivo o, int toStringBehavior)

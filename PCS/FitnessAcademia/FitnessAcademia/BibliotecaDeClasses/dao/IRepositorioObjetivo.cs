@@ -13,5 +13,7 @@ namespace BibliotecaDeClasses.dao
         void excluir(Objetivo o);
         List<Objetivo> consultar(Objetivo o, int toStringBehavior);
         List<Objetivo> consultar(Objetivo o);
+        Objetivo pegar(int codigo);
+        Objetivo pegar(int codigo, int toStringBehavior);
     }
 }
