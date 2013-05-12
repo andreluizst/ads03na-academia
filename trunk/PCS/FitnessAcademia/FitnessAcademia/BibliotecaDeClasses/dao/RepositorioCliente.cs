@@ -11,21 +11,21 @@ namespace BibliotecaDeClasses.dao
 {
     public class RepositorioCliente : IRepositorioCliente
     {
-        private static IRepositorioCliente instancia;
+        //private static IRepositorioCliente instancia;
         private Conexao con;
 
 
-        private RepositorioCliente()
+        public RepositorioCliente()
         {
             con = Conexao.getInstancia();
         }
 
-        public static IRepositorioCliente obterInstancia()
+        /*public static IRepositorioCliente obterInstancia()
         {
             if (instancia == null)
                 instancia = new RepositorioCliente();
             return instancia;
-        }
+        }*/
 
         public void incluir(Cliente c)
         {
@@ -153,6 +153,21 @@ namespace BibliotecaDeClasses.dao
             {
                 con.fechar();
             }
+        }
+
+        public Cliente pegar(int codigo)
+        {
+            return pegar(codigo, Cliente.TO_STRING_DEFAULT);
+        }
+
+        public Cliente pegar(int codigo, int toStringBehavior)
+        {
+            Cliente c = new Cliente();
+            c.Codigo = codigo;
+            List<Cliente> lista = consultar(c, toStringBehavior);
+            if (lista.Count > 0)
+                return lista[0];
+            return null;
         }
 
         public List<Cliente> consultar(Cliente c)

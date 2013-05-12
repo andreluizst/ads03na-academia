@@ -28,6 +28,7 @@ namespace BibliotecaDeClasses.basica
         public PlanoTreinamento()
         {
             toStringBehavior = PlanoTreinamento.TO_STRING_DEFAULT;
+            exercicios = new List<ExercicioDoPlano>();
         }
 
         public PlanoTreinamento(int numPlano, DateTime data):this()

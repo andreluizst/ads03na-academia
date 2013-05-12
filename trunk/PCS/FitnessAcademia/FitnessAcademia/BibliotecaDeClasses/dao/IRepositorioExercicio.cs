@@ -13,5 +13,7 @@ namespace BibliotecaDeClasses.dao
         void excluir(Exercicio e);
         List<Exercicio> consultar(Exercicio e, int toStringBehavior);
         List<Exercicio> consultar(Exercicio e);
+        Exercicio pegar(int codigo);
+        Exercicio pegar(int codigo, int toStringBehavior);
     }
 }

@@ -11,7 +11,7 @@ namespace BibliotecaDeClasses.dao
 {
     public class RepositorioExercicio : IRepositorioExercicio
     {
-        private static IRepositorioExercicio instancia;
+        //private static IRepositorioExercicio instancia;
         private Conexao con;
 
         public RepositorioExercicio()
@@ -19,12 +19,12 @@ namespace BibliotecaDeClasses.dao
             con = Conexao.getInstancia();
         }
 
-        public static IRepositorioExercicio obterInstancia()
+        /*public static IRepositorioExercicio obterInstancia()
         {
             if (instancia == null)
                 instancia = new RepositorioExercicio();
             return instancia;
-        }
+        }*/
 
 
         public void incluir(Exercicio e)
@@ -113,6 +113,21 @@ namespace BibliotecaDeClasses.dao
             {
                 con.fechar();
             }
+        }
+
+        public Exercicio pegar(int codigo)
+        {
+            return pegar(codigo, Exercicio.TO_STRING_DEFAULT);
+        }
+
+        public Exercicio pegar(int codigo, int toStringBehavior)
+        {
+            Exercicio obj = new Exercicio();
+            obj.Codigo = codigo;
+            List<Exercicio> lista = consultar(obj, toStringBehavior);
+            if (lista.Count > 0)
+                return lista[0];
+            return null;
         }
 
         public List<Exercicio> consultar(Exercicio e)

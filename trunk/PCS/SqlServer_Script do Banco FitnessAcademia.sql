@@ -33,9 +33,7 @@ insert into objetivo(nome) values('Hipertrofia')
 insert into objetivo(nome) values('Emagrecer')
 insert into objetivo(nome) values('Reabilitação física')
 select * from objetivo*/
-
 --alter table PlanoTreinamento drop column nivel
-
 /*create procedure addPlanoTraineamento
 	@pCodCli int, 
 	@pData Date, 
@@ -47,3 +45,16 @@ select * from objetivo*/
 	values(@pCodCli, @pData, @pCodObjetivo)
 	set @pNumPlano = SCOPE_IDENTITY()
 return*/
+--insert into Exercicio values('Abdominal canivete')
+--insert into Exercicio values('Abdominal infra')
+--insert into Exercicio values('Abdução cross over')
+--insert into Exercicio values('Abdução em pé')
+--insert into Exercicio values('Agachamento em pé')
+--insert into Exercicio values('Agachamento na barra guiada')
+--insert into Exercicio values('Crucifixo')
+--insert into cliente(nome, cpf, rg, DataNasc, Logradouro, numLog, Bairro, Cidade, UF, CEP,
+--					 EstCivil, Sexo, Tefone, Celular, Email, ValExameMedico)
+--			values('Mariana Lima', '11122233344', '324354245', '25/05/1979', 'Rua 27 de maio', '23', 'Santo Antônio',
+--					'Recife', 'PE', '50002654', 'S', 'F', '8134756895', '8199751423', 'mariana.lima@gmail.com', '05/08/2013')
+select * from PlanoTreinamento as pt left outer join ExercicioDoPlano as ep on ep.numPlano = pt.NumPlano
+select * from cliente

@@ -56,9 +56,12 @@ namespace BibliotecaDeClasses.basica
         public ExercicioDoPlano()
         {
         }
-        public ExercicioDoPlano(int seq, int numRepeticoes, double peso)
+
+        public ExercicioDoPlano(int seq, Exercicio exercicio, int series, int numRepeticoes, double peso)
         {
             this.seq = seq;
+            this.exercicio = exercicio;
+            this.series = series;
             this.numRepeticoes = numRepeticoes;
             this.peso = peso;
         }

@@ -12,20 +12,20 @@ namespace BibliotecaDeClasses.dao
 {
     public class RepositorioPlanoDeTreinamento : IRepositorioPlanoDeTreinamento
     {
-        private static IRepositorioPlanoDeTreinamento instancia;
+        //private static IRepositorioPlanoDeTreinamento instancia;
         private Conexao con;
 
-        private RepositorioPlanoDeTreinamento()
+        public RepositorioPlanoDeTreinamento()
         {
             con = Conexao.getInstancia();
         }
 
-        public static IRepositorioPlanoDeTreinamento obterInstancia()
+        /*public static IRepositorioPlanoDeTreinamento obterInstancia()
         {
             if (instancia == null)
                 instancia = new RepositorioPlanoDeTreinamento();
             return instancia;
-        }
+        }*/
 
         public void incluir(PlanoTreinamento pt)
         {
@@ -101,7 +101,57 @@ namespace BibliotecaDeClasses.dao
         public List<PlanoTreinamento> consultar(PlanoTreinamento pt, int toStringBehavior)
         {
             List<PlanoTreinamento> lista = new List<PlanoTreinamento>();
-            //código
+            string sql = "select * from PlanoTreinamento";
+            string sqlExercicios = "select * from exercicioDoPlano where numPlano = @pNumPlano";
+            //string transName = "sqlSelect_Plano";
+            ///SqlTransaction transacao;
+            IRepositorioCliente rpC = new RepositorioCliente();
+            IRepositorioExercicio rpE = new RepositorioExercicio();
+            IRepositorioObjetivo rpO = new RepositorioObjetivo();
+            try
+            {
+                con.abrir();
+                //transacao = con.iniciarTransacao(transName);
+                SqlCommand sqlCmdPlano = new SqlCommand(sql, con.sqlConnection);//, transacao);
+                SqlDataReader readPlano = sqlCmdPlano.ExecuteReader();
+                while (readPlano.Read())
+                {
+                    PlanoTreinamento plano = new PlanoTreinamento(readPlano.GetInt32(readPlano.GetOrdinal("numPlano")),
+                        readPlano.GetDateTime(readPlano.GetOrdinal("data")), rpO.pegar(readPlano.GetInt32(readPlano.GetOrdinal("codObjetivo"))),
+                        rpC.pegar(readPlano.GetInt32(readPlano.GetOrdinal("codCli"))));
+
+                    SqlCommand sqlCmdExer = new SqlCommand(sqlExercicios, con.sqlConnection);//, transacao);
+                    sqlCmdExer.Parameters.AddWithValue("@pNumPlano", plano.Numplano);
+                    SqlDataReader sdrExercicios = sqlCmdExer.ExecuteReader();
+                    while (sdrExercicios.Read())
+                    {
+                        ExercicioDoPlano ep = new ExercicioDoPlano();
+                        ep.NumPlano = sdrExercicios.GetInt32(sdrExercicios.GetOrdinal("numPlano"));
+                        ep.Seq = sdrExercicios.GetInt32(sdrExercicios.GetOrdinal("seq"));
+                        ep.Exercicio = rpE.pegar(sdrExercicios.GetInt32(sdrExercicios.GetOrdinal("codExercicio")));
+                        ep.Series = sdrExercicios.GetInt32(sdrExercicios.GetOrdinal("series"));
+                        ep.NumRepeticoes = sdrExercicios.GetInt32(sdrExercicios.GetOrdinal("numRepeticoes"));
+                        ep.Peso = sdrExercicios.GetDouble(sdrExercicios.GetOrdinal("peso"));
+                        plano.Exercicios.Add(ep);
+                    }
+                    sdrExercicios.Close();
+                    sqlCmdExer.Dispose();
+                    
+                    lista.Add(plano);
+                }
+            }
+            catch (ErroConexao ec)
+            {
+                throw new ErroConexao("Erro de conexão: " + ec.Message);
+            }
+            catch (SqlException es)
+            {
+                throw new ErroPesquisar("Erro ao tentar consultar: " + es.Message);
+            }
+            finally
+            {
+                con.fechar();
+            }
             return lista;
         }
     }

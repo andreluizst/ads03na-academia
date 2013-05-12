@@ -13,5 +13,7 @@ namespace BibliotecaDeClasses.dao
         void excluir(Cliente c);
         List<Cliente> consultar(Cliente c, int toStringBehavior);
         List<Cliente> consultar(Cliente c);
+        Cliente pegar(int codigo);
+        Cliente pegar(int codigo, int toStringBehavior);
     }
 }
