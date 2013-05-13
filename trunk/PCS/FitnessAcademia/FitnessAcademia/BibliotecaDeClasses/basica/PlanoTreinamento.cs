@@ -80,7 +80,15 @@ namespace BibliotecaDeClasses.basica
 
         public override string ToString()
         {
-            return Numplano + " " + String.Format("dd/MM/yyyy", Data) + " - " + clienteDoPlano.ToString();
+            if (toStringBehavior == PlanoTreinamento.TO_STRING_COMPACT)
+            {
+                clienteDoPlano.ToStringBehavior = Cliente.TO_STRING_NOME_CPF;
+                objetivoDoPlano.ToStringBehavior = Objetivo.TO_STRING_DESCRICAO;
+                return Numplano +" - " + String.Format("{0:dd/MM/yyyy}", Data) + " - " + ObjetivoDoPlano.ToString()
+                        + " - " + clienteDoPlano.ToString();
+            }
+            return Numplano + " - " + String.Format("{0:dd/MM/yyyy}", Data) + " - " + ObjetivoDoPlano.ToString() 
+                    + " - " + clienteDoPlano.ToString();
         }
 
     }

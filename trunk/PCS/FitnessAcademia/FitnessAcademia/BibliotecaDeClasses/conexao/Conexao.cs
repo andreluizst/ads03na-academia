@@ -10,6 +10,7 @@ namespace BibliotecaDeClasses.conexao
     public class Conexao
     {
         private static Conexao instancia;
+        private static int count;
         public SqlConnection sqlConnection;
         //http://www.connectionstrings.com/
         private string sqlSrvConnectionString = "Data Source=localhost;Initial Catalog=FitnessAcademia;UId=pcsmelo;Password=melo;";
@@ -19,6 +20,7 @@ namespace BibliotecaDeClasses.conexao
         private Conexao()
         {
             transacoes = new Dictionary<string,SqlTransaction>();
+            count = 0;
         }
 
         public static Conexao getInstancia()
@@ -34,6 +36,7 @@ namespace BibliotecaDeClasses.conexao
             {
                 this.sqlConnection = new SqlConnection(sqlSrvConnectionString);
                 this.sqlConnection.Open();
+                count++;
             }
             catch (Exception e)
             {
@@ -43,8 +46,12 @@ namespace BibliotecaDeClasses.conexao
 
         public void fechar()
         {
-            this.sqlConnection.Close();
-            this.sqlConnection.Dispose();
+            count--;
+            if (count <= 0)
+            {
+                this.sqlConnection.Close();
+                this.sqlConnection.Dispose();
+            }
         }
 
         public SqlTransaction iniciarTransacao(string nomeDaTransacao)

@@ -14,10 +14,11 @@ namespace TestarFuncionalidades
         {
             try
             {
+                IRepositorioPlanoDeTreinamento rpP = new RepositorioPlanoDeTreinamento();
                 Objetivo o = new Objetivo();
                 o.Codigo = 2;
                 Cliente c = new Cliente();
-                c.Codigo = 1;
+                c.Codigo = 2;
                 PlanoTreinamento pt = new PlanoTreinamento();
                 pt.ClienteDoPlano = c;
                 pt.Data = Convert.ToDateTime("12/05/2013");
@@ -32,8 +33,41 @@ namespace TestarFuncionalidades
                 Exercicio e3 = new Exercicio();
                 e3.Codigo = 5;
                 pt.Exercicios.Add(new ExercicioDoPlano(3, e3, 6, 6, 0));
-                IRepositorioPlanoDeTreinamento rp = new RepositorioPlanoDeTreinamento();
-                rp.incluir(pt);
+                //rpP.incluir(pt);
+                List<PlanoTreinamento> lst = new List<PlanoTreinamento>();
+                lst.Add(pt);
+                Console.WriteLine(pt);
+                Console.WriteLine("listando lst<PlanoTreinamento>...");
+                foreach (PlanoTreinamento item in lst)
+                {
+                    Console.WriteLine(item);
+                    if (item.Exercicios.Count > 0)
+                        foreach (ExercicioDoPlano sub in item.Exercicios)
+                        {
+                            Console.WriteLine("\t" + sub);
+                        }
+                }
+                Console.WriteLine("listar planos...");
+                pt.Data = Convert.ToDateTime("01/01/2013");
+                pt.Numplano = 0;
+                pt.ObjetivoDoPlano.Codigo = 0;
+                pt.ClienteDoPlano.Codigo = 0;
+                Console.WriteLine("Consultando plano de treinamento: de " + pt.Data + " até " + DateTime.Now);
+                List<PlanoTreinamento> lstPlano = rpP.consultar(pt, DateTime.Now, PlanoTreinamento.TO_STRING_COMPACT);
+                //Console.WriteLine(pt);
+                foreach (PlanoTreinamento item in lstPlano)
+                {
+                    Console.WriteLine("Plano de treinamento " + item.Numplano.ToString());
+                    Console.WriteLine(item);
+                    if (item.Exercicios.Count > 0)
+                    {
+                        Console.WriteLine("Listando os exercicios do plano de treinamento...");
+                        foreach (ExercicioDoPlano subItem in item.Exercicios)
+                        {
+                            Console.WriteLine("\t" + subItem);
+                        }
+                    }
+                }
                 /*Exercicio e = new Exercicio(1, "Abdominal");
                 RepositorioExercicio.obterInstancia().incluir(e);
                 e.Codigo = 0;
@@ -62,7 +96,7 @@ namespace TestarFuncionalidades
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("ERRO: " + e.Message);
             }
             Console.ReadKey();
         }

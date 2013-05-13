@@ -169,15 +169,22 @@ namespace BibliotecaDeClasses.dao
                 }
                 reader.Close();
                 sqlCmd.Dispose();
-                con.fechar();
             }
-            catch (ErroConexao)
+            catch (ErroConexao e)
             {
-                throw new ErroConexao("A operação de consulta não está disponível no momento!");
+                throw new ErroConexao("Erro de conexão: " + e.Message);
             }
             catch (SqlException e)
             {
                 throw new ErroPesquisar("Erro ao consultar objetivo(s): " + e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new ErroPesquisar("Erro ao consultar objetivo(s): " + e.Message);
+            }
+            finally
+            {
+                con.fechar();
             }
             return lst;
         }
