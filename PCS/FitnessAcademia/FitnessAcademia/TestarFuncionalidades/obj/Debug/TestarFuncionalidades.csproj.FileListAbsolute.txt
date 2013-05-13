@@ -1,12 +1,5 @@
 E:\APS_ENR_GooleCode\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.exe
 E:\APS_ENR_GooleCode\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.pdb
-E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\bin\Debug\TestarFuncionalidades.exe
-E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\bin\Debug\TestarFuncionalidades.pdb
-E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\bin\Debug\BibliotecaDeClasses.dll
-E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\bin\Debug\BibliotecaDeClasses.pdb
-E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.csprojResolveAssemblyReference.cache
-E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.exe
-E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.pdb
 E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\bin\Debug\TestarFuncionalidades.exe
 E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\bin\Debug\TestarFuncionalidades.pdb
 E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\bin\Debug\BibliotecaDeClasses.dll
@@ -14,3 +7,10 @@ E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\Tes
 E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.csprojResolveAssemblyReference.cache
 E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.exe
 E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.pdb
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\bin\Debug\TestarFuncionalidades.exe
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\bin\Debug\TestarFuncionalidades.pdb
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\bin\Debug\BibliotecaDeClasses.dll
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\bin\Debug\BibliotecaDeClasses.pdb
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.csprojResolveAssemblyReference.cache
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.exe
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\TestarFuncionalidades\obj\Debug\TestarFuncionalidades.pdb
