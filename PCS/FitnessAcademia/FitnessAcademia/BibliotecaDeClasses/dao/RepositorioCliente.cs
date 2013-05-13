@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using BibliotecaDeClasses.basica;
 using BibliotecaDeClasses.erro;
 using BibliotecaDeClasses.conexao;
+using BibliotecaDeClasses;
 
 namespace BibliotecaDeClasses.dao
 {
@@ -197,35 +198,35 @@ namespace BibliotecaDeClasses.dao
                 SqlCommand sqlCmd = new SqlCommand(sql, con.sqlConnection);
                 sqlCmd.Parameters.AddWithValue("@nome", c.Nome);
                 SqlDataReader reader = sqlCmd.ExecuteReader();
-                if (toStringBehavior == Cliente.TO_STRING_NAME)
+                if ((toStringBehavior == Cliente.TO_STRING_NOME) || (toStringBehavior == Cliente.TO_STRING_NOME_CPF))
                 {
                     while (reader.Read())
                     {
-                        lista.Add(new Cliente(reader.GetInt32(reader.GetOrdinal("codigo")),
-                            reader.GetString(reader.GetOrdinal("nome")), toStringBehavior));
+                        lista.Add(new Cliente(Util.GetIntRead(reader, "codigo"),
+                            Util.GetStringRead(reader, "nome"), Util.GetStringRead(reader, "CPF"), toStringBehavior));
                     }
                 }
                 else
                 {
                     while (reader.Read())
                     {
-                        Cliente cli = new Cliente(reader.GetInt32(reader.GetOrdinal("Codigo")),
-                            reader.GetString(reader.GetOrdinal("Nome")));
-                        cli.Cpf = reader.GetString(reader.GetOrdinal("Cpf"));
-                        cli.Rg = reader.GetString(reader.GetOrdinal("Rg"));
+                        Cliente cli = new Cliente(Util.GetIntRead(reader, "Codigo"),
+                            Util.GetStringRead(reader, "Nome"));
+                        cli.Cpf = Util.GetStringRead(reader, "Cpf");
+                        cli.Rg = Util.GetStringRead(reader, "Rg");
                         cli.DataNasc = reader.GetDateTime(reader.GetOrdinal("DataNasc"));
-                        cli.Logradouro = reader.GetString(reader.GetOrdinal("Logradouro"));
-                        cli.NumLog = reader.GetString(reader.GetOrdinal("NumLog"));
-                        cli.Complemento = reader.GetString(reader.GetOrdinal("Complemento"));
-                        cli.Bairro = reader.GetString(reader.GetOrdinal("Bairro"));
-                        cli.Cidade = reader.GetString(reader.GetOrdinal("Cidade"));
-                        cli.Uf = reader.GetString(reader.GetOrdinal("Uf"));
-                        cli.Cep = reader.GetString(reader.GetOrdinal("Cep"));
-                        cli.Telefone = reader.GetString(reader.GetOrdinal("Telefone"));
-                        cli.Celular = reader.GetString(reader.GetOrdinal("Celular"));
-                        cli.Email = reader.GetString(reader.GetOrdinal("Email"));
-                        cli.EstCivil = reader.GetString(reader.GetOrdinal("EstCivil"));
-                        cli.Sexo = reader.GetString(reader.GetOrdinal("Sexo"));
+                        cli.Logradouro = Util.GetStringRead(reader, "Logradouro");
+                        cli.NumLog = Util.GetStringRead(reader, "NumLog");
+                        cli.Complemento = Util.GetStringRead(reader, "Complemento");
+                        cli.Bairro = Util.GetStringRead(reader, "Bairro");
+                        cli.Cidade = Util.GetStringRead(reader, "Cidade");
+                        cli.Uf = Util.GetStringRead(reader, "Uf");
+                        cli.Cep = Util.GetStringRead(reader, "Cep");
+                        cli.Telefone = Util.GetStringRead(reader, "Telefone");
+                        cli.Celular = Util.GetStringRead(reader, "Celular");
+                        cli.Email = Util.GetStringRead(reader, "Email");
+                        cli.EstCivil = Util.GetStringRead(reader, "EstCivil");
+                        cli.Sexo = Util.GetStringRead(reader, "Sexo");
                         cli.ValExameMedico = reader.GetDateTime(reader.GetOrdinal("ValExameMedico"));
                         cli.ToStringBehavior = toStringBehavior;
                         lista.Add(cli);
@@ -233,7 +234,6 @@ namespace BibliotecaDeClasses.dao
                 }
                 reader.Close();
                 sqlCmd.Dispose();
-                con.fechar();
             }
             catch (ErroConexao e)
             {
@@ -242,6 +242,14 @@ namespace BibliotecaDeClasses.dao
             catch (SqlException e)
             {
                 throw new ErroPesquisar("Erro ao consultar cliente(s): " + e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new ErroPesquisar("Erro ao consultar cliente(s): " + e.Message);
+            }
+            finally
+            {
+                con.fechar();
             }
             return lista;
         }

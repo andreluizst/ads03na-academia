@@ -11,7 +11,7 @@ namespace BibliotecaDeClasses.dao
         void incluir(PlanoTreinamento pt);
         void alterar(PlanoTreinamento pt);
         void excluir(PlanoTreinamento pt);
-        List<PlanoTreinamento> consultar(PlanoTreinamento pt, int toStringBehavior);
-        List<PlanoTreinamento> consultar(PlanoTreinamento pt);
+        List<PlanoTreinamento> consultar(PlanoTreinamento pt, DateTime dataFinal, int toStringBehavior);
+        List<PlanoTreinamento> consultar(PlanoTreinamento pt, DateTime dataFinal);
     }
 }

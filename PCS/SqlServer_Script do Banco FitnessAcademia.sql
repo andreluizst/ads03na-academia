@@ -34,7 +34,7 @@ insert into objetivo(nome) values('Emagrecer')
 insert into objetivo(nome) values('Reabilitação física')
 select * from objetivo*/
 --alter table PlanoTreinamento drop column nivel
-/*create procedure addPlanoTraineamento
+/*create procedure AddPlanoTreinamento
 	@pCodCli int, 
 	@pData Date, 
 	@pCodObjetivo int, 
@@ -56,5 +56,9 @@ return*/
 --					 EstCivil, Sexo, Tefone, Celular, Email, ValExameMedico)
 --			values('Mariana Lima', '11122233344', '324354245', '25/05/1979', 'Rua 27 de maio', '23', 'Santo Antônio',
 --					'Recife', 'PE', '50002654', 'S', 'F', '8134756895', '8199751423', 'mariana.lima@gmail.com', '05/08/2013')
+--alter table cliente add Telefone varchar(11)
+--update cliente set telefone = Tefone
+--alter table cliente drop column Tefone
+select * from PlanoTreinamento where data >= '2013-01-01' and data <= '2013-05-12' and codCli = 2
 select * from PlanoTreinamento as pt left outer join ExercicioDoPlano as ep on ep.numPlano = pt.NumPlano
 select * from cliente

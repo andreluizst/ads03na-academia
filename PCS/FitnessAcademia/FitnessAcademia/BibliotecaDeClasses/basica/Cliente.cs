@@ -9,7 +9,8 @@ namespace BibliotecaDeClasses.basica
     {
         public const int TO_STRING_DEFAULT = 0;
         public const int TO_STRING_FULL = 1;
-        public const int TO_STRING_NAME = 2;
+        public const int TO_STRING_NOME = 2;
+        public const int TO_STRING_NOME_CPF = 3;
 
         private int codigo;
 
@@ -156,6 +157,14 @@ namespace BibliotecaDeClasses.basica
             this.toStringBehavior = TO_STRING_DEFAULT;
         }
 
+        public Cliente(int codigo, string nome, string cpf, int toStringBehavior)
+        {
+            this.codigo = codigo;
+            this.nome = nome;
+            this.cpf = cpf;
+            this.toStringBehavior = toStringBehavior;
+        }
+
         public Cliente(int codigo, string nome, int toStringBehavior)
         {
             this.codigo = codigo;
@@ -188,9 +197,12 @@ namespace BibliotecaDeClasses.basica
         {
             switch (toStringBehavior)
             {
-                case TO_STRING_NAME:
+                case TO_STRING_NOME:
                     return this.nome;
                     //break;
+                case TO_STRING_NOME_CPF:
+                    return this.nome + ", CPF " + Cpf;
+                //break;
                 case TO_STRING_FULL:
                     return "Código " + Codigo.ToString() + " " + Nome + " CPF " + Cpf + " RG " + Rg
                         + " Data nasc. " + DataNasc.ToString() + " Endereço " + Logradouro + " - "

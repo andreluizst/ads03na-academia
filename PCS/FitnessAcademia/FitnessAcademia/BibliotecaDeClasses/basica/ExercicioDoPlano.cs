@@ -46,9 +46,9 @@ namespace BibliotecaDeClasses.basica
             get { return numRepeticoes; }
             set { numRepeticoes = value; }
         }
-        private double peso;
+        private Double peso;
 
-        public double Peso
+        public Double Peso
         {
             get { return peso; }
             set { peso = value; }
@@ -57,7 +57,7 @@ namespace BibliotecaDeClasses.basica
         {
         }
 
-        public ExercicioDoPlano(int seq, Exercicio exercicio, int series, int numRepeticoes, double peso)
+        public ExercicioDoPlano(int seq, Exercicio exercicio, int series, int numRepeticoes, Double peso)
         {
             this.seq = seq;
             this.exercicio = exercicio;
@@ -65,5 +65,11 @@ namespace BibliotecaDeClasses.basica
             this.numRepeticoes = numRepeticoes;
             this.peso = peso;
         }
+
+        public override string ToString()
+        {
+            return numPlano + " " + seq + " " + Exercicio + " " + Series + " " + numRepeticoes + " " + peso;
+        }
+
     }
 }
