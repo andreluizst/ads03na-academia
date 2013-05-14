@@ -82,5 +82,90 @@ namespace BibliotecaDeClasses.regra
            //----------------Validade exame médico-------------------
 
         }
+        public void incluir(Cliente c)
+        {
+            try
+            {
+                rpC.incluir(c);
+            }
+            catch (ErroConexao)
+            {
+                throw new ErroConexao("Cliente: A operação de inclusão não está disponível no momento!");
+            }
+            catch (Exception e)
+            {
+                throw new ErroInclusao("Erro ao tentar incluir Cliente: " + e.Message);
+            }
+        }
+        public void alterar(Cliente c)
+        {
+            try
+            {
+                rpC.alterar(c);
+            }
+            catch (ErroConexao)
+            {
+                throw new ErroConexao("Cliente: A operação de alteração não está disponível no momento!");
+            }
+            catch (Exception e)
+            {
+                throw new ErroAlteracao("Erro ao tentar alterar Cliente: " + e.Message);
+            }
+        }
+        public void excluir(Cliente c)
+        {
+            try
+            {
+                rpC.excluir(c);
+            }
+            catch (ErroConexao)
+            {
+                throw new ErroConexao("Cliente: A operação de exclusão não está disponível no momento!");
+            }
+            catch (Exception e)
+            {
+                throw new ErroExclusao("Erro ao tentar excluir Clienteo: " + e.Message);
+            }
+        }
+        public List<Cliente> consultar(Cliente c)
+        {
+            return consultar(c, Exercicio.TO_STRING_DEFAULT);
+        }
+
+        public List<Cliente> consultar(Cliente c, int toStringBehavior)
+        {
+            try
+            {
+                return rpC.consultar(c, toStringBehavior);
+            }
+            catch (ErroConexao)
+            {
+                throw new ErroConexao("Cliente: A operação de consultar não está disponível no momento!");
+            }
+            catch (Exception e)
+            {
+                throw new ErroPesquisar("Erro ao tentar consultar Cliente: " + e.Message);
+            }
+        }
+        public Cliente pegar(int codigo)
+        {
+            return pegar(codigo, Cliente.TO_STRING_DEFAULT);
+        }
+
+        public Cliente pegar(int codigo, int toStringBehavior)
+        {
+            try
+            {
+                return rpC.pegar(codigo, toStringBehavior);
+            }
+            catch (ErroConexao)
+            {
+                throw new ErroConexao("cliente: A operação de consultar não está disponível no momento!");
+            }
+            catch (Exception e)
+            {
+                throw new ErroPesquisar("Erro ao tentar consultar Cliente: " + e.Message);
+            }
+        }
     }
 }
