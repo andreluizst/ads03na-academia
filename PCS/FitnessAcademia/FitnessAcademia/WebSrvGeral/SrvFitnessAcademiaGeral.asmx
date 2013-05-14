@@ -1,0 +1,1 @@
+﻿<%@ WebService Language="C#" CodeBehind="SrvFitnessAcademiaGeral.asmx.cs" Class="WebSrvGeral.Service1" %>

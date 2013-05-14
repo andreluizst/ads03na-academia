@@ -37,12 +37,6 @@ namespace BibliotecaDeClasses.dao
             sqlCmdEx.Parameters.Add("@peso", SqlDbType.Decimal);
             foreach (ExercicioDoPlano item in pt.Exercicios)
             {
-                /*sqlCmdEx.Parameters.AddWithValue("@plano", pNumPlano.Value);
-                sqlCmdEx.Parameters.AddWithValue("@seq", item.Seq);
-                sqlCmdEx.Parameters.AddWithValue("@codExercicio", item.Exercicio.Codigo);
-                sqlCmdEx.Parameters.AddWithValue("@series", item.Series);
-                sqlCmdEx.Parameters.AddWithValue("@numRepeticoes", item.NumRepeticoes);
-                sqlCmdEx.Parameters.AddWithValue("@peso", item.Peso);*/
                 sqlCmdEx.Parameters["@plano"].Value = pt.Numplano;// pNumPlano.Value;
                 sqlCmdEx.Parameters["@seq"].Value = item.Seq;
                 sqlCmdEx.Parameters["@codExercicio"].Value = item.Exercicio.Codigo;
@@ -56,10 +50,8 @@ namespace BibliotecaDeClasses.dao
         public void incluir(PlanoTreinamento pt)
         {
             string transName = "InsTrans_Plano";
-            //string sqlPlano = "insert into PlanoTreinamento(codCli, data, codObjetivo) values(@codCli, @data, @codObjetivo)";
             string sqlExercicio = "insert into ExercicioDoPlano(numPlano, seq, codExercicio, series, numRepeticoes, peso)"
                 + " values(@plano, @seq, @codExercicio, @series, @numRepeticoes, @peso)";
-            //string sqlSelect = "select numPlano from PlanoTreinamento where 
             string sqlProcAddPlano = "AddPlanoTreinamento";
             SqlTransaction trans;
 
@@ -90,7 +82,7 @@ namespace BibliotecaDeClasses.dao
             catch (SqlException ex)
             {
                 con.reverterTransacao(transName);
-                throw new ErroPesquisar("Erro ao tentar incluir exerício: " + ex.Message);
+                throw new ErroInclusao("Erro ao tentar incluir exerício: " + ex.Message);
             }
             finally
             {
@@ -100,7 +92,39 @@ namespace BibliotecaDeClasses.dao
 
         public void excluir(PlanoTreinamento pt)
         {
-            //código
+            string transName = "DelTrans_Plano";
+            string sqlDelPlano = "delete from PlanoTreinamento where numPlano = @pNumPlano";
+            string sqlExercicio = "delete from ExercicioDoPlano where numPlano = @plano";
+            SqlTransaction transacao;
+
+            try
+            {
+                con.abrir();
+                transacao = con.iniciarTransacao(transName);
+                SqlCommand sqlCmdEx = new SqlCommand(sqlExercicio, con.sqlConnection, transacao);
+                sqlCmdEx.Parameters.AddWithValue("@plano", pt.Numplano);
+                sqlCmdEx.ExecuteNonQuery();
+                SqlCommand sqlCmd = new SqlCommand(sqlDelPlano, con.sqlConnection, transacao);
+                sqlCmd.Parameters.AddWithValue("@pNumPlano", pt.Numplano);
+                sqlCmd.ExecuteNonQuery();
+                con.concluirTransacao(transName);
+                sqlCmdEx.Dispose();
+                sqlCmd.Dispose();
+            }
+            catch (ErroConexao ex)
+            {
+                con.reverterTransacao(transName);
+                throw new ErroConexao("Erro de conexão: " + ex.Message);
+            }
+            catch (SqlException ex)
+            {
+                con.reverterTransacao(transName);
+                throw new ErroExclusao("Erro ao tentar excluir: " + ex.Message);
+            }
+            finally
+            {
+                con.fechar();
+            }
         }
 
         public void alterar(PlanoTreinamento pt)
