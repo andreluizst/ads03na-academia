@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultarExercicio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="exer" type="tns:Exercicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Exercicio">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Codigo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descricao" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ToStringBehavior" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="consultarExercicioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consultarExercicioResult" type="tns:ArrayOfExercicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfExercicio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Exercicio" nillable="true" type="tns:Exercicio" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="consultarExercicioEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="exer" type="tns:Exercicio" />
+            <s:element minOccurs="1" maxOccurs="1" name="toStringBehavior" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultarExercicioExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consultarExercicioExResult" type="tns:ArrayOfExercicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salvarExercicio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="exer" type="tns:Exercicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salvarExercicioResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="excluirExercicio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="exer" type="tns:Exercicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="excluirExercicioResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="pegarExercicio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pegarExercicioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pegarExercicioResult" type="tns:Exercicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pegarExercicioEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="toStringBehavior" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pegarExercicioExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pegarExercicioExResult" type="tns:Exercicio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultarExercicioSoapIn">
+    <wsdl:part name="parameters" element="tns:consultarExercicio" />
+  </wsdl:message>
+  <wsdl:message name="consultarExercicioSoapOut">
+    <wsdl:part name="parameters" element="tns:consultarExercicioResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultarExercicioExSoapIn">
+    <wsdl:part name="parameters" element="tns:consultarExercicioEx" />
+  </wsdl:message>
+  <wsdl:message name="consultarExercicioExSoapOut">
+    <wsdl:part name="parameters" element="tns:consultarExercicioExResponse" />
+  </wsdl:message>
+  <wsdl:message name="salvarExercicioSoapIn">
+    <wsdl:part name="parameters" element="tns:salvarExercicio" />
+  </wsdl:message>
+  <wsdl:message name="salvarExercicioSoapOut">
+    <wsdl:part name="parameters" element="tns:salvarExercicioResponse" />
+  </wsdl:message>
+  <wsdl:message name="excluirExercicioSoapIn">
+    <wsdl:part name="parameters" element="tns:excluirExercicio" />
+  </wsdl:message>
+  <wsdl:message name="excluirExercicioSoapOut">
+    <wsdl:part name="parameters" element="tns:excluirExercicioResponse" />
+  </wsdl:message>
+  <wsdl:message name="pegarExercicioSoapIn">
+    <wsdl:part name="parameters" element="tns:pegarExercicio" />
+  </wsdl:message>
+  <wsdl:message name="pegarExercicioSoapOut">
+    <wsdl:part name="parameters" element="tns:pegarExercicioResponse" />
+  </wsdl:message>
+  <wsdl:message name="pegarExercicioExSoapIn">
+    <wsdl:part name="parameters" element="tns:pegarExercicioEx" />
+  </wsdl:message>
+  <wsdl:message name="pegarExercicioExSoapOut">
+    <wsdl:part name="parameters" element="tns:pegarExercicioExResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consultarExercicio">
+      <wsdl:input message="tns:consultarExercicioSoapIn" />
+      <wsdl:output message="tns:consultarExercicioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consultarExercicioEx">
+      <wsdl:input message="tns:consultarExercicioExSoapIn" />
+      <wsdl:output message="tns:consultarExercicioExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="salvarExercicio">
+      <wsdl:input message="tns:salvarExercicioSoapIn" />
+      <wsdl:output message="tns:salvarExercicioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="excluirExercicio">
+      <wsdl:input message="tns:excluirExercicioSoapIn" />
+      <wsdl:output message="tns:excluirExercicioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="pegarExercicio">
+      <wsdl:input message="tns:pegarExercicioSoapIn" />
+      <wsdl:output message="tns:pegarExercicioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="pegarExercicioEx">
+      <wsdl:input message="tns:pegarExercicioExSoapIn" />
+      <wsdl:output message="tns:pegarExercicioExSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarExercicio">
+      <soap:operation soapAction="http://tempuri.org/consultarExercicio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarExercicioEx">
+      <soap:operation soapAction="http://tempuri.org/consultarExercicioEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salvarExercicio">
+      <soap:operation soapAction="http://tempuri.org/salvarExercicio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="excluirExercicio">
+      <soap:operation soapAction="http://tempuri.org/excluirExercicio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pegarExercicio">
+      <soap:operation soapAction="http://tempuri.org/pegarExercicio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pegarExercicioEx">
+      <soap:operation soapAction="http://tempuri.org/pegarExercicioEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarExercicio">
+      <soap12:operation soapAction="http://tempuri.org/consultarExercicio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarExercicioEx">
+      <soap12:operation soapAction="http://tempuri.org/consultarExercicioEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salvarExercicio">
+      <soap12:operation soapAction="http://tempuri.org/salvarExercicio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="excluirExercicio">
+      <soap12:operation soapAction="http://tempuri.org/excluirExercicio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pegarExercicio">
+      <soap12:operation soapAction="http://tempuri.org/pegarExercicio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pegarExercicioEx">
+      <soap12:operation soapAction="http://tempuri.org/pegarExercicioEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://localhost:5435/SrvFitnessAcademiaGeral.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://localhost:5435/SrvFitnessAcademiaGeral.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
