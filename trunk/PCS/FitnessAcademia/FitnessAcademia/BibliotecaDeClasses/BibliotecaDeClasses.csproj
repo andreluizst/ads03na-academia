@@ -61,6 +61,7 @@
     <Compile Include="erro\ErroValidacao.cs" />
     <Compile Include="fachada\Fachada.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="regra\ControladorCliente.cs" />
     <Compile Include="regra\ControladorExercicio.cs" />
     <Compile Include="regra\ControladorObjetivo.cs" />
     <Compile Include="regra\obvo.cs" />
