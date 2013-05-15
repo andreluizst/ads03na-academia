@@ -31,41 +31,60 @@ namespace BibliotecaDeClasses.regra
             if (c.Nome.Length == 0 || c.Nome.Length > 100)
                 throw new ErroValidacao("Erro ao validar cliente");
 
+            
             //------------validar CPF--------------------------
+                    
+
 
             //------------validar RG--------------------------
 
+
             //------------validar data de nascimento-----------
 
-            //if (c.Logradouro == null)
-               // throw new ErroValidacao("Erro ao validar Logradouro!");
+            //NÃO FUNCIONOU
+          DateTime result = DateTime.MinValue;
+          if(!DateTime.TryParse(c.DataNasc.ToShortDateString() ,out result))
+               throw new ErroValidacao("Erro ao validar Data de Nascimento!");
+
+          
+
+            if (c.Logradouro == null)
+               throw new ErroValidacao("Erro ao validar Logradouro!");
             if (c.Logradouro.Length == 0 || c.Logradouro.Length > 100)
                 throw new ErroValidacao("Erro ao validar Logradouro");
 
-            //if (c.NumLog == null)
-               // throw new ErroValidacao("Erro ao validar NumLog!");
+            if (c.NumLog == null)
+                throw new ErroValidacao("Erro ao validar NumLog!");
             if (c.NumLog.Length == 0 || c.NumLog.Length > 15)
                 throw new ErroValidacao("Erro ao validar NumLog");
 
-           // if (c.Complemento == null)
-               // throw new ErroValidacao("Erro ao validar Complemento!");
+           
             if (c.Complemento.Length == 0 || c.Complemento.Length > 50)
                 throw new ErroValidacao("Erro ao validar Complemento");
 
+            if(c.Bairro == null)
+                throw new ErroValidacao("Erro ao validar Bairro");
             if (c.Bairro.Length == 0 || c.Bairro.Length > 60)
-                throw new ErroValidacao("Erro ao validar Complemento");
+                throw new ErroValidacao("Erro ao validar Bairro");
 
+            if(c.Cidade == null)
+                throw new ErroValidacao("Erro ao validar Cidade");
             if (c.Cidade.Length == 0 || c.Cidade.Length > 60)
-                throw new ErroValidacao("Erro ao validar Complemento");
+                throw new ErroValidacao("Erro ao validar Cidade");
 
+            if(c.Uf == null)
+                throw new ErroValidacao("Erro ao validar UF");
             if (c.Uf.Length == 0 || c.Uf.Length > 2)
-                throw new ErroValidacao("Erro ao validar Complemento");
+                throw new ErroValidacao("Erro ao validar UF");
 
+            if(c.Cep == null)
+                throw new ErroValidacao("Erro ao validar CEP");
             if (c.Cep.Length == 0 || c.Cep.Length > 8)
-                throw new ErroValidacao("Erro ao validar Complemento");
+                throw new ErroValidacao("Erro ao validar CEP");
+
 
             if (c.EstCivil.Length == 0 || c.EstCivil.Length > 1)
-                throw new ErroValidacao("Erro ao validar Complemento");
+                throw new ErroValidacao("Erro ao validar Estado civil");
 
             if (c.Sexo.Length == 0 || c.Sexo.Length > 1)
                 throw new ErroValidacao("Erro ao validar Complemento");
