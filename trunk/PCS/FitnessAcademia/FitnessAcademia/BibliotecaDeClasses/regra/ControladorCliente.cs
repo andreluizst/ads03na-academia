@@ -33,7 +33,8 @@ namespace BibliotecaDeClasses.regra
 
             
             //------------validar CPF--------------------------
-                    
+                    
+
 
 
             //------------validar RG--------------------------
