@@ -64,7 +64,6 @@
     <Compile Include="regra\ControladorCliente.cs" />
     <Compile Include="regra\ControladorExercicio.cs" />
     <Compile Include="regra\ControladorObjetivo.cs" />
-    <Compile Include="regra\ControladorExercicioDoPlano.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup />
