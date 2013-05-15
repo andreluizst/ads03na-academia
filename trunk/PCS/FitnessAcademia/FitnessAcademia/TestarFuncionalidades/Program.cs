@@ -14,6 +14,36 @@ namespace TestarFuncionalidades
         {
             try
             {
+                /*
+                RepositorioCliente rpC = new RepositorioCliente();
+                Cliente cli = new Cliente();
+
+                cli.Nome = "Fernanda";
+                cli.Cpf = "11111111111";
+                cli.Rg = "22222222222";                
+                cli.DataNasc = Convert.ToDateTime("3/9/2012");
+                cli.Logradouro = "Av Boa viagem";
+                cli.NumLog = "10";
+                cli.Complemento = "Apto";
+                cli.Bairro = "Boa viagem";
+                cli.Cidade = "Recife";
+                cli.Uf = "PE";
+                cli.Cep = "33323232";
+                cli.EstCivil = "S";
+                cli.Sexo = "F";
+                cli.Telefone = "67576576";
+                cli.Celular = "887878787";
+                cli.Email = "fernanda@hotmail.com";
+                cli.ValExameMedico = Convert.ToDateTime("5/9/2013");
+                
+                rpC.incluir(cli);
+                */
+
+               // cli.Codigo = 10;
+             // rpC.excluir(cli);
+                Console.WriteLine("OK");
+                /*
+
                 IRepositorioPlanoDeTreinamento rpP = new RepositorioPlanoDeTreinamento();
                 Objetivo o = new Objetivo();
                 o.Codigo = 2;
@@ -68,6 +98,7 @@ namespace TestarFuncionalidades
                         }
                     }
                 }
+                */
                 /*Exercicio e = new Exercicio(1, "Abdominal");
                 RepositorioExercicio.obterInstancia().incluir(e);
                 e.Codigo = 0;
