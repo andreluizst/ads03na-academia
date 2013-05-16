@@ -74,5 +74,46 @@ namespace BibliotecaDeClasses
             }
             return retorno;
         }
+
+        public static bool validarCpf(string cpf)
+        {
+            int k = 0;
+            int digito = 0;
+            int soma = 0;
+            string sNum = "";
+            string sDig = "";
+
+            try
+            {
+                sNum = cpf.Substring(0, cpf.Length - 2);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return false;
+            }
+            for (int i = 1; i <= 2; i++)
+            {
+                k = 2;
+                soma = 0;
+                for (int j = sNum.Length; j > 0; j--)
+                {
+                    try
+                    {
+                        soma += Convert.ToInt32(sNum.Substring(j-1 , 1)) * k;
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        return false;
+                    }
+                    k++;
+                }
+                digito = 11 - soma % 11;
+                if (digito >= 10)
+                    digito = 0;
+                sNum += digito.ToString();
+                sDig += digito.ToString();
+            }
+            return sNum.CompareTo(cpf) == 0 ? true : false;
+        }
     }
 }
