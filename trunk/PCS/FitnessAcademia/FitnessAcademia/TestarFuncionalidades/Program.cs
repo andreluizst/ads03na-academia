@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BibliotecaDeClasses;
 
 namespace TestarFuncionalidades
 {
@@ -14,6 +15,19 @@ namespace TestarFuncionalidades
         {
             try
             {
+                // ******* teste validação CPF
+                string cpf = "93378459469";
+                Console.Write("CPF :" + cpf);
+                if (Util.validarCpf(cpf))
+                    Console.WriteLine(" = válido");
+                else
+                    Console.WriteLine(" = INVÁLIDO!");
+                cpf = "93378459468";
+                Console.Write("CPF :" + cpf);
+                if (Util.validarCpf(cpf))
+                    Console.WriteLine(" = válido");
+                else
+                    Console.WriteLine(" = INVÁLIDO!");
                 /*
                 RepositorioCliente rpC = new RepositorioCliente();
                 Cliente cli = new Cliente();
