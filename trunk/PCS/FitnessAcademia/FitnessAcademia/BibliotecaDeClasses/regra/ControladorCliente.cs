@@ -35,19 +35,16 @@ namespace BibliotecaDeClasses.regra
             //------------validar CPF--------------------------
                     
 
+                                   
+            if (c.Rg == null)
+                throw new ErroValidacao("Erro ao validar RG!");
+            if (c.Rg.Length == 0 || c.Rg.Length > 11)
+                throw new ErroValidacao("Erro ao validar RG");                      
+         
+          DateTime dataValida;
 
-
-            //------------validar RG--------------------------
-
-
-            //------------validar data de nascimento-----------
-
-            //NÃO FUNCIONOU
-          DateTime result = DateTime.MinValue;
-          if(!DateTime.TryParse(c.DataNasc.ToShortDateString() ,out result))
-               throw new ErroValidacao("Erro ao validar Data de Nascimento!");
-
-          
+          if(!DateTime.TryParse(c.DataNasc.ToShortDateString() ,out dataValida)|| (dataValida > DateTime.Today))
+               throw new ErroValidacao("Erro ao validar Data de Nascimento!");          
 
             if (c.Logradouro == null)
                throw new ErroValidacao("Erro ao validar Logradouro!");
@@ -97,9 +94,11 @@ namespace BibliotecaDeClasses.regra
                 throw new ErroValidacao("Erro ao validar Complemento");
 
             if (c.Email.Length == 0 || c.Email.Length > 100)
-                throw new ErroValidacao("Erro ao validar Complemento");
+                throw new ErroValidacao("Erro ao validar Complemento");                    
+            
+            if (!DateTime.TryParse(c.ValExameMedico.ToShortDateString(), out dataValida) || (dataValida < DateTime.Today))
+                throw new ErroValidacao("Erro ao validar Data de Nascimento!");          
 
-           //----------------Validade exame médico-------------------
 
         }
         public void incluir(Cliente c)
