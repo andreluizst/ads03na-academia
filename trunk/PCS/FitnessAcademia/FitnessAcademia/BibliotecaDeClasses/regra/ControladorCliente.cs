@@ -33,7 +33,10 @@ namespace BibliotecaDeClasses.regra
 
             
             //------------validar CPF--------------------------
-                    
+
+            List<Cliente> lista = rpC.consultar(c);
+            if (lista.Count > 0)
+                throw new ErroValidacao("CPF já cadastrado!");
 
                                    
             if (c.Rg == null)
