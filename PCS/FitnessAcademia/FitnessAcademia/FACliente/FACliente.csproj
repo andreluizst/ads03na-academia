@@ -57,8 +57,16 @@
     <Compile Include="frmExercicio.Designer.cs">
       <DependentUpon>frmExercicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="GuiBehavior.cs" />
+    <Compile Include="IDialogo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropExercicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropExercicio.Designer.cs">
+      <DependentUpon>PropExercicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Web References\localhost\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,7 +86,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PropExercicio.resx">
+      <DependentUpon>PropExercicio.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -90,6 +102,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Web References\localhost\Exercicio.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\localhost\Objetivo.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\localhost\Reference.map">
@@ -125,6 +140,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\localhost\SrvFitnessAcademiaGeral.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnNovoHot.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnSalvarHot.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnCancelarHot.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnCancelarHot2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnAlterarHot.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnExcluirHot.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnLupaHot.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

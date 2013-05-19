@@ -29,10 +29,22 @@ namespace BibliotecaDeClasses.fachada
 
         public void salvar(Exercicio exer)
         {
-            ctrlE.validarDados(exer);
-            if (ctrlE.existe(exer))
-                ctrlE.alterar(exer);
-            ctrlE.incluir(exer);
+            try
+            {
+                ctrlE.validarDados(exer);
+                if (ctrlE.existe(exer))
+                    ctrlE.alterar(exer);
+                ctrlE.incluir(exer);
+            }
+            catch (ErroValidacao ev)
+            {
+                throw new Exception(ev.Message);
+            }
+            catch (ErroInclusao ei)
+            {
+                throw new Exception(ei.Message);
+            }
+            
         }
 
         public void excluir(Exercicio exer)
@@ -61,7 +73,11 @@ namespace BibliotecaDeClasses.fachada
         }
 
         //------------------------------OBJETIVO -------------------------------
-
+        /*public void consultar<T>(T obj) where T:IComparable
+        {
+            if (obj is Exercicio)
+            ctrlE.consultar((Exercicio)obj);
+        }*/
 
 
 

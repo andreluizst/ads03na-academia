@@ -19,11 +19,17 @@ namespace WebSrvGeral
     // [System.Web.Script.Services.ScriptService]
     public class Service1 : System.Web.Services.WebService
     {
-
+        private string msgError;
         [WebMethod]
         public string HelloWorld()
         {
             return "Hello World";
+        }
+
+        [WebMethod]
+        public string getLastMsgError()
+        {
+            return msgError;
         }
 
         //------------------------------ EXERCÍCIO ----------------------------------
@@ -42,7 +48,15 @@ namespace WebSrvGeral
         [WebMethod]
         public void salvarExercicio(Exercicio exer)
         {
-            Fachada.obterInstancia().salvar(exer);
+            try
+            {
+                Fachada.obterInstancia().salvar(exer);
+            }
+            catch (Exception e)
+            {
+                msgError = e.Message;
+                throw e;
+            }
         }
 
         [WebMethod]
@@ -64,7 +78,11 @@ namespace WebSrvGeral
         }
 
         //---------------------------------- OBJETIVO -----------------------------------
-
+        [WebMethod]
+        public Objetivo consultarObjetivo(Objetivo obj)
+        {
+            return new Objetivo();
+        }
 
         //---------------------------------- CLIENTE ------------------------------------
         
