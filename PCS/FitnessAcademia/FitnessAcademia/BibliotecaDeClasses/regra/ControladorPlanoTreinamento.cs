@@ -17,9 +17,9 @@ namespace BibliotecaDeClasses.regra
             rpPT = new RepositorioPlanoDeTreinamento();
         }
 
-        public bool existe(PlanoTreinamento pt)
+        public bool existe(PlanoTreinamento pt, DateTime dataFinal)
         {
-            List<PlanoTreinamento> lista = rpPT.consultar(pt);
+            List<PlanoTreinamento> lista = rpPT.consultar(pt, dataFinal);
             if (lista.Count > 0)
                 return true;
             return false;
@@ -78,16 +78,16 @@ namespace BibliotecaDeClasses.regra
                 throw new ErroExclusao("Erro ao tentar excluir Plano de Treinamento: " + e.Message);
             }
         }
-        public List<PlanoTreinamento> consultar(PlanoTreinamento pt)
+        public List<PlanoTreinamento> consultar(PlanoTreinamento pt, DateTime dataFinal)
         {
-            return consultar(pt, PlanoTreinamento.TO_STRING_DEFAULT);
+            return consultar(pt, dataFinal, PlanoTreinamento.TO_STRING_DEFAULT);
         }
 
-        public List<PlanoTreinamento> consultar(PlanoTreinamento pt, int toStringBehavior)
+        public List<PlanoTreinamento> consultar(PlanoTreinamento pt, DateTime dataFinal, int toStringBehavior)
         {
             try
             {
-                return rpPT.consultar(pt, toStringBehavior);
+                return rpPT.consultar(pt, dataFinal, toStringBehavior);
                
             }
             catch (ErroConexao)
