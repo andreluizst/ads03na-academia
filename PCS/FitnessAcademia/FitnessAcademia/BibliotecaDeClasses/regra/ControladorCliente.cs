@@ -19,8 +19,10 @@ namespace BibliotecaDeClasses.regra
 
         public bool existe(Cliente c)
         {
-            List<Cliente> lista = rpC.consultar(c);
-            if (lista.Count > 0)
+            if (c.Codigo <= 0)
+                return false;
+            Cliente obj = rpC.pegar(c.Codigo);
+            if (obj != null)
                 return true;
             return false;
         }

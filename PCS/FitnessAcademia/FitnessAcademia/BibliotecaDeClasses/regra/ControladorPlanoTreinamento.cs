@@ -17,6 +17,16 @@ namespace BibliotecaDeClasses.regra
             rpPT = new RepositorioPlanoDeTreinamento();
         }
 
+        public bool existe(PlanoTreinamento obj)
+        {
+            if (obj.Numplano <= 0)
+                return false;
+            PlanoTreinamento pt = rpPT.pegar(obj.Numplano);
+            if (pt != null)
+                return true;
+            return false;
+        }
+
         public bool existe(PlanoTreinamento pt, DateTime dataFinal)
         {
             List<PlanoTreinamento> lista = rpPT.consultar(pt, dataFinal);
@@ -98,7 +108,28 @@ namespace BibliotecaDeClasses.regra
             {
                 throw new ErroPesquisar("Erro ao tentar consultar Plano de Treinamento: " + e.Message);
             }
-        }               
+        }
+
+        public PlanoTreinamento pegar(int numero)
+        {
+            return pegar(numero, PlanoTreinamento.TO_STRING_DEFAULT);
+        }
+
+        public PlanoTreinamento pegar(int numero, int toStringBehavior)
+        {
+            try
+            {
+                return rpPT.pegar(numero, toStringBehavior);
+            }
+            catch (ErroConexao)
+            {
+                throw new ErroConexao("Plano de treinamento: A operação de consultar não está disponível no momento!");
+            }
+            catch (Exception e)
+            {
+                throw new ErroPesquisar("Erro ao tentar consultar plano de treinamento: " + e.Message);
+            }
+        }
 
     }
 }

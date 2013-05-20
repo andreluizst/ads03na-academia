@@ -12,10 +12,16 @@ namespace BibliotecaDeClasses.fachada
     {
         private static Fachada instancia;
         private ControladorExercicio ctrlE;
+        private ControladorObjetivo ctrlO;
+        private ControladorCliente ctrlC;
+        private ControladorPlanoTreinamento ctrlPt;
 
         private Fachada()
         {
             ctrlE = new ControladorExercicio();
+            ctrlO = new ControladorObjetivo();
+            ctrlC = new ControladorCliente();
+            ctrlPt = new ControladorPlanoTreinamento();
         }
 
         public static Fachada obterInstancia()
@@ -63,31 +69,160 @@ namespace BibliotecaDeClasses.fachada
             return ctrlE.consultar(exer, toStringBehavior);
         }
 
-        public Exercicio pegar(int codigo)
+        public Exercicio pegarExercicio(int codigo)
         {
             return ctrlE.pegar(codigo);
         }
 
-        public Exercicio pegar(int codigo, int toStringBehavior)
+        public Exercicio pegarExercicio(int codigo, int toStringBehavior)
         {
-            return pegar(codigo, toStringBehavior);
+            return ctrlE.pegar(codigo, toStringBehavior);
         }
 
         //------------------------------OBJETIVO -------------------------------
-        /*public void consultar<T>(T obj) where T:IComparable
+        public void salvar(Objetivo obj)
         {
-            if (obj is Exercicio)
-            ctrlE.consultar((Exercicio)obj);
-        }*/
+            try
+            {
+                ctrlO.validarDados(obj);
+                if (ctrlO.existe(obj) == true)
+                    ctrlO.alterar(obj);
+                else
+                    ctrlO.incluir(obj);
+            }
+            catch (ErroValidacao ev)
+            {
+                throw new Exception(ev.Message);
+            }
+            catch (ErroInclusao ei)
+            {
+                throw new Exception(ei.Message);
+            }
+
+        }
+
+        public void excluir(Objetivo obj)
+        {
+            ctrlO.excluir(obj);
+        }
+
+        public List<Objetivo> consultar(Objetivo obj)
+        {
+            return ctrlO.consultar(obj, Objetivo.TO_STRING_DEFAULT);
+        }
+
+        public List<Objetivo> consultar(Objetivo obj, int toStringBehavior)
+        {
+            return ctrlO.consultar(obj, toStringBehavior);
+        }
+
+        public Objetivo pegarObjetivo(int codigo)
+        {
+            return ctrlO.pegar(codigo);
+        }
+
+        public Objetivo pegarObjetivo(int codigo, int toStringBehavior)
+        {
+            return ctrlO.pegar(codigo, toStringBehavior);
+        }
 
 
 
         //----------------------------CLIENTE --------------------------------
+        public void salvar(Cliente obj)
+        {
+            try
+            {
+                ctrlC.validarDados(obj);
+                if (ctrlC.existe(obj) == true)
+                    ctrlC.alterar(obj);
+                else
+                    ctrlC.incluir(obj);
+            }
+            catch (ErroValidacao ev)
+            {
+                throw new Exception(ev.Message);
+            }
+            catch (ErroInclusao ei)
+            {
+                throw new Exception(ei.Message);
+            }
 
+        }
+
+        public void excluir(Cliente obj)
+        {
+            ctrlC.excluir(obj);
+        }
+
+        public List<Cliente> consultar(Cliente obj)
+        {
+            return ctrlC.consultar(obj, Cliente.TO_STRING_DEFAULT);
+        }
+
+        public List<Cliente> consultar(Cliente obj, int toStringBehavior)
+        {
+            return ctrlC.consultar(obj, toStringBehavior);
+        }
+
+        public Cliente pegarCliente(int codigo)
+        {
+            return ctrlC.pegar(codigo);
+        }
+
+        public Cliente pegarCliente(int codigo, int toStringBehavior)
+        {
+            return ctrlC.pegar(codigo, toStringBehavior);
+        }
 
 
         //-------------------------PLANO DE TREINAMENTO -----------------------
+        public void salvar(PlanoTreinamento obj)
+        {
+            try
+            {
+                ctrlPt.validarDados(obj);
+                if (ctrlPt.existe(obj) == true)
+                    ctrlPt.alterar(obj);
+                else
+                    ctrlPt.incluir(obj);
+            }
+            catch (ErroValidacao ev)
+            {
+                throw new Exception(ev.Message);
+            }
+            catch (ErroInclusao ei)
+            {
+                throw new Exception(ei.Message);
+            }
 
+        }
+
+        public void excluir(PlanoTreinamento obj)
+        {
+            ctrlPt.excluir(obj);
+        }
+
+        public List<PlanoTreinamento> consultar(PlanoTreinamento obj, DateTime dataFinal)
+        {
+            return ctrlPt.consultar(obj, dataFinal, PlanoTreinamento.TO_STRING_DEFAULT);
+        }
+
+        public List<PlanoTreinamento> consultar(PlanoTreinamento obj, DateTime dataFinal, int toStringBehavior)
+        {
+            return ctrlPt.consultar(obj, dataFinal, toStringBehavior);
+        }
+
+        public PlanoTreinamento pegarPlanoTreinamento(int numero)
+        {
+            return ctrlPt.pegar(numero);
+        }
+
+        public PlanoTreinamento pegarPlanoTreinamento(int numero, int toStringBehavior)
+        {
+            return ctrlPt.pegar(numero, toStringBehavior);
+        }
+        
 
     }
 }

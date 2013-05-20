@@ -127,7 +127,181 @@
       <s:element name="consultarObjetivoResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="consultarObjetivoResult" type="tns:Objetivo" />
+            <s:element minOccurs="0" maxOccurs="1" name="consultarObjetivoResult" type="tns:ArrayOfObjetivo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfObjetivo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Objetivo" nillable="true" type="tns:Objetivo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="consultarObjetivoEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obj" type="tns:Objetivo" />
+            <s:element minOccurs="1" maxOccurs="1" name="toStringBehavior" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultarObjetivoExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consultarObjetivoExResult" type="tns:ArrayOfObjetivo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salvarObjetivo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obj" type="tns:Objetivo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salvarObjetivoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="excluirObjetivo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obj" type="tns:Objetivo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="excluirObjetivoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="pegarObjetivo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pegarObjetivoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pegarObjetivoResult" type="tns:Objetivo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pegarObjetivoEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="toStringBehavior" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pegarObjetivoExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pegarObjetivoExResult" type="tns:Objetivo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obj" type="tns:Cliente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Cliente">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Codigo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cpf" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rg" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DataNasc" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Logradouro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumLog" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Complemento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bairro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cidade" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Uf" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cep" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EstCivil" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sexo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Celular" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ValExameMedico" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="consultarClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consultarClienteResult" type="tns:ArrayOfCliente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCliente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Cliente" nillable="true" type="tns:Cliente" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="consultarClienteEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obj" type="tns:Cliente" />
+            <s:element minOccurs="1" maxOccurs="1" name="toStringBehavior" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultarClienteExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consultarClienteExResult" type="tns:ArrayOfCliente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salvarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obj" type="tns:Cliente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salvarClienteResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="excluirCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obj" type="tns:Cliente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="excluirClienteResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="pegarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pegarClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pegarClienteResult" type="tns:Cliente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pegarClienteEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="toStringBehavior" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pegarClienteExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pegarClienteExResult" type="tns:Cliente" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -187,6 +361,72 @@
   <wsdl:message name="consultarObjetivoSoapOut">
     <wsdl:part name="parameters" element="tns:consultarObjetivoResponse" />
   </wsdl:message>
+  <wsdl:message name="consultarObjetivoExSoapIn">
+    <wsdl:part name="parameters" element="tns:consultarObjetivoEx" />
+  </wsdl:message>
+  <wsdl:message name="consultarObjetivoExSoapOut">
+    <wsdl:part name="parameters" element="tns:consultarObjetivoExResponse" />
+  </wsdl:message>
+  <wsdl:message name="salvarObjetivoSoapIn">
+    <wsdl:part name="parameters" element="tns:salvarObjetivo" />
+  </wsdl:message>
+  <wsdl:message name="salvarObjetivoSoapOut">
+    <wsdl:part name="parameters" element="tns:salvarObjetivoResponse" />
+  </wsdl:message>
+  <wsdl:message name="excluirObjetivoSoapIn">
+    <wsdl:part name="parameters" element="tns:excluirObjetivo" />
+  </wsdl:message>
+  <wsdl:message name="excluirObjetivoSoapOut">
+    <wsdl:part name="parameters" element="tns:excluirObjetivoResponse" />
+  </wsdl:message>
+  <wsdl:message name="pegarObjetivoSoapIn">
+    <wsdl:part name="parameters" element="tns:pegarObjetivo" />
+  </wsdl:message>
+  <wsdl:message name="pegarObjetivoSoapOut">
+    <wsdl:part name="parameters" element="tns:pegarObjetivoResponse" />
+  </wsdl:message>
+  <wsdl:message name="pegarObjetivoExSoapIn">
+    <wsdl:part name="parameters" element="tns:pegarObjetivoEx" />
+  </wsdl:message>
+  <wsdl:message name="pegarObjetivoExSoapOut">
+    <wsdl:part name="parameters" element="tns:pegarObjetivoExResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:consultarCliente" />
+  </wsdl:message>
+  <wsdl:message name="consultarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:consultarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultarClienteExSoapIn">
+    <wsdl:part name="parameters" element="tns:consultarClienteEx" />
+  </wsdl:message>
+  <wsdl:message name="consultarClienteExSoapOut">
+    <wsdl:part name="parameters" element="tns:consultarClienteExResponse" />
+  </wsdl:message>
+  <wsdl:message name="salvarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:salvarCliente" />
+  </wsdl:message>
+  <wsdl:message name="salvarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:salvarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="excluirClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:excluirCliente" />
+  </wsdl:message>
+  <wsdl:message name="excluirClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:excluirClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="pegarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:pegarCliente" />
+  </wsdl:message>
+  <wsdl:message name="pegarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:pegarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="pegarClienteExSoapIn">
+    <wsdl:part name="parameters" element="tns:pegarClienteEx" />
+  </wsdl:message>
+  <wsdl:message name="pegarClienteExSoapOut">
+    <wsdl:part name="parameters" element="tns:pegarClienteExResponse" />
+  </wsdl:message>
   <wsdl:portType name="Service1Soap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -223,6 +463,50 @@
     <wsdl:operation name="consultarObjetivo">
       <wsdl:input message="tns:consultarObjetivoSoapIn" />
       <wsdl:output message="tns:consultarObjetivoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consultarObjetivoEx">
+      <wsdl:input message="tns:consultarObjetivoExSoapIn" />
+      <wsdl:output message="tns:consultarObjetivoExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="salvarObjetivo">
+      <wsdl:input message="tns:salvarObjetivoSoapIn" />
+      <wsdl:output message="tns:salvarObjetivoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="excluirObjetivo">
+      <wsdl:input message="tns:excluirObjetivoSoapIn" />
+      <wsdl:output message="tns:excluirObjetivoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="pegarObjetivo">
+      <wsdl:input message="tns:pegarObjetivoSoapIn" />
+      <wsdl:output message="tns:pegarObjetivoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="pegarObjetivoEx">
+      <wsdl:input message="tns:pegarObjetivoExSoapIn" />
+      <wsdl:output message="tns:pegarObjetivoExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consultarCliente">
+      <wsdl:input message="tns:consultarClienteSoapIn" />
+      <wsdl:output message="tns:consultarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consultarClienteEx">
+      <wsdl:input message="tns:consultarClienteExSoapIn" />
+      <wsdl:output message="tns:consultarClienteExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="salvarCliente">
+      <wsdl:input message="tns:salvarClienteSoapIn" />
+      <wsdl:output message="tns:salvarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="excluirCliente">
+      <wsdl:input message="tns:excluirClienteSoapIn" />
+      <wsdl:output message="tns:excluirClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="pegarCliente">
+      <wsdl:input message="tns:pegarClienteSoapIn" />
+      <wsdl:output message="tns:pegarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="pegarClienteEx">
+      <wsdl:input message="tns:pegarClienteExSoapIn" />
+      <wsdl:output message="tns:pegarClienteExSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
@@ -308,6 +592,105 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="consultarObjetivoEx">
+      <soap:operation soapAction="http://tempuri.org/consultarObjetivoEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salvarObjetivo">
+      <soap:operation soapAction="http://tempuri.org/salvarObjetivo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="excluirObjetivo">
+      <soap:operation soapAction="http://tempuri.org/excluirObjetivo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pegarObjetivo">
+      <soap:operation soapAction="http://tempuri.org/pegarObjetivo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pegarObjetivoEx">
+      <soap:operation soapAction="http://tempuri.org/pegarObjetivoEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarCliente">
+      <soap:operation soapAction="http://tempuri.org/consultarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarClienteEx">
+      <soap:operation soapAction="http://tempuri.org/consultarClienteEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salvarCliente">
+      <soap:operation soapAction="http://tempuri.org/salvarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="excluirCliente">
+      <soap:operation soapAction="http://tempuri.org/excluirCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pegarCliente">
+      <soap:operation soapAction="http://tempuri.org/pegarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pegarClienteEx">
+      <soap:operation soapAction="http://tempuri.org/pegarClienteEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -385,6 +768,105 @@
     </wsdl:operation>
     <wsdl:operation name="consultarObjetivo">
       <soap12:operation soapAction="http://tempuri.org/consultarObjetivo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarObjetivoEx">
+      <soap12:operation soapAction="http://tempuri.org/consultarObjetivoEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salvarObjetivo">
+      <soap12:operation soapAction="http://tempuri.org/salvarObjetivo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="excluirObjetivo">
+      <soap12:operation soapAction="http://tempuri.org/excluirObjetivo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pegarObjetivo">
+      <soap12:operation soapAction="http://tempuri.org/pegarObjetivo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pegarObjetivoEx">
+      <soap12:operation soapAction="http://tempuri.org/pegarObjetivoEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarCliente">
+      <soap12:operation soapAction="http://tempuri.org/consultarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarClienteEx">
+      <soap12:operation soapAction="http://tempuri.org/consultarClienteEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salvarCliente">
+      <soap12:operation soapAction="http://tempuri.org/salvarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="excluirCliente">
+      <soap12:operation soapAction="http://tempuri.org/excluirCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pegarCliente">
+      <soap12:operation soapAction="http://tempuri.org/pegarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pegarClienteEx">
+      <soap12:operation soapAction="http://tempuri.org/pegarClienteEx" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

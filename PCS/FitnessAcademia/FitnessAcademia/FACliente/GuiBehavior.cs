@@ -102,6 +102,14 @@ namespace FACliente
         {
             if (objeto is Exercicio)
                 Servidor.salvarExercicio((Exercicio)objeto);
+            if (objeto is Objetivo)
+                Servidor.salvarObjetivo((Objetivo)objeto);
+            if (objeto is Cliente)
+                Servidor.salvarCliente((Cliente)objeto);
+            /*
+            if (objeto is PlanoTreinamento)
+                Servidor.salvarPlanoTreinamento((PlanoTreinamento)objeto); 
+             */
         }
 
         private void salvarDefault()
@@ -170,11 +178,18 @@ namespace FACliente
         private void excluirDefault()
         {
             string msg = "Confirma a exclusão do item selecionado?";
-            if (objeto is Exercicio)
+            if (MessageBox.Show(msg, "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if(MessageBox.Show(msg, "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if(objeto is Exercicio)
                     Servidor.excluirExercicio((Exercicio)objeto);
+                if (objeto is Objetivo)
+                    Servidor.excluirObjetivo((Objetivo)objeto);
+                if (objeto is Cliente)
+                    Servidor.excluirCliente((Cliente)objeto);
+                /*if (objeto is PlanoTreinamento)
+                    Servidor.excluirPlanoTreinamento((PlanoTreinamento)objeto);*/
             }
+
         }
 
         private List<T> consultarDefault(T obj)

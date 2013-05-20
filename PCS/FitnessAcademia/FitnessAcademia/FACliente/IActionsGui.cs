@@ -15,6 +15,8 @@ namespace FACliente
         void fecharPesquisa();
         bool pesquisarExiste();
         void setOpenMenuShell(ToolStripMenuItem miOpenGui);
+        void setActionsMenuShell(ToolStripMenuItem mnNovo, 
+            ToolStripMenuItem mnAlterar, ToolStripMenuItem mnExcluir);
         //string getActivationName();
     }
 }
