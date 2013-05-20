@@ -128,5 +128,11 @@ namespace FACliente
             }
         }
 
+        private void miManterCliente_Click(object sender, EventArgs e)
+        {
+            FrmCliente frm = new FrmCliente();
+            showMdiChildren(frm, (ToolStripMenuItem)sender);
+        }
+
     }
 }

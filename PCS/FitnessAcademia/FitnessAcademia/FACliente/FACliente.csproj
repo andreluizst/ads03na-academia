@@ -51,6 +51,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCliente.Designer.cs">
+      <DependentUpon>FrmCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmExercicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,12 @@
     <Compile Include="IActionsGui.cs" />
     <Compile Include="IDialogo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="PropCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropCliente.Designer.cs">
+      <DependentUpon>PropCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropExercicio.cs">
       <SubType>Form</SubType>
@@ -88,11 +100,17 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmCliente.resx">
+      <DependentUpon>FrmCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmExercicio.resx">
       <DependentUpon>frmExercicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmObjetivo.resx">
       <DependentUpon>FrmObjetivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropCliente.resx">
+      <DependentUpon>PropCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
