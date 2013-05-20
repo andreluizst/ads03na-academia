@@ -40,11 +40,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.grdExercicios = new System.Windows.Forms.DataGridView();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdExercicios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,32 +151,32 @@
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter1.Location = new System.Drawing.Point(0, 115);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(644, 3);
+            this.splitter1.Size = new System.Drawing.Size(644, 5);
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.grdExercicios);
+            this.panel2.Controls.Add(this.dataGridView);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 118);
+            this.panel2.Location = new System.Drawing.Point(0, 120);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(644, 281);
+            this.panel2.Size = new System.Drawing.Size(644, 279);
             this.panel2.TabIndex = 4;
             // 
-            // grdExercicios
+            // dataGridView
             // 
-            this.grdExercicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdExercicios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdExercicios.Location = new System.Drawing.Point(0, 0);
-            this.grdExercicios.MultiSelect = false;
-            this.grdExercicios.Name = "grdExercicios";
-            this.grdExercicios.ReadOnly = true;
-            this.grdExercicios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdExercicios.Size = new System.Drawing.Size(644, 281);
-            this.grdExercicios.TabIndex = 0;
-            this.grdExercicios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdExercicios_CellDoubleClick);
-            this.grdExercicios.SelectionChanged += new System.EventHandler(this.grdExercicios_SelectionChanged);
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView.MultiSelect = false;
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.ReadOnly = true;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView.Size = new System.Drawing.Size(644, 279);
+            this.dataGridView.TabIndex = 0;
+            this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdExercicios_CellDoubleClick);
+            this.dataGridView.SelectionChanged += new System.EventHandler(this.grdExercicios_SelectionChanged);
             // 
             // frmExercicio
             // 
@@ -186,16 +186,17 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel1);
-            this.KeyPreview = true;
             this.Name = "frmExercicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manter Exercício";
+            this.Activated += new System.EventHandler(this.frmExercicio_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmExercicio_FormClosed);
+            this.Shown += new System.EventHandler(this.frmExercicio_Shown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmExercicio_KeyUp);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdExercicios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
@@ -208,7 +209,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView grdExercicios;
+        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.Button btnExcluir;

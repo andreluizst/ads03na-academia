@@ -170,17 +170,36 @@ namespace BibliotecaDeClasses.dao
             }
         }
 
-        public List<PlanoTreinamento> consultar(PlanoTreinamento pt, DateTime dataFinal)
+        public PlanoTreinamento pegar(int numero)
+        {
+            return pegar(numero, PlanoTreinamento.TO_STRING_DEFAULT);
+        }
+
+        public PlanoTreinamento pegar(int numero, int toStringBehavior)
+        {
+            PlanoTreinamento obj = new PlanoTreinamento();
+            obj.Numplano = numero;
+            List<PlanoTreinamento> lista = consultar(obj, null ,toStringBehavior);
+            if (lista.Count > 0)
+                return lista[0];
+            return null;
+        }
+
+        public List<PlanoTreinamento> consultar(PlanoTreinamento pt, DateTime? dataFinal)
         {
             return consultar(pt, dataFinal, PlanoTreinamento.TO_STRING_DEFAULT);
         }
 
         //A data do objeto PlanoTreinamento será usada na consulta como uma data inicial de um período se o parâmetro dataFinal não for NULL
-        public List<PlanoTreinamento> consultar(PlanoTreinamento pt, DateTime dataFinal, int toStringBehavior)
+        public List<PlanoTreinamento> consultar(PlanoTreinamento pt, DateTime? dataFinal, int toStringBehavior)
         {
             List<PlanoTreinamento> lista = new List<PlanoTreinamento>();
-            //bool existeParametro = false;
-            string sql = "select * from PlanoTreinamento where ((data >= @dataInicial) and (data <= @dataFinal))";
+            bool existeParametro = false;
+            //bool numPlanoExiste = false;
+            //bool codCliExiste = false;
+            //bool codObjetivoExiste = false;
+            bool dataExiste = false;
+            string sql = "select * from PlanoTreinamento";
             string sqlExercicios = "select * from exercicioDoPlano where numPlano = @pNumPlano";
             //string transName = "sqlSelect_Plano";
             ///SqlTransaction transacao;
@@ -189,17 +208,58 @@ namespace BibliotecaDeClasses.dao
             IRepositorioObjetivo rpO = new RepositorioObjetivo();
             try
             {
+                if (pt.Numplano > 0)
+                {
+                    sql += " where numPlano = " + pt.Numplano.ToString();
+                    existeParametro = true;
+                    //numPlanoExiste = true;
+                }
                 if (pt.ClienteDoPlano != null)
+                {
                     if (pt.ClienteDoPlano.Codigo > 0)
-                        sql += " and codCli = " + pt.ClienteDoPlano.Codigo.ToString();
+                    {
+                        if (existeParametro)
+                            sql += " and codCli = ";
+                        else
+                            sql += " where codClli = ";
+                        sql += pt.ClienteDoPlano.Codigo.ToString();
+                        existeParametro = true;
+                        //codCliExiste = true;
+                    }
+                }
                 if (pt.ObjetivoDoPlano != null)
+                {
                     if (pt.ObjetivoDoPlano.Codigo > 0)
-                        sql += " and codObjetivo = " + pt.ObjetivoDoPlano.Codigo.ToString();
+                    {
+                        if (existeParametro)
+                            sql += " and codObjetivo = ";
+                        else
+                            sql += " where codObjetivo = ";
+                        sql += pt.ObjetivoDoPlano.Codigo.ToString();
+                        existeParametro = true;
+                        //codObjetivoExiste = true;
+                    }
+                }
+                if ((pt.Data != null) && (dataFinal != null))
+                {
+                    if (existeParametro)
+                    {
+                        if (existeParametro)
+                            sql += " and ((data >= @dataInicial) and (data <= @dataFinal))";
+                        else
+                            sql += "where ((data >= @dataInicial) and (data <= @dataFinal))";
+                        existeParametro = true;
+                        dataExiste = true;
+                    }
+                }
                 con.abrir();
                 //transacao = con.iniciarTransacao(transName);
                 SqlCommand sqlCmdPlano = new SqlCommand(sql, con.sqlConnection);//, transacao);
-                sqlCmdPlano.Parameters.AddWithValue("@dataInicial", pt.Data);
-                sqlCmdPlano.Parameters.AddWithValue("@dataFinal", dataFinal);
+                if (dataExiste)
+                {
+                    sqlCmdPlano.Parameters.AddWithValue("@dataInicial", pt.Data);
+                    sqlCmdPlano.Parameters.AddWithValue("@dataFinal", dataFinal);
+                }
                 SqlDataReader readPlano = sqlCmdPlano.ExecuteReader();
                 while (readPlano.Read())
                 {

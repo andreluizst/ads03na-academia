@@ -68,23 +68,104 @@ namespace WebSrvGeral
         [WebMethod]
         public Exercicio pegarExercicio(int codigo)
         {
-            return Fachada.obterInstancia().pegar(codigo);
+            return Fachada.obterInstancia().pegarExercicio(codigo);
         }
 
         [WebMethod]
         public Exercicio pegarExercicioEx(int codigo, int toStringBehavior)
         {
-            return Fachada.obterInstancia().pegar(codigo, toStringBehavior);
+            return Fachada.obterInstancia().pegarExercicio(codigo, toStringBehavior);
         }
 
         //---------------------------------- OBJETIVO -----------------------------------
         [WebMethod]
-        public Objetivo consultarObjetivo(Objetivo obj)
+        public Objetivo[] consultarObjetivo(Objetivo obj)
         {
-            return new Objetivo();
+            return Fachada.obterInstancia().consultar(obj).ToArray();
+        }
+
+        [WebMethod]
+        public Objetivo[] consultarObjetivoEx(Objetivo obj, int toStringBehavior)
+        {
+            return Fachada.obterInstancia().consultar(obj, toStringBehavior).ToArray();
+        }
+
+        [WebMethod]
+        public void salvarObjetivo(Objetivo obj)
+        {
+            try
+            {
+                Fachada.obterInstancia().salvar(obj);
+            }
+            catch (Exception e)
+            {
+                msgError = e.Message;
+                throw e;
+            }
+        }
+
+        [WebMethod]
+        public void excluirObjetivo(Objetivo obj)
+        {
+            Fachada.obterInstancia().excluir(obj);
+        }
+
+        [WebMethod]
+        public Objetivo pegarObjetivo(int codigo)
+        {
+            return Fachada.obterInstancia().pegarObjetivo(codigo);
+        }
+
+        [WebMethod]
+        public Objetivo pegarObjetivoEx(int codigo, int toStringBehavior)
+        {
+            return Fachada.obterInstancia().pegarObjetivo(codigo, toStringBehavior);
         }
 
         //---------------------------------- CLIENTE ------------------------------------
+        [WebMethod]
+        public Cliente[] consultarCliente(Cliente obj)
+        {
+            return Fachada.obterInstancia().consultar(obj).ToArray();
+        }
+
+        [WebMethod]
+        public Cliente[] consultarClienteEx(Cliente obj, int toStringBehavior)
+        {
+            return Fachada.obterInstancia().consultar(obj, toStringBehavior).ToArray();
+        }
+
+        [WebMethod]
+        public void salvarCliente(Cliente obj)
+        {
+            try
+            {
+                Fachada.obterInstancia().salvar(obj);
+            }
+            catch (Exception e)
+            {
+                msgError = e.Message;
+                throw e;
+            }
+        }
+
+        [WebMethod]
+        public void excluirCliente(Cliente obj)
+        {
+            Fachada.obterInstancia().excluir(obj);
+        }
+
+        [WebMethod]
+        public Cliente pegarCliente(int codigo)
+        {
+            return Fachada.obterInstancia().pegarCliente(codigo);
+        }
+
+        [WebMethod]
+        public Cliente pegarClienteEx(int codigo, int toStringBehavior)
+        {
+            return Fachada.obterInstancia().pegarCliente(codigo, toStringBehavior);
+        }
         
     }
 }

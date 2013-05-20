@@ -19,8 +19,10 @@ namespace BibliotecaDeClasses.regra
         }
         public bool existe(Objetivo obvo)
         {
-            List<Objetivo> lista = rpO.consultar(obvo);
-            if (lista.Count > 0)
+            if (obvo.Codigo <= 0)
+                return false;
+            Objetivo o = rpO.pegar(obvo.Codigo);
+            if (o != null)
                 return true;
             return false;
 
@@ -100,10 +102,12 @@ namespace BibliotecaDeClasses.regra
                 throw new ErroPesquisar("Erro ao tentar consultar Objetivo: " + e.Message);
             }
         }
+
         public Objetivo pegar(int codigo)
         { 
             return pegar(codigo, Objetivo.TO_STRING_DEFAULT);
         }
+
         public Objetivo pegar(int codigo, int toStringBehavior)
         {
             try

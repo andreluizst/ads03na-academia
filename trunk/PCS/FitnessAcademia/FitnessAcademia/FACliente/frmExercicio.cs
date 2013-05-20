@@ -16,14 +16,15 @@ namespace FACliente
         private List<Exercicio> lista;
         private GuiBehavior<Exercicio> guiBehavior;
         private ToolStripMenuItem miShellOpen;
-        //private string activationName;
+        private ToolStripMenuItem miShellNovo;
+        private ToolStripMenuItem miShellAlterar;
+        private ToolStripMenuItem miShellExcluir;
 
         public frmExercicio()
         {
             InitializeComponent();
-            //activationName = "Exercicio";
             srv1 = new Service1();
-            grdExercicios.AutoGenerateColumns = true;
+            dataGridView.AutoGenerateColumns = true;
             lista = new List<Exercicio>();
             guiBehavior = new GuiBehavior<Exercicio>(srv1, this);
         }
@@ -31,13 +32,14 @@ namespace FACliente
         private void UnBindingList()
         {
             bindingSource1.DataSource = null;
-            grdExercicios.DataSource = null;
+            dataGridView.DataSource = null;
         }
 
         private void BindingList()
         {
             bindingSource1.DataSource = lista;
-            grdExercicios.DataSource = bindingSource1;
+            dataGridView.DataSource = bindingSource1;
+            dataGridView.AutoResizeColumns();
         }
 
         public void novo()
@@ -47,13 +49,17 @@ namespace FACliente
 
         public void alterar()
         {
-            Exercicio exercicio = lista[grdExercicios.CurrentRow.Index];
-            guiBehavior.Alterar(new PropExercicio(exercicio), exercicio);
+            if (lista.Count > 0)
+            {
+                Exercicio exercicio = lista[dataGridView.CurrentRow.Index];
+                guiBehavior.Alterar(new PropExercicio(exercicio), exercicio);
+            }
         }
 
         public void excluir()
         {
-            guiBehavior.Excluir(lista[grdExercicios.CurrentRow.Index]);
+            if (lista.Count > 0)
+                guiBehavior.Excluir(lista[dataGridView.CurrentRow.Index]);
         }
 
         public void pesquisar()
@@ -90,6 +96,14 @@ namespace FACliente
         {
             miShellOpen = menuItem;
             miShellOpen.Enabled = false;
+        }
+
+        public void setActionsMenuShell(ToolStripMenuItem mnNovo,
+            ToolStripMenuItem mnAlterar, ToolStripMenuItem mnExcluir)
+        {
+            miShellNovo = mnNovo;
+            miShellAlterar = mnAlterar;
+            miShellExcluir = mnExcluir;
         }
 
         /*public string getActivationName()
@@ -133,20 +147,39 @@ namespace FACliente
 
         private void grdExercicios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (grdExercicios.SelectedRows.Count > 0)
+            if (dataGridView.SelectedRows.Count > 0)
                 alterar();
+        }
+
+        private void updateActions()
+        {
+            btnAlterar.Enabled = dataGridView.RowCount > 0 ? true : false;
+            btnExcluir.Enabled = btnAlterar.Enabled;
+            if (miShellAlterar != null)
+                miShellAlterar.Enabled = btnAlterar.Enabled;
+            if (miShellExcluir != null)
+                miShellExcluir.Enabled = btnExcluir.Enabled;
         }
 
         private void grdExercicios_SelectionChanged(object sender, EventArgs e)
         {
-            btnAlterar.Enabled = grdExercicios.RowCount > 0 ? true : false;
-            btnExcluir.Enabled = btnAlterar.Enabled;
+            updateActions();
         }
 
         private void frmExercicio_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (miShellOpen != null)
                 miShellOpen.Enabled = true;
+        }
+
+        private void frmExercicio_Activated(object sender, EventArgs e)
+        {
+            updateActions();
+        }
+
+        private void frmExercicio_Shown(object sender, EventArgs e)
+        {
+            updateActions();
         }
     }
 }

@@ -39,9 +39,9 @@
             this.miPesquisar = new System.Windows.Forms.ToolStripMenuItem();
             this.miFecharPesquisa = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.novoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.alterarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.excluirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.miNovo = new System.Windows.Forms.ToolStripMenuItem();
+            this.miAlterar = new System.Windows.Forms.ToolStripMenuItem();
+            this.miExcluir = new System.Windows.Forms.ToolStripMenuItem();
             this.mnJanela = new System.Windows.Forms.ToolStripMenuItem();
             this.miFecharJanelaAtual = new System.Windows.Forms.ToolStripMenuItem();
             this.miJanela = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,6 +85,7 @@
             this.miManterObjetivo.Name = "miManterObjetivo";
             this.miManterObjetivo.Size = new System.Drawing.Size(161, 22);
             this.miManterObjetivo.Text = "Manter &Objetivo";
+            this.miManterObjetivo.Click += new System.EventHandler(this.miManterObjetivo_Click);
             // 
             // miManterCliente
             // 
@@ -111,9 +112,9 @@
             this.miPesquisar,
             this.miFecharPesquisa,
             this.toolStripMenuItem2,
-            this.novoToolStripMenuItem,
-            this.alterarToolStripMenuItem,
-            this.excluirToolStripMenuItem});
+            this.miNovo,
+            this.miAlterar,
+            this.miExcluir});
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
             this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.editarToolStripMenuItem.Text = "&Editar";
@@ -141,23 +142,29 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(227, 6);
             // 
-            // novoToolStripMenuItem
+            // miNovo
             // 
-            this.novoToolStripMenuItem.Name = "novoToolStripMenuItem";
-            this.novoToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
-            this.novoToolStripMenuItem.Text = "&Novo...";
+            this.miNovo.Name = "miNovo";
+            this.miNovo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Insert)));
+            this.miNovo.Size = new System.Drawing.Size(230, 22);
+            this.miNovo.Text = "&Novo...";
+            this.miNovo.Click += new System.EventHandler(this.miNovo_Click);
             // 
-            // alterarToolStripMenuItem
+            // miAlterar
             // 
-            this.alterarToolStripMenuItem.Name = "alterarToolStripMenuItem";
-            this.alterarToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
-            this.alterarToolStripMenuItem.Text = "&Alterar...";
+            this.miAlterar.Name = "miAlterar";
+            this.miAlterar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
+            this.miAlterar.Size = new System.Drawing.Size(230, 22);
+            this.miAlterar.Text = "&Alterar...";
+            this.miAlterar.Click += new System.EventHandler(this.miAlterar_Click);
             // 
-            // excluirToolStripMenuItem
+            // miExcluir
             // 
-            this.excluirToolStripMenuItem.Name = "excluirToolStripMenuItem";
-            this.excluirToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
-            this.excluirToolStripMenuItem.Text = "E&xcluir";
+            this.miExcluir.Name = "miExcluir";
+            this.miExcluir.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
+            this.miExcluir.Size = new System.Drawing.Size(230, 22);
+            this.miExcluir.Text = "E&xcluir";
+            this.miExcluir.Click += new System.EventHandler(this.miExcluir_Click);
             // 
             // mnJanela
             // 
@@ -217,9 +224,9 @@
         private System.Windows.Forms.ToolStripMenuItem miPesquisar;
         private System.Windows.Forms.ToolStripMenuItem miFecharPesquisa;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem novoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem alterarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem excluirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem miNovo;
+        private System.Windows.Forms.ToolStripMenuItem miAlterar;
+        private System.Windows.Forms.ToolStripMenuItem miExcluir;
         private System.Windows.Forms.ToolStripMenuItem miFecharJanelaAtual;
         private System.Windows.Forms.ToolStripMenuItem miJanela;
     }

@@ -19,10 +19,7 @@ namespace FACliente
         private void miManterExercício_Click(object sender, EventArgs e)
         {
             frmExercicio frm = new frmExercicio();
-            frm.MdiParent = this;
-            frm.Show();
-            ((IActionsGui)frm).setOpenMenuShell(miManterExercício);
-            miManterExercício.Enabled = false;
+            showMdiChildren(frm, (ToolStripMenuItem)sender);
         }
 
         private void miSair_Click(object sender, EventArgs e)
@@ -84,8 +81,51 @@ namespace FACliente
 
         private void editarToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
-            miPesquisar.Enabled = this.MdiChildren.Length > 0 ? true : false;
+            miPesquisar.Enabled = this.MdiChildren.Length > 0 ? ((IActionsGui)this.ActiveMdiChild).pesquisarExiste() : false;
             miFecharPesquisa.Enabled = miPesquisar.Enabled;
+            miNovo.Enabled = this.MdiChildren.Length > 0 ? true : false;
+            //miAlterar.Enabled = miNovo.Enabled;
+            //miExcluir.Enabled = miAlterar.Enabled;
+
+        }
+
+        private void miManterObjetivo_Click(object sender, EventArgs e)
+        {
+            FrmObjetivo frm = new FrmObjetivo();
+            showMdiChildren(frm, (ToolStripMenuItem)sender);
+        }
+
+        private void showMdiChildren(Form frm, ToolStripMenuItem senderMenu)
+        {
+            frm.MdiParent = this;
+            frm.Show();
+            ((IActionsGui)frm).setOpenMenuShell(senderMenu);
+            ((IActionsGui)frm).setActionsMenuShell(miNovo, miAlterar, miExcluir);
+            senderMenu.Enabled = false;
+        }
+
+        private void miNovo_Click(object sender, EventArgs e)
+        {
+            if (this.MdiChildren.Length > 0)
+            {
+                ((IActionsGui)this.ActiveMdiChild).novo();
+            }
+        }
+
+        private void miAlterar_Click(object sender, EventArgs e)
+        {
+            if (this.MdiChildren.Length > 0)
+            {
+                ((IActionsGui)this.ActiveMdiChild).alterar();
+            }
+        }
+
+        private void miExcluir_Click(object sender, EventArgs e)
+        {
+            if (this.MdiChildren.Length > 0)
+            {
+                ((IActionsGui)this.ActiveMdiChild).excluir();
+            }
         }
 
     }

@@ -57,6 +57,12 @@
     <Compile Include="frmExercicio.Designer.cs">
       <DependentUpon>frmExercicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmObjetivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmObjetivo.Designer.cs">
+      <DependentUpon>FrmObjetivo.cs</DependentUpon>
+    </Compile>
     <Compile Include="GuiBehavior.cs" />
     <Compile Include="IActionsGui.cs" />
     <Compile Include="IDialogo.cs" />
@@ -68,6 +74,12 @@
     <Compile Include="PropExercicio.Designer.cs">
       <DependentUpon>PropExercicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="PropObjetivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropObjetivo.Designer.cs">
+      <DependentUpon>PropObjetivo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Web References\localhost\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmExercicio.resx">
       <DependentUpon>frmExercicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmObjetivo.resx">
+      <DependentUpon>FrmObjetivo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -92,6 +107,9 @@
     <EmbeddedResource Include="PropExercicio.resx">
       <DependentUpon>PropExercicio.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PropObjetivo.resx">
+      <DependentUpon>PropObjetivo.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -102,6 +120,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Web References\localhost\Cliente.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\localhost\Exercicio.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
