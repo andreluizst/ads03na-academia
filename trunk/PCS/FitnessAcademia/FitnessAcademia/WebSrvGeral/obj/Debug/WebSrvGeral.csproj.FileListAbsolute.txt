@@ -5,3 +5,10 @@ E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\Web
 E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvGeral\obj\Debug\WebSrvGeral.csprojResolveAssemblyReference.cache
 E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvGeral\obj\Debug\WebSrvGeral.dll
 E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvGeral\obj\Debug\WebSrvGeral.pdb
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvGeral\bin\WebSrvGeral.dll
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvGeral\bin\WebSrvGeral.pdb
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvGeral\bin\BibliotecaDeClasses.dll
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvGeral\bin\BibliotecaDeClasses.pdb
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvGeral\obj\Debug\WebSrvGeral.csprojResolveAssemblyReference.cache
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvGeral\obj\Debug\WebSrvGeral.dll
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvGeral\obj\Debug\WebSrvGeral.pdb
