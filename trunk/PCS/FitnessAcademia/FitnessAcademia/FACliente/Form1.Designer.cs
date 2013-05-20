@@ -92,6 +92,7 @@
             this.miManterCliente.Name = "miManterCliente";
             this.miManterCliente.Size = new System.Drawing.Size(161, 22);
             this.miManterCliente.Text = "Mantter &Cliente";
+            this.miManterCliente.Click += new System.EventHandler(this.miManterCliente_Click);
             // 
             // toolStripMenuItem1
             // 
