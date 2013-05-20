@@ -32,9 +32,10 @@ namespace BibliotecaDeClasses.fachada
             try
             {
                 ctrlE.validarDados(exer);
-                if (ctrlE.existe(exer))
+                if (ctrlE.existe(exer) == true)
                     ctrlE.alterar(exer);
-                ctrlE.incluir(exer);
+                else
+                    ctrlE.incluir(exer);
             }
             catch (ErroValidacao ev)
             {

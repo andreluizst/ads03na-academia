@@ -228,7 +228,7 @@ namespace BibliotecaDeClasses.dao
                         cli.EstCivil = Util.GetStringRead(reader, "EstCivil");
                         cli.Sexo = Util.GetStringRead(reader, "Sexo");
                         cli.ValExameMedico = reader.GetDateTime(reader.GetOrdinal("ValExameMedico"));
-                        cli.ToStringBehavior = toStringBehavior;
+                        cli.setToStringBehavior(toStringBehavior);
                         lista.Add(cli);
                     }
                 }

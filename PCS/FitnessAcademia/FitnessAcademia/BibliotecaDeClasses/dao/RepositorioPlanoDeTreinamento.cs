@@ -223,7 +223,7 @@ namespace BibliotecaDeClasses.dao
                     }
                     sdrExercicios.Close();
                     sqlCmdExer.Dispose();
-                    plano.ToStringBehavior = toStringBehavior;
+                    plano.setToStringBehavior(toStringBehavior);
                     lista.Add(plano);
                 }
                 return lista;

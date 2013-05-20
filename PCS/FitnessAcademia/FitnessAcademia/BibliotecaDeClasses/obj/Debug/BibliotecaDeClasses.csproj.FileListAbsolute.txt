@@ -1,5 +1,4 @@
 E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\BibliotecaDeClasses\bin\Debug\BibliotecaDeClasses.dll
 E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\BibliotecaDeClasses\bin\Debug\BibliotecaDeClasses.pdb
-E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\BibliotecaDeClasses\obj\Debug\BibliotecaDeClasses.csprojResolveAssemblyReference.cache
 E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\BibliotecaDeClasses\obj\Debug\BibliotecaDeClasses.dll
 E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\BibliotecaDeClasses\obj\Debug\BibliotecaDeClasses.pdb

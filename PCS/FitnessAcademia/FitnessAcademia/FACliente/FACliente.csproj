@@ -58,6 +58,7 @@
       <DependentUpon>frmExercicio.cs</DependentUpon>
     </Compile>
     <Compile Include="GuiBehavior.cs" />
+    <Compile Include="IActionsGui.cs" />
     <Compile Include="IDialogo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,12 +113,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\localhost\SrvFitnessAcademiaGeral.wsdl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BibliotecaDeClasses\BibliotecaDeClasses.csproj">
-      <Project>{9f76f177-26e6-4583-bb43-55594164241c}</Project>
-      <Name>BibliotecaDeClasses</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

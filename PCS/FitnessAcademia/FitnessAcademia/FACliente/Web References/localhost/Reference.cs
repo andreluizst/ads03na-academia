@@ -402,8 +402,6 @@ namespace FACliente.localhost {
         
         private string descricaoField;
         
-        private int toStringBehaviorField;
-        
         /// <remarks/>
         public int Codigo {
             get {
@@ -421,16 +419,6 @@ namespace FACliente.localhost {
             }
             set {
                 this.descricaoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int ToStringBehavior {
-            get {
-                return this.toStringBehaviorField;
-            }
-            set {
-                this.toStringBehaviorField = value;
             }
         }
     }
@@ -447,8 +435,6 @@ namespace FACliente.localhost {
         
         private string descricaoField;
         
-        private int toStringBehaviorField;
-        
         /// <remarks/>
         public int Codigo {
             get {
@@ -466,16 +452,6 @@ namespace FACliente.localhost {
             }
             set {
                 this.descricaoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int ToStringBehavior {
-            get {
-                return this.toStringBehaviorField;
-            }
-            set {
-                this.toStringBehaviorField = value;
             }
         }
     }

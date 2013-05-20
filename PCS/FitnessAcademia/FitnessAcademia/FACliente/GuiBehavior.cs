@@ -23,11 +23,11 @@ namespace FACliente
             set { servidor = value; }
         }
 
-        private Form frmDlg;
-        public Form FrmDlg
+        private Form frmProprietario;
+        public Form FrmProprietario
         {
-            get { return frmDlg; }
-            set { frmDlg = value; }
+            get { return frmProprietario; }
+            set { frmProprietario = value; }
         }
 
         private EventObjDelegate salvar;
@@ -86,10 +86,10 @@ namespace FACliente
             this.servidor = servidor;
         }
 
-        public GuiBehavior(Service1 servidor, Form frmDlg)
+        public GuiBehavior(Service1 servidor, Form frmProprietario)
             : this(servidor)
         {
-            this.frmDlg = frmDlg;
+            this.frmProprietario = frmProprietario;
         }
 
         private void salvarDefaultEx(T obj)
@@ -122,33 +122,24 @@ namespace FACliente
                     msg = e.Message;
                 }
                 MessageBox.Show(msg, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                frmDlg.DialogResult = System.Windows.Forms.DialogResult.None;
+                frmProprietario.DialogResult = System.Windows.Forms.DialogResult.None;
                 return;
             }
-            frmDlg.DialogResult = System.Windows.Forms.DialogResult.OK;
+            frmProprietario.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 
         private void novoDefault(Form frm)
         {
-            frmDlg = frm;
-            //frmDlg.Text = "NOVO";
-            //if (frmDlg is IDialogo<T>)
-              //  FrmDlg.Text += " " + ((IDialogo<T>)FrmDlg).Nome;
-            if (FrmDlg.ShowDialog() == DialogResult.OK)
+            frmProprietario = frm;
+            if (frmProprietario.ShowDialog() == DialogResult.OK)
                 MessageBox.Show("A operação foi realizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void alterarDefault(Form frm, T obj)
         {
-            frmDlg = frm;
-            //frmDlg.Text = "Alterar";
-
+            frmProprietario = frm;
             this.objeto = obj;
-
-
-            //if (frmDlg is IDialogo<T>)
-              //  FrmDlg.Text += " " + ((IDialogo<T>)FrmDlg).Nome;
-            if (FrmDlg.ShowDialog() == DialogResult.OK)
+            if (frmProprietario.ShowDialog() == DialogResult.OK)
                 MessageBox.Show("A operação foi realizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -158,6 +149,7 @@ namespace FACliente
             try
             {
                 excluirDefault();
+                MessageBox.Show("A operação foi realizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
@@ -177,8 +169,12 @@ namespace FACliente
 
         private void excluirDefault()
         {
+            string msg = "Confirma a exclusão do item selecionado?";
             if (objeto is Exercicio)
-                Servidor.excluirExercicio((Exercicio)objeto);
+            {
+                if(MessageBox.Show(msg, "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    Servidor.excluirExercicio((Exercicio)objeto);
+            }
         }
 
         private List<T> consultarDefault(T obj)
@@ -202,16 +198,32 @@ namespace FACliente
         {
             if (e.KeyCode == Keys.Enter)
             {
-                ((IDialogo<T>)FrmDlg).salvar();
+                ((IDialogo<T>)frmProprietario).salvar();
             }
             else
                 if (e.KeyCode == Keys.Escape)
-                    FrmDlg.DialogResult = DialogResult.Cancel;
+                    frmProprietario.DialogResult = DialogResult.Cancel;
         }
 
         public void FrmDlg_Cancelar()
         {
-            FrmDlg.DialogResult = DialogResult.Cancel;
+            frmProprietario.DialogResult = DialogResult.Cancel;
+        }
+
+        public void NovoAlterarExcluir_KeyUp_NTX(object sender, KeyEventArgs e)
+        {
+            if (frmProprietario is IActionsGui)
+            {
+                if (e.Modifiers == Keys.Alt)
+                {
+                    if (e.KeyCode == Keys.N)
+                        ((IActionsGui)frmProprietario).novo();
+                    if (e.KeyCode == Keys.T)
+                        ((IActionsGui)frmProprietario).alterar();
+                    if (e.KeyCode == Keys.X)
+                        ((IActionsGui)frmProprietario).excluir();
+                }
+            }
         }
 
 
