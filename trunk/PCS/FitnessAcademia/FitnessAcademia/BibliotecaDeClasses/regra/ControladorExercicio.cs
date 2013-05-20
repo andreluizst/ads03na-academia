@@ -19,8 +19,10 @@ namespace BibliotecaDeClasses.regra
 
         public bool existe(Exercicio exer)
         {
-            List<Exercicio> lista = rpE.consultar(exer);
-            if (lista.Count > 0)
+            if (exer.Codigo <= 0)
+                return false;
+            Exercicio e = rpE.pegar(exer.Codigo);
+            if (e != null)
                 return true;
             return false;
         }

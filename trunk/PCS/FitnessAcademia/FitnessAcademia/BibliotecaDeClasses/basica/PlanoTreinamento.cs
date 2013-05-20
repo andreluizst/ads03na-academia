@@ -71,19 +71,26 @@ namespace BibliotecaDeClasses.basica
         }
 
         private int toStringBehavior;
-
-        public int ToStringBehavior
+        public void setToStringBehavior(int toStringBehavior)
+        {
+            this.toStringBehavior = toStringBehavior;
+        }
+        public int getToStringBehavior()
+        {
+            return this.toStringBehavior;
+        }
+        /*public int ToStringBehavior
         {
             get { return toStringBehavior; }
             set { toStringBehavior = value; }
-        }
+        }*/
 
         public override string ToString()
         {
             if (toStringBehavior == PlanoTreinamento.TO_STRING_COMPACT)
             {
-                clienteDoPlano.ToStringBehavior = Cliente.TO_STRING_NOME_CPF;
-                objetivoDoPlano.ToStringBehavior = Objetivo.TO_STRING_DESCRICAO;
+                clienteDoPlano.setToStringBehavior(Cliente.TO_STRING_NOME_CPF);
+                objetivoDoPlano.setToStringBehavior(Objetivo.TO_STRING_DESCRICAO);
                 return Numplano +" - " + String.Format("{0:dd/MM/yyyy}", Data) + " - " + ObjetivoDoPlano.ToString()
                         + " - " + clienteDoPlano.ToString();
             }

@@ -12,7 +12,7 @@ namespace FACliente
 {
     public partial class PropExercicio : Form, IDialogo<Exercicio>
     {
-        private GuiBehavior<Exercicio> gbExercicio;
+        private GuiBehavior<Exercicio> guiBehavior;
         private Exercicio exercicio;
         private FACliente.localhost.Service1 srvGeral;
         private bool isInsert = false;
@@ -38,9 +38,8 @@ namespace FACliente
             InitializeComponent();
             srvGeral = new Service1();
             this.Text = "NOVO " + this.nome;
-            gbExercicio = new GuiBehavior<Exercicio>();
+            guiBehavior = new GuiBehavior<Exercicio>(srvGeral, this);
             isInsert = true;
-            gbExercicio.FrmDlg = this;
         }
 
         public PropExercicio(Exercicio exercicio)
@@ -64,34 +63,12 @@ namespace FACliente
 
         public void salvar()
         {
-            if (isInsert == false)
-                exercicio.Codigo = Convert.ToInt32(txtbxCodigo);
+            if (isInsert)
+                exercicio = new Exercicio();
+            else
+                exercicio.Codigo = Convert.ToInt32(txtbxCodigo.Text);
             exercicio.Descricao = txtbxDescricao.Text;
-            gbExercicio.Salvar(exercicio);
-            /*
-            try
-            {
-                exercicio.Codigo = Convert.ToInt32(txtbxCodigo);
-                exercicio.Descricao = txtbxDescricao.Text;
-                srvGeral.salvarExercicio(exercicio);
-            }
-            catch (Exception)
-            {
-                string msg;
-                try
-                {
-                    msg = srvGeral.getLastMsgError();
-                }
-                catch (Exception e)
-                {
-                    msg = e.Message;
-                }
-                MessageBox.Show(msg, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.DialogResult = System.Windows.Forms.DialogResult.None;
-                return;
-            }
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-             */
+            guiBehavior.Salvar(exercicio);
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -101,19 +78,12 @@ namespace FACliente
 
         private void PropExercicio_KeyDown(object sender, KeyEventArgs e)
         {
-            gbExercicio.FrmDlg_KeyDown(sender, e);
-            /*if (e.KeyCode == Keys.Enter)
-            {
-                salvar();
-            }
-            else
-                if (e.KeyCode == Keys.Escape)
-                    this.DialogResult = DialogResult.Cancel;*/
+            guiBehavior.FrmDlg_KeyDown(sender, e);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            gbExercicio.FrmDlg_Cancelar();
+            guiBehavior.FrmDlg_Cancelar();
         }
 
 

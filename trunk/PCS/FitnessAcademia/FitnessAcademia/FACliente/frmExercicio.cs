@@ -10,16 +10,22 @@ using FACliente.localhost;
 
 namespace FACliente
 {
-    public partial class frmExercicio : Form
+    public partial class frmExercicio : Form, IActionsGui
     {
-        Service1 srv1;
-        List<Exercicio> lista;
+        private Service1 srv1;
+        private List<Exercicio> lista;
+        private GuiBehavior<Exercicio> guiBehavior;
+        private ToolStripMenuItem miShellOpen;
+        //private string activationName;
+
         public frmExercicio()
         {
             InitializeComponent();
+            //activationName = "Exercicio";
             srv1 = new Service1();
             grdExercicios.AutoGenerateColumns = true;
             lista = new List<Exercicio>();
+            guiBehavior = new GuiBehavior<Exercicio>(srv1, this);
         }
 
         private void UnBindingList()
@@ -34,7 +40,23 @@ namespace FACliente
             grdExercicios.DataSource = bindingSource1;
         }
 
-        private void consultar()
+        public void novo()
+        {
+            guiBehavior.Novo(new PropExercicio());
+        }
+
+        public void alterar()
+        {
+            Exercicio exercicio = lista[grdExercicios.CurrentRow.Index];
+            guiBehavior.Alterar(new PropExercicio(exercicio), exercicio);
+        }
+
+        public void excluir()
+        {
+            guiBehavior.Excluir(lista[grdExercicios.CurrentRow.Index]);
+        }
+
+        public void pesquisar()
         {
             Exercicio[] exercicios;
             Exercicio exer = new Exercicio();
@@ -53,58 +75,78 @@ namespace FACliente
 
         }
 
+        public bool pesquisarExiste()
+        {
+            return true;
+        }
+
+        public void fecharPesquisa()
+        {
+            lista.Clear();
+            UnBindingList();
+        }
+
+        public void setOpenMenuShell(ToolStripMenuItem menuItem)
+        {
+            miShellOpen = menuItem;
+            miShellOpen.Enabled = false;
+        }
+
+        /*public string getActivationName()
+        {
+            return activationName;
+        }*/
+
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            consultar();
+            pesquisar();
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            PropExercicio propDlg = new PropExercicio();
-            if (propDlg.ShowDialog() == DialogResult.OK)
-                MessageBox.Show("A operação foi realizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            novo();
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            PropExercicio propDlg = new PropExercicio(lista[grdExercicios.CurrentRow.Index]);
-            if (propDlg.ShowDialog() == DialogResult.OK)
-                MessageBox.Show("A operação foi realizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            alterar();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            try
-            {
-                srv1.excluirExercicio(lista[grdExercicios.CurrentRow.Index]);
-                MessageBox.Show("A operação foi realizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception)
-            {
-                string msg;
-                try
-                {
-                    msg = srv1.getLastMsgError();
-                }
-                catch (Exception ex)
-                {
-                    msg = ex.Message;
-                }
-                MessageBox.Show(msg, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            excluir();
         }
 
         private void frmExercicio_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Modifiers == Keys.Alt)
+            guiBehavior.NovoAlterarExcluir_KeyUp_NTX(sender, e);
+            /*if (e.Modifiers == Keys.Alt)
             {
                 if (e.KeyCode == Keys.N)
-                    btnNovo_Click(btnNovo, e);
-                if (e.KeyCode == Keys.A)
-                    btnAlterar_Click(btnAlterar, e);
-                if (e.KeyCode == Keys.E)
-                    btnExcluir_Click(btnExcluir, e);
-            }
+                    novo();
+                if (e.KeyCode == Keys.T)
+                    alterar();
+                if (e.KeyCode == Keys.X)
+                    excluir();
+            }*/
+        }
+
+        private void grdExercicios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (grdExercicios.SelectedRows.Count > 0)
+                alterar();
+        }
+
+        private void grdExercicios_SelectionChanged(object sender, EventArgs e)
+        {
+            btnAlterar.Enabled = grdExercicios.RowCount > 0 ? true : false;
+            btnExcluir.Enabled = btnAlterar.Enabled;
+        }
+
+        private void frmExercicio_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (miShellOpen != null)
+                miShellOpen.Enabled = true;
         }
     }
 }

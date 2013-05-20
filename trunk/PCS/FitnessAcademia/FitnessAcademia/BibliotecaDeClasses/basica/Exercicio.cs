@@ -26,13 +26,15 @@ namespace BibliotecaDeClasses.basica
         }
 
         private int toStringBehavior;
-
-        public int ToStringBehavior
+        public void setToStringBehavior(int toStringBehavior)
         {
-            get { return toStringBehavior; }
-            set { toStringBehavior = value; }
+            this.toStringBehavior = toStringBehavior;
         }
-
+        public int getToStringBehavior()
+        {
+            return this.toStringBehavior;
+        }
+    
         public Exercicio()
         {
             this.toStringBehavior = TO_STRING_DEFAULT;
@@ -50,6 +52,7 @@ namespace BibliotecaDeClasses.basica
         {
             this.codigo = codigo;
             this.descricao = descricao;
+            this.toStringBehavior = toStringBehavior;
         }
 
         public override string ToString()

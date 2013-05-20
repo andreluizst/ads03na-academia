@@ -26,12 +26,19 @@ namespace BibliotecaDeClasses.basica
         }
 
         private int toStringBehavior;
-
-        public int ToStringBehavior
+        public void setToStringBehavior(int toStringBehavior)
+        {
+            this.toStringBehavior = toStringBehavior;
+        }
+        public int getToStringBehavior()
+        {
+            return this.toStringBehavior;
+        }
+        /*public int ToStringBehavior
         {
             get { return toStringBehavior; }
             set { toStringBehavior = value; }
-        }
+        }*/
 
         public Objetivo()
         {
