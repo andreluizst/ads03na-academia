@@ -32,5 +32,15 @@ namespace FACliente.Properties {
                 return ((string)(this["FACliente_localhost_Service1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:9745/SrvPlanoTreinamento.asmx")]
+        public string FACliente_localhostPlano_Service1 {
+            get {
+                return ((string)(this["FACliente_localhostPlano_Service1"]));
+            }
+        }
     }
 }

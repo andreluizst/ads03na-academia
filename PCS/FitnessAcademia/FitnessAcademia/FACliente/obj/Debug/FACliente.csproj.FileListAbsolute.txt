@@ -11,11 +11,11 @@ E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\FAC
 E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\FACliente\bin\Debug\FACliente.exe.config
 E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\FACliente\bin\Debug\FACliente.exe
 E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\FACliente\bin\Debug\FACliente.pdb
-E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\FACliente\obj\Debug\FACliente.csprojResolveAssemblyReference.cache
 E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\FACliente\obj\Debug\FACliente.frmPrincipal.resources
 E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\FACliente\obj\Debug\FACliente.FrmCliente.resources
 E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\FACliente\obj\Debug\FACliente.frmExercicio.resources
 E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\FACliente\obj\Debug\FACliente.FrmObjetivo.resources
+E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\FACliente\obj\Debug\FACliente.FrmPlanoTreinamento.resources
 E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\FACliente\obj\Debug\FACliente.PropCliente.resources
 E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\FACliente\obj\Debug\FACliente.Properties.Resources.resources
 E:\Unibratec\ADS03N-A\Academia - ENR e APS\PCS\FitnessAcademia\FitnessAcademia\FACliente\obj\Debug\FACliente.PropExercicio.resources
