@@ -43,7 +43,7 @@ namespace FACliente
         }
 
         public PropCliente(Cliente obj)
-            :this()
+            : this()
         {
             if (obj != null)
             {
@@ -58,8 +58,24 @@ namespace FACliente
         {
             txtbxCodigo.Text = obj.Codigo.ToString();
             txtbxNome.Text = obj.Nome;
-            //continua...
-            
+            txtbxCpf.Text = obj.Cpf;
+            txtbxRg.Text = obj.Rg;
+            txtbxDataNasc.Text = obj.DataNasc.ToShortDateString();
+            txtbxLogradouro.Text = obj.Logradouro;
+            txtbxNumeroLog.Text = obj.NumLog;
+            txtbxComplemento.Text = obj.Complemento;
+            txtbxBairro.Text = obj.Bairro;
+            txtbxCidade.Text = obj.Cidade;
+            txtbxUf.Text = obj.Uf;
+            txtbxCep.Text = obj.Cep;
+            txtbxEstCivil.Text = obj.EstCivil;
+            txtbxSexo.Text = obj.Sexo;
+            txtbxTelefone.Text = obj.Telefone;
+            txtbxCelular.Text = obj.Celular;
+            txtbxEmail.Text = obj.Email;
+            txtbxValExameMedico.Text = obj.ValExameMedico.ToShortDateString();
+
+
         }
 
         private void preencherObj()
@@ -69,7 +85,24 @@ namespace FACliente
             else
                 obj.Codigo = Convert.ToInt32(txtbxCodigo.Text);
             obj.Nome = txtbxNome.Text;
-            //continua...
+            obj.Cpf = txtbxCpf.Text;
+            obj.Rg = txtbxRg.Text;
+            obj.DataNasc = Convert.ToDateTime(txtbxDataNasc.Text);
+            obj.Logradouro = txtbxLogradouro.Text;
+            obj.NumLog = txtbxNumeroLog.Text;
+            obj.Complemento = txtbxComplemento.Text;
+            obj.Bairro = txtbxBairro.Text;
+            obj.Cidade = txtbxCidade.Text;
+            obj.Uf = txtbxUf.Text;
+            obj.Cep = txtbxCep.Text;
+            obj.EstCivil = txtbxEstCivil.Text;
+            obj.Sexo = txtbxSexo.Text;
+            obj.Telefone = txtbxTelefone.Text;
+            obj.Celular = txtbxCelular.Text;
+            obj.Email = txtbxEmail.Text;
+            obj.ValExameMedico = Convert.ToDateTime(txtbxValExameMedico.Text);
+
+                        
         }
 
         public void salvar()
