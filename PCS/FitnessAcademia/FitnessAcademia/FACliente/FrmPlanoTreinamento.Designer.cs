@@ -33,6 +33,14 @@
             this.imglstBotoes = new System.Windows.Forms.ImageList(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbxObetivo = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbxClietne = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtpkFinal = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtpkInicial = new System.Windows.Forms.DateTimePicker();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
@@ -41,17 +49,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.dtpkInicial = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dtpkFinal = new System.Windows.Forms.DateTimePicker();
-            this.cbxClietne = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cbxObetivo = new System.Windows.Forms.ComboBox();
+            this.bdsCliente = new System.Windows.Forms.BindingSource(this.components);
+            this.bdsObjetivo = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsCliente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsObjetivo)).BeginInit();
             this.SuspendLayout();
             // 
             // imglstBotoes
@@ -88,6 +92,74 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(735, 137);
             this.panel1.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(425, 56);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Objetivo:";
+            // 
+            // cbxObetivo
+            // 
+            this.cbxObetivo.FormattingEnabled = true;
+            this.cbxObetivo.Location = new System.Drawing.Point(486, 53);
+            this.cbxObetivo.Name = "cbxObetivo";
+            this.cbxObetivo.Size = new System.Drawing.Size(228, 21);
+            this.cbxObetivo.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(38, 56);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Cliente:";
+            // 
+            // cbxClietne
+            // 
+            this.cbxClietne.FormattingEnabled = true;
+            this.cbxClietne.Location = new System.Drawing.Point(99, 53);
+            this.cbxClietne.Name = "cbxClietne";
+            this.cbxClietne.Size = new System.Drawing.Size(300, 21);
+            this.cbxClietne.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(474, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Data final:";
+            // 
+            // dtpkFinal
+            // 
+            this.dtpkFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpkFinal.Location = new System.Drawing.Point(542, 26);
+            this.dtpkFinal.Name = "dtpkFinal";
+            this.dtpkFinal.Size = new System.Drawing.Size(108, 20);
+            this.dtpkFinal.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(273, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Data inicial:";
+            // 
+            // dtpkInicial
+            // 
+            this.dtpkInicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpkInicial.Location = new System.Drawing.Point(341, 26);
+            this.dtpkInicial.Name = "dtpkInicial";
+            this.dtpkInicial.Size = new System.Drawing.Size(108, 20);
+            this.dtpkInicial.TabIndex = 6;
             // 
             // btnConsultar
             // 
@@ -182,74 +254,6 @@
             this.dataGridView.TabIndex = 6;
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
-            // dtpkInicial
-            // 
-            this.dtpkInicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpkInicial.Location = new System.Drawing.Point(341, 26);
-            this.dtpkInicial.Name = "dtpkInicial";
-            this.dtpkInicial.Size = new System.Drawing.Size(108, 20);
-            this.dtpkInicial.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(273, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Data inicial:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(474, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Data final:";
-            // 
-            // dtpkFinal
-            // 
-            this.dtpkFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpkFinal.Location = new System.Drawing.Point(542, 26);
-            this.dtpkFinal.Name = "dtpkFinal";
-            this.dtpkFinal.Size = new System.Drawing.Size(108, 20);
-            this.dtpkFinal.TabIndex = 8;
-            // 
-            // cbxClietne
-            // 
-            this.cbxClietne.FormattingEnabled = true;
-            this.cbxClietne.Location = new System.Drawing.Point(99, 53);
-            this.cbxClietne.Name = "cbxClietne";
-            this.cbxClietne.Size = new System.Drawing.Size(300, 21);
-            this.cbxClietne.TabIndex = 10;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(38, 56);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Cliente:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(425, 56);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Objetivo:";
-            // 
-            // cbxObetivo
-            // 
-            this.cbxObetivo.FormattingEnabled = true;
-            this.cbxObetivo.Location = new System.Drawing.Point(486, 53);
-            this.cbxObetivo.Name = "cbxObetivo";
-            this.cbxObetivo.Size = new System.Drawing.Size(228, 21);
-            this.cbxObetivo.TabIndex = 12;
-            // 
             // FrmPlanoTreinamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,6 +272,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsCliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsObjetivo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -293,5 +299,7 @@
         private System.Windows.Forms.DateTimePicker dtpkFinal;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dtpkInicial;
+        private System.Windows.Forms.BindingSource bdsCliente;
+        private System.Windows.Forms.BindingSource bdsObjetivo;
     }
 }
