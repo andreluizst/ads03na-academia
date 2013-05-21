@@ -98,6 +98,12 @@
     <Compile Include="PropObjetivo.Designer.cs">
       <DependentUpon>PropObjetivo.cs</DependentUpon>
     </Compile>
+    <Compile Include="PropPlanoTreinamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropPlanoTreinamento.Designer.cs">
+      <DependentUpon>PropPlanoTreinamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Web References\localhostPlano\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PropObjetivo.resx">
       <DependentUpon>PropObjetivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropPlanoTreinamento.resx">
+      <DependentUpon>PropPlanoTreinamento.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
