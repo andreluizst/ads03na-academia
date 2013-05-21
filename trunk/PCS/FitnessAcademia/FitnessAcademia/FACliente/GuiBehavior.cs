@@ -15,7 +15,7 @@ namespace FACliente
         public delegate List<T> EventConsultar(T obj);
 
         private object objeto;
-
+        //System.Web.Services.WebService
         private Service1 servidor;
         public Service1 Servidor
         {
@@ -65,12 +65,6 @@ namespace FACliente
             set { consultar = value; }
         }
 
-        /*public event EventNewDelegate novo;
-        //public event EventObjDelegate salvar;
-        public event EventEditDelegate alterar;
-        public event EventObjDelegate excluir;
-        public event EventConsultar consultar;*/
-
         public GuiBehavior()
         {
             salvar = salvarDefaultEx;
@@ -110,6 +104,7 @@ namespace FACliente
             if (objeto is PlanoTreinamento)
                 Servidor.salvarPlanoTreinamento((PlanoTreinamento)objeto); 
              */
+            
         }
 
         private void salvarDefault()
