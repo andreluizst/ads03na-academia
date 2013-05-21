@@ -6,6 +6,7 @@ using BibliotecaDeClasses.erro;
 using BibliotecaDeClasses.basica;
 using BibliotecaDeClasses.regra;
 
+
 namespace BibliotecaDeClasses.fachada
 {
     public class Fachada
@@ -141,7 +142,8 @@ namespace BibliotecaDeClasses.fachada
             }
             catch (ErroValidacao ev)
             {
-                throw new Exception(ev.Message);
+                //MessageBox.Show(ev.Message, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw new Exception("Erro de validação!");//ev.Message);
             }
             catch (ErroInclusao ei)
             {
