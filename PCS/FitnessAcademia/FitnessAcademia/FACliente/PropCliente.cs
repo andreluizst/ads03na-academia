@@ -60,7 +60,7 @@ namespace FACliente
             txtbxNome.Text = obj.Nome;
             txtbxCpf.Text = obj.Cpf;
             txtbxRg.Text = obj.Rg;
-            txtbxDataNasc.Text = obj.DataNasc.ToShortDateString();
+            dtpkDataNasc.Value = obj.DataNasc;
             txtbxLogradouro.Text = obj.Logradouro;
             txtbxNumeroLog.Text = obj.NumLog;
             txtbxComplemento.Text = obj.Complemento;
@@ -73,7 +73,7 @@ namespace FACliente
             txtbxTelefone.Text = obj.Telefone;
             txtbxCelular.Text = obj.Celular;
             txtbxEmail.Text = obj.Email;
-            txtbxValExameMedico.Text = obj.ValExameMedico.ToShortDateString();
+            dtpkValExaMedico.Value = obj.ValExameMedico;
 
 
         }
@@ -87,7 +87,7 @@ namespace FACliente
             obj.Nome = txtbxNome.Text;
             obj.Cpf = txtbxCpf.Text;
             obj.Rg = txtbxRg.Text;
-            obj.DataNasc = Convert.ToDateTime(txtbxDataNasc.Text);
+            obj.DataNasc = dtpkDataNasc.Value;
             obj.Logradouro = txtbxLogradouro.Text;
             obj.NumLog = txtbxNumeroLog.Text;
             obj.Complemento = txtbxComplemento.Text;
@@ -100,7 +100,7 @@ namespace FACliente
             obj.Telefone = txtbxTelefone.Text;
             obj.Celular = txtbxCelular.Text;
             obj.Email = txtbxEmail.Text;
-            obj.ValExameMedico = Convert.ToDateTime(txtbxValExameMedico.Text);
+            obj.ValExameMedico = dtpkValExaMedico.Value;
 
                         
         }

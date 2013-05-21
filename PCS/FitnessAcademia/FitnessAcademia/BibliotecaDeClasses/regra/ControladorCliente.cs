@@ -34,12 +34,14 @@ namespace BibliotecaDeClasses.regra
                 throw new ErroValidacao("Erro ao validar cliente");
 
             
-            //------------validar CPF--------------------------
+            
 
             List<Cliente> lista = rpC.consultar(c);
             if (lista.Count > 0)
                 throw new ErroValidacao("CPF já cadastrado!");
-
+            if(Util.validarCpf(c.Cpf)==false)
+                throw new ErroValidacao("Erro ao validar CPF: CPF inválido!");
+                
                                    
             if (c.Rg == null)
                 throw new ErroValidacao("Erro ao validar RG!");

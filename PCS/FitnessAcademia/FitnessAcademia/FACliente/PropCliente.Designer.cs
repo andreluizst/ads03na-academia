@@ -47,7 +47,6 @@
             this.lblCidade = new System.Windows.Forms.Label();
             this.txtbxCpf = new System.Windows.Forms.TextBox();
             this.txtbxRg = new System.Windows.Forms.TextBox();
-            this.txtbxDataNasc = new System.Windows.Forms.TextBox();
             this.txtbxLogradouro = new System.Windows.Forms.TextBox();
             this.txtbxComplemento = new System.Windows.Forms.TextBox();
             this.txtbxNumeroLog = new System.Windows.Forms.TextBox();
@@ -68,7 +67,8 @@
             this.txtbxTelefone = new System.Windows.Forms.TextBox();
             this.txtbxCelular = new System.Windows.Forms.TextBox();
             this.txtbxEmail = new System.Windows.Forms.TextBox();
-            this.txtbxValExameMedico = new System.Windows.Forms.TextBox();
+            this.dtpkDataNasc = new System.Windows.Forms.DateTimePicker();
+            this.dtpkValExaMedico = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // imglstBotoes
@@ -92,7 +92,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(531, 322);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(112, 23);
-            this.btnCancelar.TabIndex = 13;
+            this.btnCancelar.TabIndex = 19;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -105,7 +105,7 @@
             this.btnSalvar.Location = new System.Drawing.Point(371, 322);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(112, 23);
-            this.btnSalvar.TabIndex = 12;
+            this.btnSalvar.TabIndex = 18;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -115,7 +115,7 @@
             this.txtbxNome.Location = new System.Drawing.Point(256, 21);
             this.txtbxNome.Name = "txtbxNome";
             this.txtbxNome.Size = new System.Drawing.Size(399, 20);
-            this.txtbxNome.TabIndex = 17;
+            this.txtbxNome.TabIndex = 1;
             // 
             // txtbxCodigo
             // 
@@ -123,7 +123,8 @@
             this.txtbxCodigo.Location = new System.Drawing.Point(91, 21);
             this.txtbxCodigo.Name = "txtbxCodigo";
             this.txtbxCodigo.Size = new System.Drawing.Size(64, 20);
-            this.txtbxCodigo.TabIndex = 16;
+            this.txtbxCodigo.TabIndex = 0;
+            this.txtbxCodigo.TabStop = false;
             // 
             // lblNome
             // 
@@ -220,56 +221,49 @@
             this.txtbxCpf.Location = new System.Drawing.Point(72, 66);
             this.txtbxCpf.Name = "txtbxCpf";
             this.txtbxCpf.Size = new System.Drawing.Size(100, 20);
-            this.txtbxCpf.TabIndex = 26;
+            this.txtbxCpf.TabIndex = 2;
             // 
             // txtbxRg
             // 
             this.txtbxRg.Location = new System.Drawing.Point(256, 66);
             this.txtbxRg.Name = "txtbxRg";
             this.txtbxRg.Size = new System.Drawing.Size(100, 20);
-            this.txtbxRg.TabIndex = 27;
-            // 
-            // txtbxDataNasc
-            // 
-            this.txtbxDataNasc.Location = new System.Drawing.Point(531, 63);
-            this.txtbxDataNasc.Name = "txtbxDataNasc";
-            this.txtbxDataNasc.Size = new System.Drawing.Size(124, 20);
-            this.txtbxDataNasc.TabIndex = 28;
+            this.txtbxRg.TabIndex = 3;
             // 
             // txtbxLogradouro
             // 
             this.txtbxLogradouro.Location = new System.Drawing.Point(91, 115);
             this.txtbxLogradouro.Name = "txtbxLogradouro";
             this.txtbxLogradouro.Size = new System.Drawing.Size(277, 20);
-            this.txtbxLogradouro.TabIndex = 29;
+            this.txtbxLogradouro.TabIndex = 5;
             // 
             // txtbxComplemento
             // 
             this.txtbxComplemento.Location = new System.Drawing.Point(578, 115);
             this.txtbxComplemento.Name = "txtbxComplemento";
             this.txtbxComplemento.Size = new System.Drawing.Size(77, 20);
-            this.txtbxComplemento.TabIndex = 31;
+            this.txtbxComplemento.TabIndex = 7;
             // 
             // txtbxNumeroLog
             // 
             this.txtbxNumeroLog.Location = new System.Drawing.Point(434, 118);
             this.txtbxNumeroLog.Name = "txtbxNumeroLog";
             this.txtbxNumeroLog.Size = new System.Drawing.Size(61, 20);
-            this.txtbxNumeroLog.TabIndex = 30;
+            this.txtbxNumeroLog.TabIndex = 6;
             // 
             // txtbxBairro
             // 
             this.txtbxBairro.Location = new System.Drawing.Point(82, 158);
             this.txtbxBairro.Name = "txtbxBairro";
             this.txtbxBairro.Size = new System.Drawing.Size(240, 20);
-            this.txtbxBairro.TabIndex = 32;
+            this.txtbxBairro.TabIndex = 8;
             // 
             // txtbxCidade
             // 
             this.txtbxCidade.Location = new System.Drawing.Point(387, 161);
             this.txtbxCidade.Name = "txtbxCidade";
             this.txtbxCidade.Size = new System.Drawing.Size(166, 20);
-            this.txtbxCidade.TabIndex = 33;
+            this.txtbxCidade.TabIndex = 9;
             // 
             // lblUf
             // 
@@ -348,63 +342,73 @@
             this.txtbxUf.Location = new System.Drawing.Point(595, 161);
             this.txtbxUf.Name = "txtbxUf";
             this.txtbxUf.Size = new System.Drawing.Size(60, 20);
-            this.txtbxUf.TabIndex = 42;
+            this.txtbxUf.TabIndex = 10;
             // 
             // txtbxCep
             // 
             this.txtbxCep.Location = new System.Drawing.Point(72, 207);
             this.txtbxCep.Name = "txtbxCep";
             this.txtbxCep.Size = new System.Drawing.Size(100, 20);
-            this.txtbxCep.TabIndex = 43;
+            this.txtbxCep.TabIndex = 11;
             // 
             // txtbxEstCivil
             // 
             this.txtbxEstCivil.Location = new System.Drawing.Point(284, 210);
             this.txtbxEstCivil.Name = "txtbxEstCivil";
             this.txtbxEstCivil.Size = new System.Drawing.Size(38, 20);
-            this.txtbxEstCivil.TabIndex = 44;
+            this.txtbxEstCivil.TabIndex = 12;
             // 
             // txtbxSexo
             // 
             this.txtbxSexo.Location = new System.Drawing.Point(405, 214);
             this.txtbxSexo.Name = "txtbxSexo";
             this.txtbxSexo.Size = new System.Drawing.Size(43, 20);
-            this.txtbxSexo.TabIndex = 45;
+            this.txtbxSexo.TabIndex = 13;
             // 
             // txtbxTelefone
             // 
             this.txtbxTelefone.Location = new System.Drawing.Point(555, 214);
             this.txtbxTelefone.Name = "txtbxTelefone";
             this.txtbxTelefone.Size = new System.Drawing.Size(100, 20);
-            this.txtbxTelefone.TabIndex = 46;
+            this.txtbxTelefone.TabIndex = 14;
             // 
             // txtbxCelular
             // 
             this.txtbxCelular.Location = new System.Drawing.Point(72, 254);
             this.txtbxCelular.Name = "txtbxCelular";
             this.txtbxCelular.Size = new System.Drawing.Size(100, 20);
-            this.txtbxCelular.TabIndex = 47;
+            this.txtbxCelular.TabIndex = 15;
             // 
             // txtbxEmail
             // 
             this.txtbxEmail.Location = new System.Drawing.Point(238, 261);
             this.txtbxEmail.Name = "txtbxEmail";
             this.txtbxEmail.Size = new System.Drawing.Size(168, 20);
-            this.txtbxEmail.TabIndex = 48;
+            this.txtbxEmail.TabIndex = 16;
             // 
-            // txtbxValExameMedico
+            // dtpkDataNasc
             // 
-            this.txtbxValExameMedico.Location = new System.Drawing.Point(158, 300);
-            this.txtbxValExameMedico.Name = "txtbxValExameMedico";
-            this.txtbxValExameMedico.Size = new System.Drawing.Size(100, 20);
-            this.txtbxValExameMedico.TabIndex = 49;
+            this.dtpkDataNasc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpkDataNasc.Location = new System.Drawing.Point(544, 63);
+            this.dtpkDataNasc.Name = "dtpkDataNasc";
+            this.dtpkDataNasc.Size = new System.Drawing.Size(111, 20);
+            this.dtpkDataNasc.TabIndex = 4;
+            // 
+            // dtpkValExaMedico
+            // 
+            this.dtpkValExaMedico.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpkValExaMedico.Location = new System.Drawing.Point(156, 300);
+            this.dtpkValExaMedico.Name = "dtpkValExaMedico";
+            this.dtpkValExaMedico.Size = new System.Drawing.Size(131, 20);
+            this.dtpkValExaMedico.TabIndex = 17;
             // 
             // PropCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 369);
-            this.Controls.Add(this.txtbxValExameMedico);
+            this.Controls.Add(this.dtpkValExaMedico);
+            this.Controls.Add(this.dtpkDataNasc);
             this.Controls.Add(this.txtbxEmail);
             this.Controls.Add(this.txtbxCelular);
             this.Controls.Add(this.txtbxTelefone);
@@ -425,7 +429,6 @@
             this.Controls.Add(this.txtbxNumeroLog);
             this.Controls.Add(this.txtbxComplemento);
             this.Controls.Add(this.txtbxLogradouro);
-            this.Controls.Add(this.txtbxDataNasc);
             this.Controls.Add(this.txtbxRg);
             this.Controls.Add(this.txtbxCpf);
             this.Controls.Add(this.lblCidade);
@@ -472,7 +475,6 @@
         private System.Windows.Forms.Label lblCidade;
         private System.Windows.Forms.TextBox txtbxCpf;
         private System.Windows.Forms.TextBox txtbxRg;
-        private System.Windows.Forms.TextBox txtbxDataNasc;
         private System.Windows.Forms.TextBox txtbxLogradouro;
         private System.Windows.Forms.TextBox txtbxComplemento;
         private System.Windows.Forms.TextBox txtbxNumeroLog;
@@ -493,6 +495,7 @@
         private System.Windows.Forms.TextBox txtbxTelefone;
         private System.Windows.Forms.TextBox txtbxCelular;
         private System.Windows.Forms.TextBox txtbxEmail;
-        private System.Windows.Forms.TextBox txtbxValExameMedico;
+        private System.Windows.Forms.DateTimePicker dtpkDataNasc;
+        private System.Windows.Forms.DateTimePicker dtpkValExaMedico;
     }
 }
