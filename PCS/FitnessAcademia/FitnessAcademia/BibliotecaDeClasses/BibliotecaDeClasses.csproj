@@ -43,7 +43,6 @@
     <Compile Include="basica\ExercicioDoPlano.cs" />
     <Compile Include="basica\Objetivo.cs" />
     <Compile Include="basica\PlanoTreinamento.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="conexao\Conexao.cs" />
     <Compile Include="dao\IRepositorioCliente.cs" />
     <Compile Include="dao\IRepositorioExercicio.cs" />
