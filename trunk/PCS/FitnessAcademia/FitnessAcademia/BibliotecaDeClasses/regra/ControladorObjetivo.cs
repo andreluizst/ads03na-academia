@@ -29,8 +29,8 @@ namespace BibliotecaDeClasses.regra
         }
         public void validarDados(Objetivo obvo)
         {
-            string msg = "Erro de validação: ";
-            string msgCampoObrigatorio = "Campos obrigatório não preenchido: ";
+            string msg = "Erro de validação-> ";
+            string msgCampoObrigatorio = "Campos obrigatório não preenchido-> ";
             if ((obvo.Descricao == null) || (obvo.Descricao.Length == 0))
                 throw new ErroValidacao(msgCampoObrigatorio + "descrição.");
             if (obvo.Descricao.Length > 50)
@@ -45,11 +45,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Objetivo: A operação de inclusão não está disponível no momento!");
+                throw new ErroConexao("A operação de incluir objetivo não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroInclusao("Erro ao tentar incluir Objetivo: " + e.Message);
+                throw new ErroInclusao("Erro ao tentar incluir Objetivo-> " + e.Message);
             }
         }
 
@@ -61,11 +61,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Objetivo: A operação de alteração não está disponível no momento!");
+                throw new ErroConexao("A operação de alterar objetivo não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroInclusao("Erro ao tentar alterar Objetivo: " + e.Message);
+                throw new ErroInclusao("Erro ao tentar alterar Objetivo-> " + e.Message);
             }
         }
         public void excluir(Objetivo obvo)
@@ -76,11 +76,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Objetivo: A operação de exclusão não está disponível no momento!");
+                throw new ErroConexao("A operação de excluir objetivo não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroInclusao("Erro ao tentar excluir Objetivo: " + e.Message);
+                throw new ErroInclusao("Erro ao tentar excluir Objetivo-> " + e.Message);
             }
         }
 
@@ -97,11 +97,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Objetivo: A operação de consultar não está disponível no momento!");
+                throw new ErroConexao("A operação de consultar objetivo não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroPesquisar("Erro ao tentar consultar Objetivo: " + e.Message);
+                throw new ErroPesquisar("Erro ao tentar consultar Objetivo-> " + e.Message);
             }
         }
 
@@ -118,11 +118,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Objetivo: A operação de consultar não está disponível no momento!");
+                throw new ErroConexao("A operação de consultar objetivo não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroPesquisar("Erro ao tentar consultar Objetivo: " + e.Message);
+                throw new ErroPesquisar("Erro ao tentar consultar Objetivo-> " + e.Message);
             }
         }
     }

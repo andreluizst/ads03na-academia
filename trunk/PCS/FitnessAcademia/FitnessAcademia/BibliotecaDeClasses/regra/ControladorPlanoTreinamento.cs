@@ -51,11 +51,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Plano de Treinamento: A operação de inclusão não está disponível no momento!");
+                throw new ErroConexao("A operação de incluir plano de treinamento não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroInclusao("Erro ao tentar incluir Plano de Treinamento: " + e.Message);
+                throw new ErroInclusao("Erro ao tentar incluir Plano de Treinamento-> " + e.Message);
             }
         }
         public void alterar(PlanoTreinamento pt)
@@ -66,11 +66,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Plano de Treinamento: A operação de alteração não está disponível no momento!");
+                throw new ErroConexao("A operação de alterar Plano de Treinamento não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroAlteracao("Erro ao tentar alterar Plano de Treinamento: " + e.Message);
+                throw new ErroAlteracao("Erro ao tentar alterar Plano de Treinamento-> " + e.Message);
             }
         }
         public void excluir(PlanoTreinamento pt)
@@ -81,11 +81,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Plano de Treinamento: A operação de exclusão não está disponível no momento!");
+                throw new ErroConexao("A operação de excluir Plano de Treinamento não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroExclusao("Erro ao tentar excluir Plano de Treinamento: " + e.Message);
+                throw new ErroExclusao("Erro ao tentar excluir Plano de Treinamento-> " + e.Message);
             }
         }
         public List<PlanoTreinamento> consultar(PlanoTreinamento pt, DateTime dataFinal)
@@ -102,11 +102,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Plano de treinamento: A operação de consultar não está disponível no momento!");
+                throw new ErroConexao("A operação de consultar Plano de Treinamento não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroPesquisar("Erro ao tentar consultar Plano de Treinamento: " + e.Message);
+                throw new ErroPesquisar("Erro ao tentar consultar Plano de Treinamento-> " + e.Message);
             }
         }
 
@@ -123,11 +123,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Plano de treinamento: A operação de consultar não está disponível no momento!");
+                throw new ErroConexao("A operação de consultar Plano de Treinamento não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroPesquisar("Erro ao tentar consultar plano de treinamento: " + e.Message);
+                throw new ErroPesquisar("Erro ao tentar consultar plano de treinamento-> " + e.Message);
             }
         }
 

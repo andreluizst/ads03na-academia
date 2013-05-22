@@ -28,8 +28,8 @@ namespace BibliotecaDeClasses.regra
         }
         public void validarDados(Cliente c)
         {
-            string msg = "Erro de validação: ";
-            string msgCampoObrigatorio = "Campo obrigatório não preenchido: ";
+            string msg = "Erro de validação-> ";
+            string msgCampoObrigatorio = "Campo obrigatório não preenchido-> ";
             if ((c.Nome == null) || (c.Nome.Length == 0))
                 throw new ErroValidacao(msgCampoObrigatorio + "nome do cliente.");
             if (c.Nome.Length > 100)
@@ -118,11 +118,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Cliente: A operação de inclusão não está disponível no momento!");
+                throw new ErroConexao("A operação de incluir cliente não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroInclusao("Erro ao tentar incluir Cliente: " + e.Message);
+                throw new ErroInclusao("Erro ao tentar incluir Cliente-> " + e.Message);
             }
         }
         public void alterar(Cliente c)
@@ -133,11 +133,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Cliente: A operação de alteração não está disponível no momento!");
+                throw new ErroConexao("A operação de alterar cliente não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroAlteracao("Erro ao tentar alterar Cliente: " + e.Message);
+                throw new ErroAlteracao("Erro ao tentar alterar Cliente-> " + e.Message);
             }
         }
         public void excluir(Cliente c)
@@ -148,11 +148,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Cliente: A operação de exclusão não está disponível no momento!");
+                throw new ErroConexao("A operação de excluir cliente não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroExclusao("Erro ao tentar excluir Clienteo: " + e.Message);
+                throw new ErroExclusao("Erro ao tentar excluir Clienteo-> " + e.Message);
             }
         }
         public List<Cliente> consultar(Cliente c)
@@ -168,11 +168,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Cliente: A operação de consultar não está disponível no momento!");
+                throw new ErroConexao("A operação de consultar cliente não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroPesquisar("Erro ao tentar consultar Cliente: " + e.Message);
+                throw new ErroPesquisar("Erro ao tentar consultar Cliente-> " + e.Message);
             }
         }
         public Cliente pegar(int codigo)
@@ -188,11 +188,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("cliente: A operação de consultar não está disponível no momento!");
+                throw new ErroConexao("A operação de consultar cliente não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroPesquisar("Erro ao tentar consultar Cliente: " + e.Message);
+                throw new ErroPesquisar("Erro ao tentar consultar Cliente-> " + e.Message);
             }
         }
     }

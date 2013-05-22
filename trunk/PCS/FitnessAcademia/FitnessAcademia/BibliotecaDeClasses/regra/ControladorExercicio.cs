@@ -29,8 +29,8 @@ namespace BibliotecaDeClasses.regra
 
         public void validarDados(Exercicio exer)
         {
-            string msg = "Erro de validação: ";
-            string msgCampoObrigatorio = "Campos obrigatório não preenchido: ";
+            string msg = "Erro de validação-> ";
+            string msgCampoObrigatorio = "Campos obrigatório não preenchido-> ";
             if ((exer.Descricao == null) || (exer.Descricao.Length == 0))
                 throw new ErroValidacao(msgCampoObrigatorio + "descrição.");
             if (exer.Descricao.Length > 100)
@@ -45,11 +45,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Exerício: A operação de inclusão não está disponível no momento!");
+                throw new ErroConexao("A operação de incluir exercício não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroInclusao("Erro ao tentar incluir exercício: " + e.Message);
+                throw new ErroInclusao("Erro ao tentar incluir exercício-> " + e.Message);
             }
         }
 
@@ -61,11 +61,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Exerício: A operação de alteração não está disponível no momento!");
+                throw new ErroConexao("A operação de alterar exercício não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroAlteracao("Erro ao tentar alterar exercício: " + e.Message);
+                throw new ErroAlteracao("Erro ao tentar alterar exercício-> " + e.Message);
             }
         }
 
@@ -77,11 +77,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Exerício: A operação de exclusão não está disponível no momento!");
+                throw new ErroConexao("A operação de excluir exercício não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroExclusao("Erro ao tentar excluir exercício: " + e.Message);
+                throw new ErroExclusao("Erro ao tentar excluir exercício-> " + e.Message);
             }
         }
 
@@ -98,11 +98,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Exerício: A operação de consultar não está disponível no momento!");
+                throw new ErroConexao("A operação de consultar exercício não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroPesquisar("Erro ao tentar consultar exercício: " + e.Message);
+                throw new ErroPesquisar("Erro ao tentar consultar exercício-> " + e.Message);
             }
         }
 
@@ -119,11 +119,11 @@ namespace BibliotecaDeClasses.regra
             }
             catch (ErroConexao)
             {
-                throw new ErroConexao("Exerício: A operação de consultar não está disponível no momento!");
+                throw new ErroConexao("A operação de consultar exercício não está disponível no momento!");
             }
             catch (Exception e)
             {
-                throw new ErroPesquisar("Erro ao tentar consultar exercício: " + e.Message);
+                throw new ErroPesquisar("Erro ao tentar consultar exercício-> " + e.Message);
             }
         }
 
