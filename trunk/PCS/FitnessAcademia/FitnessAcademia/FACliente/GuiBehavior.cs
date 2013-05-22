@@ -113,17 +113,10 @@ namespace FACliente
             {
                 salvarNoServidor();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 string msg;
-                try
-                {
-                    msg = Servidor.getLastMsgError();
-                }
-                catch (Exception e)
-                {
-                    msg = e.Message;
-                }
+                msg = FiltrarMsgErroWebSrv.execute(e.Message);
                 MessageBox.Show(msg, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 frmProprietario.DialogResult = System.Windows.Forms.DialogResult.None;
                 return;
@@ -154,18 +147,9 @@ namespace FACliente
                 excluirDefault();
                 MessageBox.Show("A operação foi realizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                string msg;
-                try
-                {
-                    msg = Servidor.getLastMsgError();
-                }
-                catch (Exception e)
-                {
-                    msg = e.Message;
-                }
-                MessageBox.Show(msg, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(FiltrarMsgErroWebSrv.execute(e.Message), "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }
@@ -181,8 +165,6 @@ namespace FACliente
                     Servidor.excluirObjetivo((Objetivo)objeto);
                 if (objeto is Cliente)
                     Servidor.excluirCliente((Cliente)objeto);
-                /*if (objeto is PlanoTreinamento)
-                    Servidor.excluirPlanoTreinamento((PlanoTreinamento)objeto);*/
             }
 
         }

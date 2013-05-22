@@ -29,10 +29,12 @@ namespace BibliotecaDeClasses.regra
 
         public void validarDados(Exercicio exer)
         {
-            if (exer.Descricao == null)
-                throw new ErroValidacao("Erro ao validar exercício!");
-            if ((exer.Descricao.Length == 0) || (exer.Descricao.Length > 100))
-                throw new ErroValidacao("Erro ao validar exercício!");
+            string msg = "Erro de validação: ";
+            string msgCampoObrigatorio = "Campos obrigatório não preenchido: ";
+            if ((exer.Descricao == null) || (exer.Descricao.Length == 0))
+                throw new ErroValidacao(msgCampoObrigatorio + "descrição.");
+            if (exer.Descricao.Length > 100)
+                throw new ErroValidacao(msg + "A descrição do exercício não deve ter mais de 100 caracteres!");
         }
 
         public void incluir(Exercicio exer)
