@@ -28,83 +28,85 @@ namespace BibliotecaDeClasses.regra
         }
         public void validarDados(Cliente c)
         {
-            if (c.Nome == null)
-                throw new ErroValidacao("Erro ao validar cliente!");
-            if (c.Nome.Length == 0 || c.Nome.Length > 100)
-                throw new ErroValidacao("Erro ao validar cliente");
+            string msg = "Erro de validação: ";
+            string msgCampoObrigatorio = "Campo obrigatório não preenchido: ";
+            if ((c.Nome == null) || (c.Nome.Length == 0))
+                throw new ErroValidacao(msgCampoObrigatorio + "nome do cliente.");
+            if (c.Nome.Length > 100)
+                throw new ErroValidacao(msg + "O nome do cliente não deve ter mais de 100 caracteres.");
 
             
             
 
             List<Cliente> lista = rpC.consultar(c);
             if (lista.Count > 0)
-                throw new ErroValidacao("CPF já cadastrado!");
-            if(Util.validarCpf(c.Cpf)==false)
-                throw new ErroValidacao("Erro ao validar CPF: CPF inválido!");
-                
-                                   
-            if (c.Rg == null)
-                throw new ErroValidacao("Erro ao validar RG!");
-            if (c.Rg.Length == 0 || c.Rg.Length > 11)
-                throw new ErroValidacao("Erro ao validar RG");                      
+                throw new ErroValidacao(msg + "CPF já cadastrado!");
+            if (Util.validarCpf(c.Cpf)==false)
+                throw new ErroValidacao(msg + "CPF inválido!");
+            if ((c.Rg == null) || (c.Rg.Length == 0))
+                throw new ErroValidacao(msgCampoObrigatorio + "Erro ao validar RG.");
+            if (c.Rg.Length > 11)
+                throw new ErroValidacao(msg + "O RG não deve ter mais de 11 digitos.");                      
          
           DateTime dataValida;
 
-          if(!DateTime.TryParse(c.DataNasc.ToShortDateString() ,out dataValida)|| (dataValida > DateTime.Today))
-               throw new ErroValidacao("Erro ao validar Data de Nascimento!");          
+          if (!DateTime.TryParse(c.DataNasc.ToShortDateString() ,out dataValida)|| (dataValida > DateTime.Today))
+               throw new ErroValidacao(msg + "Data de nascimento.");          
 
-            if (c.Logradouro == null)
-               throw new ErroValidacao("Erro ao validar Logradouro!");
-            if (c.Logradouro.Length == 0 || c.Logradouro.Length > 100)
-                throw new ErroValidacao("Erro ao validar Logradouro");
+            if ((c.Logradouro == null) || (c.Logradouro.Length == 0))
+               throw new ErroValidacao(msgCampoObrigatorio + "Logradouro.");
+            if (c.Logradouro.Length > 100)
+                throw new ErroValidacao(msg + "O logradouro não deve ter mais de 100 caracteres.");
 
-            if (c.NumLog == null)
-                throw new ErroValidacao("Erro ao validar NumLog!");
-            if (c.NumLog.Length == 0 || c.NumLog.Length > 15)
-                throw new ErroValidacao("Erro ao validar NumLog");
+            if ((c.NumLog == null) || (c.NumLog.Length == 0))
+                throw new ErroValidacao(msgCampoObrigatorio + "número do logradouro");
+            if (c.NumLog.Length > 15)
+                throw new ErroValidacao(msg + "O número do logradouro não deve ter mais de 15 caracteres.");
 
-           
-            if (c.Complemento.Length == 0 || c.Complemento.Length > 50)
-                throw new ErroValidacao("Erro ao validar Complemento");
+            if (c.Complemento != null)
+            if (c.Complemento.Length > 50)
+                throw new ErroValidacao(msg + "O complemento não deve ter mais de 50 caracteres.");
 
-            if(c.Bairro == null)
-                throw new ErroValidacao("Erro ao validar Bairro");
-            if (c.Bairro.Length == 0 || c.Bairro.Length > 60)
-                throw new ErroValidacao("Erro ao validar Bairro");
+            if ((c.Bairro == null) || (c.Bairro.Length == 0))
+                throw new ErroValidacao(msgCampoObrigatorio + "Bairro");
+            if (c.Bairro.Length > 60)
+                throw new ErroValidacao(msg  + "O bairro não deve ter mais de 60 caratecres.");
 
-            if(c.Cidade == null)
-                throw new ErroValidacao("Erro ao validar Cidade");
-            if (c.Cidade.Length == 0 || c.Cidade.Length > 60)
-                throw new ErroValidacao("Erro ao validar Cidade");
+            if ((c.Cidade == null) || (c.Cidade.Length == 0))
+                throw new ErroValidacao(msgCampoObrigatorio + "Cidade");
+            if (c.Cidade.Length > 60)
+                throw new ErroValidacao(msg + "A cidade não deve ter mais de 60 caracteres.");
 
-            if(c.Uf == null)
-                throw new ErroValidacao("Erro ao validar UF");
-            if (c.Uf.Length == 0 || c.Uf.Length > 2)
-                throw new ErroValidacao("Erro ao validar UF");
+            if ((c.Uf == null) || (c.Uf.Length == 0))
+                throw new ErroValidacao(msgCampoObrigatorio + "UF");
+            if (c.Uf.Length == 1 || c.Uf.Length > 2)
+                throw new ErroValidacao(msg + "UF deve ter dois caracteres.");
 
-            if(c.Cep == null)
-                throw new ErroValidacao("Erro ao validar CEP");
-            if (c.Cep.Length == 0 || c.Cep.Length > 8)
-                throw new ErroValidacao("Erro ao validar CEP");
+            if ((c.Cep == null) || (c.Cep.Length == 0))
+                throw new ErroValidacao(msg = "CEP");
+            if (c.Cep.Length < 8 || c.Cep.Length > 8)
+                throw new ErroValidacao(msg + "CEP incompleto.");
 
 
-            if (c.EstCivil.Length == 0 || c.EstCivil.Length > 1)
+            if ((c.EstCivil != null) && (c.EstCivil.Length == 0 || c.EstCivil.Length > 1))
                 throw new ErroValidacao("Erro ao validar Estado civil");
 
-            if (c.Sexo.Length == 0 || c.Sexo.Length > 1)
+            if ((c.Sexo != null) && (c.Sexo.Length == 0 || c.Sexo.Length > 1))
                 throw new ErroValidacao("Erro ao validar Complemento");
+            if (c.Telefone != null )
+                if ((c.Telefone.Length > 0) && (c.Telefone.Length != 11))
+                    throw new ErroValidacao(msg + "Número de telefone incompleto.");
 
-            if (c.Telefone.Length == 0 || c.Telefone.Length > 11)
-                throw new ErroValidacao("Erro ao validar Complemento");
+            if (c.Celular != null)
+                if (c.Celular.Length > 0 && c.Celular.Length != 11)
+                    throw new ErroValidacao(msg + "Número de celular incompleto.");
 
-            if (c.Celular.Length == 0 || c.Celular.Length > 11)
-                throw new ErroValidacao("Erro ao validar Complemento");
-
-            if (c.Email.Length == 0 || c.Email.Length > 100)
-                throw new ErroValidacao("Erro ao validar Complemento");                    
+            if (c.Email != null)
+                if (c.Email.Length > 100)
+                    throw new ErroValidacao(msg + "O e-mail não deve ter mais de 100 caracteres.");                    
             
             if (!DateTime.TryParse(c.ValExameMedico.ToShortDateString(), out dataValida) || (dataValida < DateTime.Today))
-                throw new ErroValidacao("Erro ao validar Data de Nascimento!");          
+                throw new ErroValidacao(msg + "Data do exame médico");          
 
 
         }

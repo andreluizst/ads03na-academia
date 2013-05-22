@@ -142,8 +142,7 @@ namespace BibliotecaDeClasses.fachada
             }
             catch (ErroValidacao ev)
             {
-                //MessageBox.Show(ev.Message, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                throw new Exception("Erro de validação!");//ev.Message);
+                throw new Exception(ev.Message);
             }
             catch (ErroInclusao ei)
             {

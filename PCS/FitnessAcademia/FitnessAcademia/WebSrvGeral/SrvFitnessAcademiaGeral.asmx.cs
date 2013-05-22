@@ -32,6 +32,23 @@ namespace WebSrvGeral
             return msgError;
         }
 
+        [WebMethod]
+        public void salvarTeste()
+        {
+            Exercicio exer = new Exercicio();
+            exer.Descricao = "";
+            //Fachada.obterInstancia().salvar(exer);
+            try
+            {
+                Fachada.obterInstancia().salvar(exer);
+            }
+            catch (Exception e)
+            {
+                msgError = e.Message;
+                throw e;
+            }
+        }
+
         //------------------------------ EXERCÍCIO ----------------------------------
         [WebMethod]
         public Exercicio[] consultarExercicio(Exercicio exer)

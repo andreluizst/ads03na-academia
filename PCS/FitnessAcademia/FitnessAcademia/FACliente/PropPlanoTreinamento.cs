@@ -50,14 +50,36 @@ namespace FACliente
         public PropPlanoTreinamento(PlanoTreinamento obj, List<Cliente> clientes, List<Objetivo> objetivos)
             :this(obj)
         {
-            lstClientes = clientes;
-            lstObjetivos = objetivos;
+            lstClientes.AddRange(clientes);
+            if (lstClientes[0].Nome.ToLower() == "<todos>")
+                lstClientes.RemoveAt(0);
+            lstObjetivos.AddRange(objetivos);
+            if (lstObjetivos[0].Descricao.ToLower() == "<todos>")
+                lstObjetivos.RemoveAt(0);
         }
 
         private void preencherCampos()
         {
             txtbxNumPlano.Text = obj.Numplano.ToString();
             dtpkData.Value = obj.Data;
+            for (int i =0; i < lstClientes.Count; i++)
+            {
+                if (lstClientes[i].Codigo == obj.ClienteDoPlano.Codigo)
+                {
+                    cbxCliente.SelectedItem = i;
+                    break;
+                }
+            }
+            for (int i = 0; i < lstObjetivos.Count; i++)
+            {
+                if (lstObjetivos[i].Codigo == obj.ObjetivoDoPlano.Codigo)
+                {
+                    cbxObetivo.SelectedIndex = i;
+                    break;
+                }
+            }
+            bdsExerciciosDoPlano.DataSource = obj.Exercicios;
+            dataGridView.DataSource = bdsExerciciosDoPlano;
         }
 
         private void preencherObj()
@@ -111,6 +133,17 @@ namespace FACliente
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             salvar();
+        }
+
+        private void updateActions()
+        {
+            btnAlterar.Enabled = dataGridView.RowCount > 0 ? true : false;
+            btnExcluir.Enabled = btnAlterar.Enabled;
+        }
+
+        private void dataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            updateActions();
         }
     }
 }

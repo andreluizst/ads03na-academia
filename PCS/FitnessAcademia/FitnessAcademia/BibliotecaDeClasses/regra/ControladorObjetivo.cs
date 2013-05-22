@@ -29,10 +29,12 @@ namespace BibliotecaDeClasses.regra
         }
         public void validarDados(Objetivo obvo)
         {
-            if (obvo.Descricao == null)
-                throw new ErroValidacao("Erro ao validar Objetivo");
-            if (obvo.Descricao.Length == 0 || obvo.Descricao.Length > 50)
-                throw new ErroValidacao("Erro ao validar Objetivo");
+            string msg = "Erro de validação: ";
+            string msgCampoObrigatorio = "Campos obrigatório não preenchido: ";
+            if ((obvo.Descricao == null) || (obvo.Descricao.Length == 0))
+                throw new ErroValidacao(msgCampoObrigatorio + "descrição.");
+            if (obvo.Descricao.Length > 50)
+                throw new ErroValidacao(msg + "A descrição do objetivo não deve ter mais de 50 caracteres.");
 
         }
         public void incluir(Objetivo obvo)
