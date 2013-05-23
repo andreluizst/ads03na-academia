@@ -134,5 +134,11 @@ namespace FACliente
             showMdiChildren(frm, (ToolStripMenuItem)sender);
         }
 
+        private void miPlano_Click(object sender, EventArgs e)
+        {
+            FrmPlanoTreinamento frm = new FrmPlanoTreinamento();
+            showMdiChildren(frm, (ToolStripMenuItem)sender);
+        }
+
     }
 }

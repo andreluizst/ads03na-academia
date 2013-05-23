@@ -36,7 +36,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.cbxObetivo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.cbxClietne = new System.Windows.Forms.ComboBox();
+            this.cbxCliente = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dtpkFinal = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,11 +51,13 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.bdsCliente = new System.Windows.Forms.BindingSource(this.components);
             this.bdsObjetivo = new System.Windows.Forms.BindingSource(this.components);
+            this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsObjetivo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // imglstBotoes
@@ -76,7 +78,7 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.cbxObetivo);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.cbxClietne);
+            this.panel1.Controls.Add(this.cbxCliente);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.dtpkFinal);
             this.panel1.Controls.Add(this.label2);
@@ -119,13 +121,13 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Cliente:";
             // 
-            // cbxClietne
+            // cbxCliente
             // 
-            this.cbxClietne.FormattingEnabled = true;
-            this.cbxClietne.Location = new System.Drawing.Point(99, 53);
-            this.cbxClietne.Name = "cbxClietne";
-            this.cbxClietne.Size = new System.Drawing.Size(300, 21);
-            this.cbxClietne.TabIndex = 10;
+            this.cbxCliente.FormattingEnabled = true;
+            this.cbxCliente.Location = new System.Drawing.Point(99, 53);
+            this.cbxCliente.Name = "cbxCliente";
+            this.cbxCliente.Size = new System.Drawing.Size(300, 21);
+            this.cbxCliente.TabIndex = 10;
             // 
             // label3
             // 
@@ -254,6 +256,10 @@
             this.dataGridView.TabIndex = 6;
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
+            // clienteBindingSource
+            // 
+            this.clienteBindingSource.DataSource = typeof(FACliente.localhostSrvPlano.Cliente);
+            // 
             // FrmPlanoTreinamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,6 +280,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsObjetivo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -294,12 +301,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbxObetivo;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbxClietne;
+        private System.Windows.Forms.ComboBox cbxCliente;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtpkFinal;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dtpkInicial;
         private System.Windows.Forms.BindingSource bdsCliente;
         private System.Windows.Forms.BindingSource bdsObjetivo;
+        private System.Windows.Forms.BindingSource clienteBindingSource;
     }
 }

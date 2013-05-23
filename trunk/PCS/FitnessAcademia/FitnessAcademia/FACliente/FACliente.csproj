@@ -111,7 +111,7 @@
     <Compile Include="PropPlanoTreinamento.Designer.cs">
       <DependentUpon>PropPlanoTreinamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Web References\localhostPlano\Reference.cs">
+    <Compile Include="Web References\localhostSrvPlano\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -171,23 +171,23 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Web References\localhostPlano\Cliente.datasource">
+    <None Include="Web References\localhostSrvPlano\Cliente.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\localhostPlano\Exercicio.datasource">
+    <None Include="Web References\localhostSrvPlano\Exercicio.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\localhostPlano\Objetivo.datasource">
+    <None Include="Web References\localhostSrvPlano\Objetivo.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\localhostPlano\PlanoTreinamento.datasource">
+    <None Include="Web References\localhostSrvPlano\PlanoTreinamento.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\localhostPlano\Reference.map">
+    <None Include="Web References\localhostSrvPlano\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\localhostPlano\SrvPlanoTreinamento.wsdl" />
+    <None Include="Web References\localhostSrvPlano\Service1.wsdl" />
     <None Include="Web References\localhost\Cliente.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
@@ -221,16 +221,16 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>FACliente_localhost_Service1</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost:9745/SrvPlanoTreinamento.asmx">
+    <WebReferenceUrl Include="http://localhost:62466/Service1.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\localhostPlano\</RelPath>
-      <UpdateFromURL>http://localhost:9745/SrvPlanoTreinamento.asmx</UpdateFromURL>
+      <RelPath>Web References\localhostSrvPlano\</RelPath>
+      <UpdateFromURL>http://localhost:62466/Service1.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>FACliente_localhostPlano_Service1</CachedSettingsPropName>
+      <CachedSettingsPropName>FACliente_localhostSrvPlano_Service1</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
@@ -258,7 +258,7 @@
     <None Include="Resources\btnLupaHot.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web References\localhostPlano\SrvPlanoTreinamento.disco" />
+    <None Include="Web References\localhostSrvPlano\Service1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -33,6 +33,7 @@
             this.miManterExercício = new System.Windows.Forms.ToolStripMenuItem();
             this.miManterObjetivo = new System.Windows.Forms.ToolStripMenuItem();
             this.miManterCliente = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPlano = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.miSair = new System.Windows.Forms.ToolStripMenuItem();
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +68,7 @@
             this.miManterExercício,
             this.miManterObjetivo,
             this.miManterCliente,
+            this.miPlano,
             this.toolStripMenuItem1,
             this.miSair});
             this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
@@ -76,34 +78,41 @@
             // miManterExercício
             // 
             this.miManterExercício.Name = "miManterExercício";
-            this.miManterExercício.Size = new System.Drawing.Size(161, 22);
+            this.miManterExercício.Size = new System.Drawing.Size(232, 22);
             this.miManterExercício.Text = "Manter &Exercício";
             this.miManterExercício.Click += new System.EventHandler(this.miManterExercício_Click);
             // 
             // miManterObjetivo
             // 
             this.miManterObjetivo.Name = "miManterObjetivo";
-            this.miManterObjetivo.Size = new System.Drawing.Size(161, 22);
+            this.miManterObjetivo.Size = new System.Drawing.Size(232, 22);
             this.miManterObjetivo.Text = "Manter &Objetivo";
             this.miManterObjetivo.Click += new System.EventHandler(this.miManterObjetivo_Click);
             // 
             // miManterCliente
             // 
             this.miManterCliente.Name = "miManterCliente";
-            this.miManterCliente.Size = new System.Drawing.Size(161, 22);
-            this.miManterCliente.Text = "Mantter &Cliente";
+            this.miManterCliente.Size = new System.Drawing.Size(232, 22);
+            this.miManterCliente.Text = "Manter &Cliente";
             this.miManterCliente.Click += new System.EventHandler(this.miManterCliente_Click);
+            // 
+            // miPlano
+            // 
+            this.miPlano.Name = "miPlano";
+            this.miPlano.Size = new System.Drawing.Size(232, 22);
+            this.miPlano.Text = "Manter Plano de &Treinamento";
+            this.miPlano.Click += new System.EventHandler(this.miPlano_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(158, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(229, 6);
             // 
             // miSair
             // 
             this.miSair.Name = "miSair";
             this.miSair.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F12)));
-            this.miSair.Size = new System.Drawing.Size(161, 22);
+            this.miSair.Size = new System.Drawing.Size(232, 22);
             this.miSair.Text = "Sai&r";
             this.miSair.Click += new System.EventHandler(this.miSair_Click);
             // 
@@ -230,6 +239,7 @@
         private System.Windows.Forms.ToolStripMenuItem miExcluir;
         private System.Windows.Forms.ToolStripMenuItem miFecharJanelaAtual;
         private System.Windows.Forms.ToolStripMenuItem miJanela;
+        private System.Windows.Forms.ToolStripMenuItem miPlano;
     }
 }
 

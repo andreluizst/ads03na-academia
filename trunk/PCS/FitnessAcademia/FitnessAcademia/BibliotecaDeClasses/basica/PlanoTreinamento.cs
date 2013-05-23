@@ -89,7 +89,7 @@ namespace BibliotecaDeClasses.basica
         {
             if (toStringBehavior == PlanoTreinamento.TO_STRING_COMPACT)
             {
-                clienteDoPlano.setToStringBehavior(Cliente.TO_STRING_NOME_CPF);
+                clienteDoPlano.SetToStringBehavior(Cliente.TO_STRING_NOME_CPF);
                 objetivoDoPlano.setToStringBehavior(Objetivo.TO_STRING_DESCRICAO);
                 return Numplano +" - " + String.Format("{0:dd/MM/yyyy}", Data) + " - " + ObjetivoDoPlano.ToString()
                         + " - " + clienteDoPlano.ToString();
