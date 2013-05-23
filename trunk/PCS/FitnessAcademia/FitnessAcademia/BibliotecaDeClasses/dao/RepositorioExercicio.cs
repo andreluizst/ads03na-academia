@@ -160,6 +160,7 @@ namespace BibliotecaDeClasses.dao
                     }
                     sql += " descricao like '" + e.Descricao + "'";
                 }
+                sql += " order by descricao";
                 SqlCommand sqlCmd = new SqlCommand(sql, con.sqlConnection);
                 SqlDataReader reader = sqlCmd.ExecuteReader();
                 while (reader.Read())

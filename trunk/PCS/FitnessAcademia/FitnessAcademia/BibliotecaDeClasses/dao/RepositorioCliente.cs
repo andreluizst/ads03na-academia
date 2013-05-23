@@ -195,6 +195,7 @@ namespace BibliotecaDeClasses.dao
                 }
                 if (c.Nome == null)
                     c.Nome = "%";
+                sql += " order by nome";
                 SqlCommand sqlCmd = new SqlCommand(sql, con.sqlConnection);
                 sqlCmd.Parameters.AddWithValue("@nome", c.Nome);
                 SqlDataReader reader = sqlCmd.ExecuteReader();

@@ -45,8 +45,6 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
-            this.txtbxNumPlano = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.bdsCliente = new System.Windows.Forms.BindingSource(this.components);
@@ -87,12 +85,10 @@
             this.panel1.Controls.Add(this.btnExcluir);
             this.panel1.Controls.Add(this.btnAlterar);
             this.panel1.Controls.Add(this.btnNovo);
-            this.panel1.Controls.Add(this.txtbxNumPlano);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(735, 137);
+            this.panel1.Size = new System.Drawing.Size(735, 150);
             this.panel1.TabIndex = 3;
             // 
             // label5
@@ -101,16 +97,17 @@
             this.label5.Location = new System.Drawing.Point(425, 56);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 13);
-            this.label5.TabIndex = 13;
+            this.label5.TabIndex = 6;
             this.label5.Text = "Objetivo:";
             // 
             // cbxObetivo
             // 
+            this.cbxObetivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxObetivo.FormattingEnabled = true;
             this.cbxObetivo.Location = new System.Drawing.Point(486, 53);
             this.cbxObetivo.Name = "cbxObetivo";
             this.cbxObetivo.Size = new System.Drawing.Size(228, 21);
-            this.cbxObetivo.TabIndex = 12;
+            this.cbxObetivo.TabIndex = 3;
             // 
             // label4
             // 
@@ -123,16 +120,17 @@
             // 
             // cbxCliente
             // 
+            this.cbxCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCliente.FormattingEnabled = true;
             this.cbxCliente.Location = new System.Drawing.Point(99, 53);
             this.cbxCliente.Name = "cbxCliente";
             this.cbxCliente.Size = new System.Drawing.Size(300, 21);
-            this.cbxCliente.TabIndex = 10;
+            this.cbxCliente.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(474, 29);
+            this.label3.Location = new System.Drawing.Point(242, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 9;
@@ -141,15 +139,15 @@
             // dtpkFinal
             // 
             this.dtpkFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpkFinal.Location = new System.Drawing.Point(542, 26);
+            this.dtpkFinal.Location = new System.Drawing.Point(310, 18);
             this.dtpkFinal.Name = "dtpkFinal";
             this.dtpkFinal.Size = new System.Drawing.Size(108, 20);
-            this.dtpkFinal.TabIndex = 8;
+            this.dtpkFinal.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(273, 29);
+            this.label2.Location = new System.Drawing.Point(38, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 7;
@@ -158,20 +156,20 @@
             // dtpkInicial
             // 
             this.dtpkInicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpkInicial.Location = new System.Drawing.Point(341, 26);
+            this.dtpkInicial.Location = new System.Drawing.Point(109, 18);
             this.dtpkInicial.Name = "dtpkInicial";
             this.dtpkInicial.Size = new System.Drawing.Size(108, 20);
-            this.dtpkInicial.TabIndex = 6;
+            this.dtpkInicial.TabIndex = 0;
             // 
             // btnConsultar
             // 
             this.btnConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConsultar.ImageKey = "btnLupaHot.bmp";
             this.btnConsultar.ImageList = this.imglstBotoes;
-            this.btnConsultar.Location = new System.Drawing.Point(486, 98);
+            this.btnConsultar.Location = new System.Drawing.Point(486, 110);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(112, 23);
-            this.btnConsultar.TabIndex = 5;
+            this.btnConsultar.TabIndex = 7;
             this.btnConsultar.Text = "Pesquisar";
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
@@ -182,10 +180,10 @@
             this.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExcluir.ImageKey = "btnExcluirHot.bmp";
             this.btnExcluir.ImageList = this.imglstBotoes;
-            this.btnExcluir.Location = new System.Drawing.Point(322, 98);
+            this.btnExcluir.Location = new System.Drawing.Point(322, 110);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(112, 23);
-            this.btnExcluir.TabIndex = 4;
+            this.btnExcluir.TabIndex = 6;
             this.btnExcluir.Text = "E&xcluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
@@ -196,10 +194,10 @@
             this.btnAlterar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAlterar.ImageKey = "btnAlterarHot.bmp";
             this.btnAlterar.ImageList = this.imglstBotoes;
-            this.btnAlterar.Location = new System.Drawing.Point(181, 98);
+            this.btnAlterar.Location = new System.Drawing.Point(181, 110);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(112, 23);
-            this.btnAlterar.TabIndex = 3;
+            this.btnAlterar.TabIndex = 5;
             this.btnAlterar.Text = "A&lterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
@@ -209,35 +207,19 @@
             this.btnNovo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNovo.ImageKey = "btnNovoHot.bmp";
             this.btnNovo.ImageList = this.imglstBotoes;
-            this.btnNovo.Location = new System.Drawing.Point(41, 98);
+            this.btnNovo.Location = new System.Drawing.Point(41, 110);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(112, 23);
-            this.btnNovo.TabIndex = 2;
+            this.btnNovo.TabIndex = 4;
             this.btnNovo.Text = "&Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
-            // 
-            // txtbxNumPlano
-            // 
-            this.txtbxNumPlano.Location = new System.Drawing.Point(99, 26);
-            this.txtbxNumPlano.Name = "txtbxNumPlano";
-            this.txtbxNumPlano.Size = new System.Drawing.Size(134, 20);
-            this.txtbxNumPlano.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(38, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Número:";
             // 
             // splitter1
             // 
             this.splitter1.Cursor = System.Windows.Forms.Cursors.HSplit;
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(0, 137);
+            this.splitter1.Location = new System.Drawing.Point(0, 150);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(735, 5);
             this.splitter1.TabIndex = 5;
@@ -247,12 +229,12 @@
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView.Location = new System.Drawing.Point(0, 142);
+            this.dataGridView.Location = new System.Drawing.Point(0, 155);
             this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(735, 233);
+            this.dataGridView.Size = new System.Drawing.Size(735, 220);
             this.dataGridView.TabIndex = 6;
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
@@ -294,8 +276,6 @@
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnNovo;
-        private System.Windows.Forms.TextBox txtbxNumPlano;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Label label5;

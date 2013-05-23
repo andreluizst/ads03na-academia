@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-//using FACliente.localhostPlano;
 using FACliente.localhostSrvPlano;
 
 namespace FACliente
@@ -15,9 +14,8 @@ namespace FACliente
     {
         private Service1 srvPlano;
         private List<PlanoTreinamento> lista;
-        private List<Cliente> lstClientes;
-        private List<Objetivo> lstObjetivos;
-        //private GuiBehavior<PlanoTreinamento> guiBehavior;
+        private List<ComboBoxItemEx> lstClientes;
+        private List<ComboBoxItemEx> lstObjetivos;
         private ToolStripMenuItem miShellOpen;
         private ToolStripMenuItem miShellNovo;
         private ToolStripMenuItem miShellAlterar;
@@ -29,9 +27,8 @@ namespace FACliente
             srvPlano = new Service1();
             dataGridView.AutoGenerateColumns = true;
             lista = new List<PlanoTreinamento>();
-            lstClientes = new List<Cliente>();
-            lstObjetivos = new List<Objetivo>();
-            //guiBehavior = new GuiBehavior<PlanoTreinamento>(srv1, this);
+            lstClientes = new List<ComboBoxItemEx>();
+            lstObjetivos = new List<ComboBoxItemEx>();
             preencherListas();
         }
 
@@ -41,58 +38,37 @@ namespace FACliente
             Objetivo[] objetivos;
             Cliente Cli = new Cliente();
             
-            Cli.ToString();
-            
             try
             {
                 clientes = srvPlano.listarClientes();
-                Cliente c = new Cliente();
-                c.Codigo = 0;
-                c.Nome = "<Todos>";
-                
                 cbxCliente.DataSource = null;
                 bdsCliente.DataSource = null;
                 lstClientes.Clear();
-                lstClientes.Add(c);
+                lstClientes.Add(new ComboBoxItemEx(0, "<Todos>"));
                 foreach (Cliente item in clientes)
                 {
-                    lstClientes.Add(item);
-                    cbxCliente.Items.Add(item.Nome);
-                    //cbxCliente.Items[cbxCliente.Items.Count-1]
+                    lstClientes.Add(new ComboBoxItemEx(item.Codigo, item.Nome + ", CPF " + item.Cpf));
                 }
                 bdsCliente.DataSource = lstClientes;
                 cbxCliente.DataSource = bdsCliente;
-
-                dataGridView.DataSource = lstClientes;
-
-                Objetivo o = new Objetivo();
-                o.Codigo = 0;
-                lstObjetivos.Clear();
-                o.Descricao = "<Todos>";
-                lstObjetivos.Add(o);
+                lstObjetivos.Add(new ComboBoxItemEx(0, "<Todos>"));
                 cbxObetivo.DataSource = null;
                 bdsObjetivo.DataSource = null;
                 objetivos = srvPlano.listarObjetivos();
                 foreach (Objetivo item in objetivos)
                 {
-                    lstObjetivos.Add(item);
+                    lstObjetivos.Add(new ComboBoxItemEx(item.Codigo, item.Descricao));
                 }
                 bdsObjetivo.DataSource = lstObjetivos;
                 cbxObetivo.DataSource = bdsObjetivo;
+                cbxCliente.SelectedIndex = 0;
+                cbxObetivo.SelectedIndex = 0;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 string msg;
-                try
-                {
-                    msg = srvPlano.getLastMsgError();
-                }
-                catch (Exception e)
-                {
-                    msg = e.Message;
-                }
+                msg = FiltrarMsgErroWebSrv.execute(e.Message);
                 MessageBox.Show(msg, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
             }
         }
 
@@ -114,20 +90,31 @@ namespace FACliente
             PlanoTreinamento[] planos;
             PlanoTreinamento obj = new PlanoTreinamento();
             obj.Numplano = 0;
-            obj.ObjetivoDoPlano.Codigo = lstObjetivos[cbxObetivo.SelectedIndex].Codigo;
-            obj.ClienteDoPlano.Codigo = lstClientes[cbxCliente.SelectedIndex].Codigo;
-            obj.Data = Convert.ToDateTime(dtpkInicial.Text);
-            planos = srvPlano.consultarPlanoTreinamento(obj, Convert.ToDateTime(dtpkFinal.Text));
-            UnBindingList();
-            lista.Clear();
-            foreach (PlanoTreinamento item in planos)
+            obj.ObjetivoDoPlano = new Objetivo();
+            obj.ClienteDoPlano = new Cliente();
+            obj.ObjetivoDoPlano.Codigo = lstObjetivos[cbxObetivo.SelectedIndex].Id;
+            obj.ClienteDoPlano.Codigo = lstClientes[cbxCliente.SelectedIndex].Id;
+            obj.Data = dtpkInicial.Value;// Convert.ToDateTime(dtpkInicial.Text);
+            try
             {
-                lista.Add(item);
+                planos = srvPlano.consultarPlanoTreinamento(obj, dtpkFinal.Value);//Convert.ToDateTime(dtpkFinal.Text));
+                UnBindingList();
+                lista.Clear();
+                foreach (PlanoTreinamento item in planos)
+                {
+                    lista.Add(item);
+                }
+                BindingList();
+                if (lista.Count == 0)
+                    MessageBox.Show("A pesquisa não encontrou registros.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            BindingList();
-            if (lista.Count == 0)
-                MessageBox.Show("A pesquisa não encontrou registros.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
+            catch (Exception e)
+            {
+                string msg;
+                msg = FiltrarMsgErroWebSrv.execute(e.Message);
+                MessageBox.Show(msg, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
         }
 
         public bool pesquisarExiste()
@@ -188,14 +175,15 @@ namespace FACliente
 
         public void novo()
         {
-            PropPlanoTreinamento frm = new PropPlanoTreinamento();
+            PropPlanoTreinamento frm = new PropPlanoTreinamento(lstClientes, lstObjetivos);
             if (frm.ShowDialog() == DialogResult.OK)
                 MessageBox.Show("A operação foi realizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void alterar()
         {
-            PropPlanoTreinamento frm = new PropPlanoTreinamento(lista[dataGridView.CurrentRow.Index]);
+            PropPlanoTreinamento frm = new PropPlanoTreinamento(lista[dataGridView.CurrentRow.Index], 
+                lstClientes, lstObjetivos);
             if (frm.ShowDialog() == DialogResult.OK)
                 MessageBox.Show("A operação foi realizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -211,19 +199,11 @@ namespace FACliente
                     MessageBox.Show("A operação foi realizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 string msg;
-                try
-                {
-                    msg = srvPlano.getLastMsgError();
-                }
-                catch (Exception e)
-                {
-                    msg = e.Message;
-                }
+                msg = FiltrarMsgErroWebSrv.execute(e.Message);
                 MessageBox.Show(msg, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
             }
         }
 
