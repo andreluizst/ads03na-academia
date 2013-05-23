@@ -1,0 +1,7 @@
+E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvPlano\bin\WebSrvPlano.dll
+E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvPlano\bin\WebSrvPlano.pdb
+E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvPlano\bin\BibliotecaDeClasses.dll
+E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvPlano\bin\BibliotecaDeClasses.pdb
+E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvPlano\obj\Debug\WebSrvPlano.csprojResolveAssemblyReference.cache
+E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvPlano\obj\Debug\WebSrvPlano.dll
+E:\Unibratec\ADS03N-A\Academia_ENR e APS\PCS\FitnessAcademia\FitnessAcademia\WebSrvPlano\obj\Debug\WebSrvPlano.pdb
