@@ -1,0 +1,11 @@
+Diagrama de Sequencia
+
+Dois Casos de Uso:
+
+- Agendar avaliação física e
+- Gerenciar matrícula.
+
+
+Alcidelio
+
+Recife - PE, 22 de maio de 2013.
