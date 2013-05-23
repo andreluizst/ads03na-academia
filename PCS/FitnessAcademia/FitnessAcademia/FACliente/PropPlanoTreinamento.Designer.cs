@@ -56,12 +56,16 @@
             this.btnOrdMvBaixo = new System.Windows.Forms.Button();
             this.btnOrdMvCima = new System.Windows.Forms.Button();
             this.btnOrdMvPrimeiro = new System.Windows.Forms.Button();
+            this.bdsObjetivos = new System.Windows.Forms.BindingSource(this.components);
+            this.bdsClientes = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.pnlOrdem.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsObjetivos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // imglstBotoes
@@ -160,6 +164,7 @@
             // 
             // cbxObetivo
             // 
+            this.cbxObetivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxObetivo.FormattingEnabled = true;
             this.cbxObetivo.Location = new System.Drawing.Point(479, 26);
             this.cbxObetivo.Name = "cbxObetivo";
@@ -168,6 +173,7 @@
             // 
             // cbxCliente
             // 
+            this.cbxCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCliente.FormattingEnabled = true;
             this.cbxCliente.Location = new System.Drawing.Point(77, 53);
             this.cbxCliente.Name = "cbxCliente";
@@ -275,6 +281,7 @@
             this.btnNovo.Text = "&Novo exercício";
             this.btnNovo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNovo.UseVisualStyleBackColor = true;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // pnlOrdem
             // 
@@ -301,7 +308,6 @@
             // 
             // btnOrdMvUltimo
             // 
-            this.btnOrdMvUltimo.Enabled = false;
             this.btnOrdMvUltimo.ImageKey = "btnUltimoHotV.bmp";
             this.btnOrdMvUltimo.ImageList = this.imglstBotoes;
             this.btnOrdMvUltimo.Location = new System.Drawing.Point(7, 169);
@@ -314,7 +320,6 @@
             // 
             // btnOrdMvBaixo
             // 
-            this.btnOrdMvBaixo.Enabled = false;
             this.btnOrdMvBaixo.ImageKey = "btnProximoHotV.bmp";
             this.btnOrdMvBaixo.ImageList = this.imglstBotoes;
             this.btnOrdMvBaixo.Location = new System.Drawing.Point(7, 123);
@@ -327,7 +332,6 @@
             // 
             // btnOrdMvCima
             // 
-            this.btnOrdMvCima.Enabled = false;
             this.btnOrdMvCima.ImageKey = "btnAnteriorHotV.bmp";
             this.btnOrdMvCima.ImageList = this.imglstBotoes;
             this.btnOrdMvCima.Location = new System.Drawing.Point(7, 77);
@@ -349,6 +353,10 @@
             this.btnOrdMvPrimeiro.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnOrdMvPrimeiro.UseVisualStyleBackColor = true;
             this.btnOrdMvPrimeiro.Click += new System.EventHandler(this.btnOrdMvPrimeiro_Click);
+            // 
+            // bdsClientes
+            // 
+            this.bdsClientes.DataSource = typeof(FACliente.localhostSrvPlano.Cliente);
             // 
             // PropPlanoTreinamento
             // 
@@ -376,6 +384,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.pnlOrdem.ResumeLayout(false);
             this.pnlOrdem.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsObjetivos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsClientes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -408,5 +418,7 @@
         private System.Windows.Forms.Button btnOrdMvCima;
         private System.Windows.Forms.Button btnOrdMvPrimeiro;
         private System.Windows.Forms.Label lblOrdenacao;
+        private System.Windows.Forms.BindingSource bdsObjetivos;
+        private System.Windows.Forms.BindingSource bdsClientes;
     }
 }

@@ -108,6 +108,7 @@
             // 
             // cbxExercicio
             // 
+            this.cbxExercicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxExercicio.FormattingEnabled = true;
             this.cbxExercicio.Location = new System.Drawing.Point(94, 69);
             this.cbxExercicio.Name = "cbxExercicio";

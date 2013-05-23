@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-//using FACliente.localhostPlano;
 using FACliente.localhostSrvPlano;
 
 namespace FACliente
@@ -17,8 +16,8 @@ namespace FACliente
         private Service1 srvPlano;
         private bool isInsert = false;
         private string nome = "Plano de Treinamento";
-        private List<Cliente> lstClientes;
-        private List<Objetivo> lstObjetivos;
+        private List<ComboBoxItemEx> lstClientes;
+        private List<ComboBoxItemEx> lstObjetivos;
         private List<ExercicioDoPlano> lista;
 
 
@@ -33,9 +32,15 @@ namespace FACliente
             this.Text = "NOVO " + this.nome;
             isInsert = true;
             srvPlano = new Service1();
-            lstClientes = new List<Cliente>();
-            lstObjetivos = new List<Objetivo>();
+            lstClientes = new List<ComboBoxItemEx>();
+            lstObjetivos = new List<ComboBoxItemEx>();
             lista = new List<ExercicioDoPlano>();
+        }
+
+        public PropPlanoTreinamento(List<ComboBoxItemEx> clientes, List<ComboBoxItemEx> objetivos)
+            : this()
+        {
+            preencherListas(clientes, objetivos);
         }
 
         public PropPlanoTreinamento(PlanoTreinamento obj)
@@ -51,15 +56,28 @@ namespace FACliente
             }
         }
 
-        public PropPlanoTreinamento(PlanoTreinamento obj, List<Cliente> clientes, List<Objetivo> objetivos)
+        public PropPlanoTreinamento(PlanoTreinamento obj, List<ComboBoxItemEx> clientes, List<ComboBoxItemEx> objetivos)
             :this(obj)
         {
+            preencherListas(clientes, objetivos);
+        }
+
+        private void preencherListas(List<ComboBoxItemEx> clientes, List<ComboBoxItemEx> objetivos)
+        {
             lstClientes.AddRange(clientes);
-            if (lstClientes[0].Nome.ToLower() == "<todos>")
-                lstClientes.RemoveAt(0);
+            if (lstClientes[0].DisplayValue.ToLower() == "<todos>")
+                lstClientes[0].DisplayValue = "<Selecione um cliente>";
+            else
+                lstClientes.Insert(0, new ComboBoxItemEx(0, "<Selecione um cliente>"));
+            bdsClientes.DataSource = lstClientes;
+            cbxCliente.DataSource = bdsClientes;
             lstObjetivos.AddRange(objetivos);
-            if (lstObjetivos[0].Descricao.ToLower() == "<todos>")
-                lstObjetivos.RemoveAt(0);
+            if (lstObjetivos[0].DisplayValue.ToLower() == "<todos>")
+                lstObjetivos[0].DisplayValue = "<Selecione um objetivo>";
+            else
+                lstObjetivos.Insert(0, new ComboBoxItemEx(0, "<Selecione um objetivo>"));
+            bdsObjetivos.DataSource = lstObjetivos;
+            cbxObetivo.DataSource = bdsObjetivos;
         }
 
         private void preencherCampos()
@@ -68,15 +86,15 @@ namespace FACliente
             dtpkData.Value = obj.Data;
             for (int i =0; i < lstClientes.Count; i++)
             {
-                if (lstClientes[i].Codigo == obj.ClienteDoPlano.Codigo)
+                if (lstClientes[i].Id == obj.ClienteDoPlano.Codigo)
                 {
-                    cbxCliente.SelectedItem = i;
+                    cbxCliente.SelectedIndex = i;
                     break;
                 }
             }
             for (int i = 0; i < lstObjetivos.Count; i++)
             {
-                if (lstObjetivos[i].Codigo == obj.ObjetivoDoPlano.Codigo)
+                if (lstObjetivos[i].Id == obj.ObjetivoDoPlano.Codigo)
                 {
                     cbxObetivo.SelectedIndex = i;
                     break;
@@ -92,8 +110,8 @@ namespace FACliente
             else
                 obj.Numplano = Convert.ToInt32(txtbxNumPlano.Text);
             obj.Data = dtpkData.Value;
-            obj.ObjetivoDoPlano.Codigo = lstObjetivos[cbxObetivo.SelectedIndex].Codigo;
-            obj.ClienteDoPlano.Codigo = lstClientes[cbxCliente.SelectedIndex].Codigo;
+            obj.ObjetivoDoPlano.Codigo = lstObjetivos[cbxObetivo.SelectedIndex].Id;
+            obj.ClienteDoPlano.Codigo = lstClientes[cbxCliente.SelectedIndex].Id;
             obj.Exercicios = lista.ToArray();
         }
 
@@ -103,17 +121,10 @@ namespace FACliente
             {
                 srvPlano.salvarPlanoTreinamento(obj);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 string msg;
-                try
-                {
-                    msg = srvPlano.getLastMsgError();
-                }
-                catch (Exception e)
-                {
-                    msg = e.Message;
-                }
+                msg = FiltrarMsgErroWebSrv.execute(e.Message);
                 MessageBox.Show(msg, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.DialogResult = System.Windows.Forms.DialogResult.None;
                 return;
@@ -145,6 +156,10 @@ namespace FACliente
         {
             btnAlterar.Enabled = dataGridView.RowCount > 0 ? true : false;
             btnExcluir.Enabled = btnAlterar.Enabled;
+            btnOrdMvPrimeiro.Enabled = dataGridView.RowCount > 1 ? true : false;
+            btnOrdMvUltimo.Enabled = btnOrdMvPrimeiro.Enabled;
+            btnOrdMvCima.Enabled = btnOrdMvPrimeiro.Enabled;
+            btnOrdMvBaixo.Enabled = btnOrdMvPrimeiro.Enabled;
         }
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
@@ -167,7 +182,8 @@ namespace FACliente
 
         private void btnOrdMvPrimeiro_Click(object sender, EventArgs e)
         {
-            moverDePara(dataGridView.CurrentRow.Index, 0);
+            if (lista.Count > 0)
+                moverDePara(dataGridView.CurrentRow.Index, 0);
         }
 
         private void moverDePara(int indexOrigem, int indexDestino)
@@ -199,17 +215,27 @@ namespace FACliente
 
         private void btnOrdMvUltimo_Click(object sender, EventArgs e)
         {
-            moverDePara(dataGridView.CurrentRow.Index, dataGridView.Rows.Count - 1);
+            if (lista.Count > 0)
+                moverDePara(dataGridView.CurrentRow.Index, dataGridView.Rows.Count - 1);
         }
 
         private void btnOrdMvCima_Click(object sender, EventArgs e)
         {
-            moverDePara(dataGridView.CurrentRow.Index, dataGridView.CurrentRow.Index - 1);
+            if (lista.Count > 0)
+                moverDePara(dataGridView.CurrentRow.Index, dataGridView.CurrentRow.Index - 1);
         }
 
         private void btnOrdMvBaixo_Click(object sender, EventArgs e)
         {
-            moverDePara(dataGridView.CurrentRow.Index, dataGridView.CurrentRow.Index + 1);
+            if (lista.Count > 0)
+                moverDePara(dataGridView.CurrentRow.Index, dataGridView.CurrentRow.Index + 1);
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            PropExerciciosDoPlano frm = new PropExerciciosDoPlano();
+            if (frm.ShowDialog() == DialogResult.OK)
+                MessageBox.Show("A operação foi realizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
