@@ -22,6 +22,12 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="salvarTeste">
+        <s:complexType />
+      </s:element>
+      <s:element name="salvarTesteResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="consultarExercicio">
         <s:complexType>
           <s:sequence>
@@ -319,6 +325,12 @@
   <wsdl:message name="getLastMsgErrorSoapOut">
     <wsdl:part name="parameters" element="tns:getLastMsgErrorResponse" />
   </wsdl:message>
+  <wsdl:message name="salvarTesteSoapIn">
+    <wsdl:part name="parameters" element="tns:salvarTeste" />
+  </wsdl:message>
+  <wsdl:message name="salvarTesteSoapOut">
+    <wsdl:part name="parameters" element="tns:salvarTesteResponse" />
+  </wsdl:message>
   <wsdl:message name="consultarExercicioSoapIn">
     <wsdl:part name="parameters" element="tns:consultarExercicio" />
   </wsdl:message>
@@ -436,6 +448,10 @@
       <wsdl:input message="tns:getLastMsgErrorSoapIn" />
       <wsdl:output message="tns:getLastMsgErrorSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="salvarTeste">
+      <wsdl:input message="tns:salvarTesteSoapIn" />
+      <wsdl:output message="tns:salvarTesteSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="consultarExercicio">
       <wsdl:input message="tns:consultarExercicioSoapIn" />
       <wsdl:output message="tns:consultarExercicioSoapOut" />
@@ -522,6 +538,15 @@
     </wsdl:operation>
     <wsdl:operation name="getLastMsgError">
       <soap:operation soapAction="http://tempuri.org/getLastMsgError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salvarTeste">
+      <soap:operation soapAction="http://tempuri.org/salvarTeste" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -705,6 +730,15 @@
     </wsdl:operation>
     <wsdl:operation name="getLastMsgError">
       <soap12:operation soapAction="http://tempuri.org/getLastMsgError" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salvarTeste">
+      <soap12:operation soapAction="http://tempuri.org/salvarTeste" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -35,26 +35,33 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cbxObetivo = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.cbxCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dtpkData = new System.Windows.Forms.DateTimePicker();
             this.txtbxNumPlano = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
-            this.bdsExerciciosDoPlano = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.pnlOrdem = new System.Windows.Forms.Panel();
+            this.lblOrdenacao = new System.Windows.Forms.Label();
+            this.btnOrdMvUltimo = new System.Windows.Forms.Button();
+            this.btnOrdMvBaixo = new System.Windows.Forms.Button();
+            this.btnOrdMvCima = new System.Windows.Forms.Button();
+            this.btnOrdMvPrimeiro = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsExerciciosDoPlano)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.pnlOrdem.SuspendLayout();
             this.SuspendLayout();
             // 
             // imglstBotoes
@@ -69,6 +76,10 @@
             this.imglstBotoes.Images.SetKeyName(5, "btnLupaHot.bmp");
             this.imglstBotoes.Images.SetKeyName(6, "btnSalvarHot.bmp");
             this.imglstBotoes.Images.SetKeyName(7, "btnCancelarHot.bmp");
+            this.imglstBotoes.Images.SetKeyName(8, "btnPrimeiroHotV.bmp");
+            this.imglstBotoes.Images.SetKeyName(9, "btnAnteriorHotV.bmp");
+            this.imglstBotoes.Images.SetKeyName(10, "btnProximoHotV.bmp");
+            this.imglstBotoes.Images.SetKeyName(11, "btnUltimoHotV.bmp");
             // 
             // panel1
             // 
@@ -120,6 +131,24 @@
             this.panel2.Size = new System.Drawing.Size(782, 92);
             this.panel2.TabIndex = 0;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 56);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 13);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "Cliente:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Número:";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -136,15 +165,6 @@
             this.cbxObetivo.Name = "cbxObetivo";
             this.cbxObetivo.Size = new System.Drawing.Size(247, 21);
             this.cbxObetivo.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 56);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 13);
-            this.label4.TabIndex = 33;
-            this.label4.Text = "Cliente:";
             // 
             // cbxCliente
             // 
@@ -180,15 +200,6 @@
             this.txtbxNumPlano.Size = new System.Drawing.Size(101, 20);
             this.txtbxNumPlano.TabIndex = 1;
             this.txtbxNumPlano.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Número:";
             // 
             // splitter1
             // 
@@ -265,11 +276,86 @@
             this.btnNovo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNovo.UseVisualStyleBackColor = true;
             // 
+            // pnlOrdem
+            // 
+            this.pnlOrdem.AutoScroll = true;
+            this.pnlOrdem.Controls.Add(this.lblOrdenacao);
+            this.pnlOrdem.Controls.Add(this.btnOrdMvUltimo);
+            this.pnlOrdem.Controls.Add(this.btnOrdMvBaixo);
+            this.pnlOrdem.Controls.Add(this.btnOrdMvCima);
+            this.pnlOrdem.Controls.Add(this.btnOrdMvPrimeiro);
+            this.pnlOrdem.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlOrdem.Location = new System.Drawing.Point(729, 97);
+            this.pnlOrdem.Name = "pnlOrdem";
+            this.pnlOrdem.Size = new System.Drawing.Size(53, 277);
+            this.pnlOrdem.TabIndex = 33;
+            // 
+            // lblOrdenacao
+            // 
+            this.lblOrdenacao.AutoSize = true;
+            this.lblOrdenacao.Location = new System.Drawing.Point(4, 9);
+            this.lblOrdenacao.Name = "lblOrdenacao";
+            this.lblOrdenacao.Size = new System.Drawing.Size(38, 13);
+            this.lblOrdenacao.TabIndex = 4;
+            this.lblOrdenacao.Text = "Ordem";
+            // 
+            // btnOrdMvUltimo
+            // 
+            this.btnOrdMvUltimo.Enabled = false;
+            this.btnOrdMvUltimo.ImageKey = "btnUltimoHotV.bmp";
+            this.btnOrdMvUltimo.ImageList = this.imglstBotoes;
+            this.btnOrdMvUltimo.Location = new System.Drawing.Point(7, 169);
+            this.btnOrdMvUltimo.Name = "btnOrdMvUltimo";
+            this.btnOrdMvUltimo.Size = new System.Drawing.Size(40, 40);
+            this.btnOrdMvUltimo.TabIndex = 3;
+            this.btnOrdMvUltimo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnOrdMvUltimo.UseVisualStyleBackColor = true;
+            this.btnOrdMvUltimo.Click += new System.EventHandler(this.btnOrdMvUltimo_Click);
+            // 
+            // btnOrdMvBaixo
+            // 
+            this.btnOrdMvBaixo.Enabled = false;
+            this.btnOrdMvBaixo.ImageKey = "btnProximoHotV.bmp";
+            this.btnOrdMvBaixo.ImageList = this.imglstBotoes;
+            this.btnOrdMvBaixo.Location = new System.Drawing.Point(7, 123);
+            this.btnOrdMvBaixo.Name = "btnOrdMvBaixo";
+            this.btnOrdMvBaixo.Size = new System.Drawing.Size(40, 40);
+            this.btnOrdMvBaixo.TabIndex = 2;
+            this.btnOrdMvBaixo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnOrdMvBaixo.UseVisualStyleBackColor = true;
+            this.btnOrdMvBaixo.Click += new System.EventHandler(this.btnOrdMvBaixo_Click);
+            // 
+            // btnOrdMvCima
+            // 
+            this.btnOrdMvCima.Enabled = false;
+            this.btnOrdMvCima.ImageKey = "btnAnteriorHotV.bmp";
+            this.btnOrdMvCima.ImageList = this.imglstBotoes;
+            this.btnOrdMvCima.Location = new System.Drawing.Point(7, 77);
+            this.btnOrdMvCima.Name = "btnOrdMvCima";
+            this.btnOrdMvCima.Size = new System.Drawing.Size(40, 40);
+            this.btnOrdMvCima.TabIndex = 1;
+            this.btnOrdMvCima.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnOrdMvCima.UseVisualStyleBackColor = true;
+            this.btnOrdMvCima.Click += new System.EventHandler(this.btnOrdMvCima_Click);
+            // 
+            // btnOrdMvPrimeiro
+            // 
+            this.btnOrdMvPrimeiro.ImageKey = "btnPrimeiroHotV.bmp";
+            this.btnOrdMvPrimeiro.ImageList = this.imglstBotoes;
+            this.btnOrdMvPrimeiro.Location = new System.Drawing.Point(7, 31);
+            this.btnOrdMvPrimeiro.Name = "btnOrdMvPrimeiro";
+            this.btnOrdMvPrimeiro.Size = new System.Drawing.Size(40, 40);
+            this.btnOrdMvPrimeiro.TabIndex = 0;
+            this.btnOrdMvPrimeiro.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnOrdMvPrimeiro.UseVisualStyleBackColor = true;
+            this.btnOrdMvPrimeiro.Click += new System.EventHandler(this.btnOrdMvPrimeiro_Click);
+            // 
             // PropPlanoTreinamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 423);
+            this.Controls.Add(this.pnlOrdem);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.splitter1);
@@ -287,7 +373,9 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bdsExerciciosDoPlano)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.pnlOrdem.ResumeLayout(false);
+            this.pnlOrdem.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -313,6 +401,12 @@
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnNovo;
-        private System.Windows.Forms.BindingSource bdsExerciciosDoPlano;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.Panel pnlOrdem;
+        private System.Windows.Forms.Button btnOrdMvUltimo;
+        private System.Windows.Forms.Button btnOrdMvBaixo;
+        private System.Windows.Forms.Button btnOrdMvCima;
+        private System.Windows.Forms.Button btnOrdMvPrimeiro;
+        private System.Windows.Forms.Label lblOrdenacao;
     }
 }

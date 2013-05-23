@@ -32,14 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCliente));
             this.imglstBotoes = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtbxDescricao = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
+            this.txtbxDescricao = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -72,46 +72,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(731, 115);
             this.panel1.TabIndex = 3;
-            // 
-            // txtbxDescricao
-            // 
-            this.txtbxDescricao.Location = new System.Drawing.Point(99, 26);
-            this.txtbxDescricao.Name = "txtbxDescricao";
-            this.txtbxDescricao.Size = new System.Drawing.Size(332, 20);
-            this.txtbxDescricao.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(38, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Descrição";
-            // 
-            // splitter1
-            // 
-            this.splitter1.Cursor = System.Windows.Forms.Cursors.HSplit;
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(0, 115);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(731, 5);
-            this.splitter1.TabIndex = 5;
-            this.splitter1.TabStop = false;
-            // 
-            // dataGridView
-            // 
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView.Location = new System.Drawing.Point(0, 120);
-            this.dataGridView.MultiSelect = false;
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.ReadOnly = true;
-            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(731, 251);
-            this.dataGridView.TabIndex = 6;
-            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
-            this.dataGridView.DoubleClick += new System.EventHandler(this.dataGridView_DoubleClick);
             // 
             // btnConsultar
             // 
@@ -167,6 +127,46 @@
             this.btnNovo.UseVisualStyleBackColor = true;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
+            // txtbxDescricao
+            // 
+            this.txtbxDescricao.Location = new System.Drawing.Point(99, 26);
+            this.txtbxDescricao.Name = "txtbxDescricao";
+            this.txtbxDescricao.Size = new System.Drawing.Size(332, 20);
+            this.txtbxDescricao.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(38, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Descrição";
+            // 
+            // splitter1
+            // 
+            this.splitter1.Cursor = System.Windows.Forms.Cursors.HSplit;
+            this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter1.Location = new System.Drawing.Point(0, 115);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(731, 5);
+            this.splitter1.TabIndex = 5;
+            this.splitter1.TabStop = false;
+            // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView.Location = new System.Drawing.Point(0, 120);
+            this.dataGridView.MultiSelect = false;
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.ReadOnly = true;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView.Size = new System.Drawing.Size(731, 251);
+            this.dataGridView.TabIndex = 6;
+            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
+            this.dataGridView.DoubleClick += new System.EventHandler(this.dataGridView_DoubleClick);
+            // 
             // FrmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,6 +176,7 @@
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel1);
             this.Name = "FrmCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmCliente";
             this.Activated += new System.EventHandler(this.FrmCliente_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmCliente_FormClosed);

@@ -86,7 +86,13 @@ namespace BibliotecaDeClasses.basica
 
         public string Uf
         {
-            get { return uf.ToUpper(); }
+            get
+            {
+                if (uf != null)
+                    if (uf.Length > 0)
+                        return uf.ToUpper();
+                return null;
+            }
             set { uf = value.ToUpper(); }
         }
         private string cep;
@@ -100,14 +106,27 @@ namespace BibliotecaDeClasses.basica
 
         public string EstCivil
         {
-            get { return estCivil.ToUpper(); }
-            set { estCivil = value.ToUpper(); }
+            get 
+            {
+                if (estCivil != null)
+                    if (estCivil.Length > 0)
+                        return estCivil.ToUpper();
+                return estCivil;
+            }
+            set 
+            { estCivil = value.ToUpper(); }
         }
         private string sexo;
 
         public string Sexo
         {
-            get { return sexo.ToUpper(); }
+            get 
+            { 
+                if (sexo != null)
+                    if (sexo.Length > 0)
+                        return sexo.ToUpper();
+                return sexo;
+            }
             set { sexo = value.ToUpper(); }
         }
         private string telefone;
@@ -186,11 +205,11 @@ namespace BibliotecaDeClasses.basica
         }
 
         private int toStringBehavior;
-        public void setToStringBehavior(int toStringBehavior)
+        public void SetToStringBehavior(int toStringBehavior)
         {
             this.toStringBehavior = toStringBehavior;
         }
-        public int getToStringBehavior()
+        public int GetToStringBehavior()
         {
             return this.toStringBehavior;
         }
@@ -202,22 +221,16 @@ namespace BibliotecaDeClasses.basica
 
         public override string ToString()
         {
-            switch (toStringBehavior)
-            {
-                case TO_STRING_NOME:
-                    return this.nome;
-                    //break;
-                case TO_STRING_NOME_CPF:
-                    return this.nome + ", CPF " + Cpf;
-                //break;
-                case TO_STRING_FULL:
-                    return "Código " + Codigo.ToString() + " " + Nome + " CPF " + Cpf + " RG " + Rg
+            if (toStringBehavior == Cliente.TO_STRING_NOME)
+                return this.nome;
+            if (toStringBehavior == Cliente.TO_STRING_NOME_CPF)
+                return this.nome + ", CPF " + Cpf;
+            if (toStringBehavior == Cliente.TO_STRING_FULL)
+                return "Código " + Codigo.ToString() + " " + Nome + " CPF " + Cpf + " RG " + Rg
                         + " Data nasc. " + DataNasc.ToString() + " Endereço " + Logradouro + " - "
                         + NumLog + " - " + Complemento + " - " + Bairro + " - " + Cidade
                         + " - " + Uf + " - " + Cep + " F: " + Telefone + " / " + Celular
                         + " e-mail " + Email + " Val exame médido: " + ValExameMedico.ToString();
-                    //break;
-            }
             return Codigo + " - " + Nome + ", cpf " + Cpf;
         }
             

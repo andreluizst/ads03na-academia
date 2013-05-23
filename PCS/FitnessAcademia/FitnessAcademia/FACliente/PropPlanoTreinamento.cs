@@ -6,18 +6,20 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using FACliente.localhostPlano;
+//using FACliente.localhostPlano;
+using FACliente.localhostSrvPlano;
 
 namespace FACliente
 {
     public partial class PropPlanoTreinamento : Form
     {
         private PlanoTreinamento obj;
-        private FACliente.localhostPlano.Service1 srvPlano;
+        private Service1 srvPlano;
         private bool isInsert = false;
         private string nome = "Plano de Treinamento";
         private List<Cliente> lstClientes;
         private List<Objetivo> lstObjetivos;
+        private List<ExercicioDoPlano> lista;
 
 
         public string Nome
@@ -33,6 +35,7 @@ namespace FACliente
             srvPlano = new Service1();
             lstClientes = new List<Cliente>();
             lstObjetivos = new List<Objetivo>();
+            lista = new List<ExercicioDoPlano>();
         }
 
         public PropPlanoTreinamento(PlanoTreinamento obj)
@@ -41,6 +44,7 @@ namespace FACliente
             if (obj != null)
             {
                 this.obj = obj;
+                lista.AddRange(obj.Exercicios);
                 this.Text = "Alterar " + this.nome;
                 preencherCampos();
                 isInsert = false;
@@ -78,8 +82,7 @@ namespace FACliente
                     break;
                 }
             }
-            bdsExerciciosDoPlano.DataSource = obj.Exercicios;
-            dataGridView.DataSource = bdsExerciciosDoPlano;
+            BindingList();
         }
 
         private void preencherObj()
@@ -89,6 +92,9 @@ namespace FACliente
             else
                 obj.Numplano = Convert.ToInt32(txtbxNumPlano.Text);
             obj.Data = dtpkData.Value;
+            obj.ObjetivoDoPlano.Codigo = lstObjetivos[cbxObetivo.SelectedIndex].Codigo;
+            obj.ClienteDoPlano.Codigo = lstClientes[cbxCliente.SelectedIndex].Codigo;
+            obj.Exercicios = lista.ToArray();
         }
 
         private void salvar()
@@ -144,6 +150,66 @@ namespace FACliente
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
             updateActions();
+        }
+
+        private void UnBindingList()
+        {
+            bindingSource1.DataSource = null;
+            dataGridView.DataSource = null;
+        }
+
+        private void BindingList()
+        {
+            bindingSource1.DataSource = lista;
+            dataGridView.DataSource = bindingSource1;
+            dataGridView.AutoResizeColumns();
+        }
+
+        private void btnOrdMvPrimeiro_Click(object sender, EventArgs e)
+        {
+            moverDePara(dataGridView.CurrentRow.Index, 0);
+        }
+
+        private void moverDePara(int indexOrigem, int indexDestino)
+        {
+            ExercicioDoPlano ep;
+            int selectRowIndex = indexDestino;// dataGridView.CurrentRow.Index;
+            if (lista.Count() > 1)
+            {
+                UnBindingList();
+                ep = lista[indexOrigem];//dataGridView.CurrentRow.Index];
+                lista.RemoveAt(indexOrigem);//dataGridView.CurrentRow.Index);
+                lista.Insert(indexDestino, ep);
+                reordenarListaDeExercicios(ref lista);
+                BindingList();
+                dataGridView.Rows[selectRowIndex].Selected = true;
+            }
+        }
+
+        private void reordenarListaDeExercicios(ref List<ExercicioDoPlano> lista)
+        {
+            if (lista.Count() > 1)
+            {
+                for (int i = 0; i < lista.Count(); i++)
+                {
+                    lista[i].Seq = i + 1;
+                }
+            }
+        }
+
+        private void btnOrdMvUltimo_Click(object sender, EventArgs e)
+        {
+            moverDePara(dataGridView.CurrentRow.Index, dataGridView.Rows.Count - 1);
+        }
+
+        private void btnOrdMvCima_Click(object sender, EventArgs e)
+        {
+            moverDePara(dataGridView.CurrentRow.Index, dataGridView.CurrentRow.Index - 1);
+        }
+
+        private void btnOrdMvBaixo_Click(object sender, EventArgs e)
+        {
+            moverDePara(dataGridView.CurrentRow.Index, dataGridView.CurrentRow.Index + 1);
         }
     }
 }

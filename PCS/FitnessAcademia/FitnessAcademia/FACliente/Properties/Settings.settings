@@ -5,8 +5,8 @@
     <Setting Name="FACliente_localhost_Service1" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost:5435/SrvFitnessAcademiaGeral.asmx</Value>
     </Setting>
-    <Setting Name="FACliente_localhostPlano_Service1" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:9745/SrvPlanoTreinamento.asmx</Value>
+    <Setting Name="FACliente_localhostSrvPlano_Service1" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:62466/Service1.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

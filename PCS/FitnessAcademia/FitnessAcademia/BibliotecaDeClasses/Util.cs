@@ -22,11 +22,11 @@ namespace BibliotecaDeClasses
             }
             catch (IndexOutOfRangeException e)
             {
-                throw new Exception("Campo não encontrado: " + e.Message);
+                throw new Exception("Campo não encontrado-> " + e.Message);
             }
             catch (Exception e)
             {
-                throw new Exception("Erro no campo " + columnName + ": " + e.Message);
+                throw new Exception("Erro no campo " + columnName + "-> " + e.Message);
             }
             return retorno;
         }
@@ -44,7 +44,7 @@ namespace BibliotecaDeClasses
             }
             catch (IndexOutOfRangeException e)
             {
-                throw new Exception("Campo não encontrado: " + e.Message);
+                throw new Exception("Campo não encontrado-> " + e.Message);
             }
             catch (Exception)
             {
@@ -66,7 +66,7 @@ namespace BibliotecaDeClasses
             }
             catch (IndexOutOfRangeException e)
             {
-                throw new Exception("Campo não encontrado: " + e.Message);
+                throw new Exception("Campo não encontrado-> " + e.Message);
             }
             catch (Exception)
             {

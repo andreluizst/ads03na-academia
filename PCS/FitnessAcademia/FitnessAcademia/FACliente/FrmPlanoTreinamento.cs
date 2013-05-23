@@ -6,13 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using FACliente.localhostPlano;
+//using FACliente.localhostPlano;
+using FACliente.localhostSrvPlano;
 
 namespace FACliente
 {
     public partial class FrmPlanoTreinamento : Form, IActionsGui
     {
-        private FACliente.localhostPlano.Service1 srvPlano;
+        private Service1 srvPlano;
         private List<PlanoTreinamento> lista;
         private List<Cliente> lstClientes;
         private List<Objetivo> lstObjetivos;
@@ -25,7 +26,7 @@ namespace FACliente
         public FrmPlanoTreinamento()
         {
             InitializeComponent();
-            srvPlano = new FACliente.localhostPlano.Service1();
+            srvPlano = new Service1();
             dataGridView.AutoGenerateColumns = true;
             lista = new List<PlanoTreinamento>();
             lstClientes = new List<Cliente>();
@@ -38,22 +39,32 @@ namespace FACliente
         {
             Cliente[] clientes;
             Objetivo[] objetivos;
+            Cliente Cli = new Cliente();
+            
+            Cli.ToString();
+            
             try
             {
                 clientes = srvPlano.listarClientes();
                 Cliente c = new Cliente();
                 c.Codigo = 0;
                 c.Nome = "<Todos>";
-                cbxClietne.DataSource = null;
+                
+                cbxCliente.DataSource = null;
                 bdsCliente.DataSource = null;
                 lstClientes.Clear();
                 lstClientes.Add(c);
                 foreach (Cliente item in clientes)
                 {
                     lstClientes.Add(item);
+                    cbxCliente.Items.Add(item.Nome);
+                    //cbxCliente.Items[cbxCliente.Items.Count-1]
                 }
                 bdsCliente.DataSource = lstClientes;
-                cbxClietne.DataSource = bdsCliente;
+                cbxCliente.DataSource = bdsCliente;
+
+                dataGridView.DataSource = lstClientes;
+
                 Objetivo o = new Objetivo();
                 o.Codigo = 0;
                 lstObjetivos.Clear();
@@ -104,7 +115,7 @@ namespace FACliente
             PlanoTreinamento obj = new PlanoTreinamento();
             obj.Numplano = 0;
             obj.ObjetivoDoPlano.Codigo = lstObjetivos[cbxObetivo.SelectedIndex].Codigo;
-            obj.ClienteDoPlano.Codigo = lstClientes[cbxClietne.SelectedIndex].Codigo;
+            obj.ClienteDoPlano.Codigo = lstClientes[cbxCliente.SelectedIndex].Codigo;
             obj.Data = Convert.ToDateTime(dtpkInicial.Text);
             planos = srvPlano.consultarPlanoTreinamento(obj, Convert.ToDateTime(dtpkFinal.Text));
             UnBindingList();
