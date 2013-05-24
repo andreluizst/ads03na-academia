@@ -36,11 +36,15 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
-            this.txtbxDescricao = new System.Windows.Forms.TextBox();
+            this.txtbxCodigo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.txtbxNome = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtbxCpf = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -61,16 +65,20 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtbxCpf);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.txtbxNome);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnConsultar);
             this.panel1.Controls.Add(this.btnExcluir);
             this.panel1.Controls.Add(this.btnAlterar);
             this.panel1.Controls.Add(this.btnNovo);
-            this.panel1.Controls.Add(this.txtbxDescricao);
+            this.panel1.Controls.Add(this.txtbxCodigo);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(731, 115);
+            this.panel1.Size = new System.Drawing.Size(731, 113);
             this.panel1.TabIndex = 3;
             // 
             // btnConsultar
@@ -78,10 +86,10 @@
             this.btnConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConsultar.ImageKey = "btnLupaHot.bmp";
             this.btnConsultar.ImageList = this.imglstBotoes;
-            this.btnConsultar.Location = new System.Drawing.Point(483, 71);
+            this.btnConsultar.Location = new System.Drawing.Point(483, 79);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(112, 23);
-            this.btnConsultar.TabIndex = 5;
+            this.btnConsultar.TabIndex = 6;
             this.btnConsultar.Text = "Pesquisar";
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
@@ -92,10 +100,10 @@
             this.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExcluir.ImageKey = "btnExcluirHot.bmp";
             this.btnExcluir.ImageList = this.imglstBotoes;
-            this.btnExcluir.Location = new System.Drawing.Point(319, 71);
+            this.btnExcluir.Location = new System.Drawing.Point(319, 79);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(112, 23);
-            this.btnExcluir.TabIndex = 4;
+            this.btnExcluir.TabIndex = 5;
             this.btnExcluir.Text = "E&xcluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
@@ -106,10 +114,10 @@
             this.btnAlterar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAlterar.ImageKey = "btnAlterarHot.bmp";
             this.btnAlterar.ImageList = this.imglstBotoes;
-            this.btnAlterar.Location = new System.Drawing.Point(178, 71);
+            this.btnAlterar.Location = new System.Drawing.Point(178, 79);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(112, 23);
-            this.btnAlterar.TabIndex = 3;
+            this.btnAlterar.TabIndex = 4;
             this.btnAlterar.Text = "A&lterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
@@ -119,35 +127,37 @@
             this.btnNovo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNovo.ImageKey = "btnNovoHot.bmp";
             this.btnNovo.ImageList = this.imglstBotoes;
-            this.btnNovo.Location = new System.Drawing.Point(38, 71);
+            this.btnNovo.Location = new System.Drawing.Point(38, 79);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(112, 23);
-            this.btnNovo.TabIndex = 2;
+            this.btnNovo.TabIndex = 3;
             this.btnNovo.Text = "&Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
-            // txtbxDescricao
+            // txtbxCodigo
             // 
-            this.txtbxDescricao.Location = new System.Drawing.Point(99, 26);
-            this.txtbxDescricao.Name = "txtbxDescricao";
-            this.txtbxDescricao.Size = new System.Drawing.Size(332, 20);
-            this.txtbxDescricao.TabIndex = 1;
+            this.txtbxCodigo.Location = new System.Drawing.Point(87, 30);
+            this.txtbxCodigo.Name = "txtbxCodigo";
+            this.txtbxCodigo.Size = new System.Drawing.Size(100, 20);
+            this.txtbxCodigo.TabIndex = 0;
+            this.txtbxCodigo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbxCodigo_KeyDown);
+            this.txtbxCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxCodigo_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(38, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Descrição";
+            this.label1.Text = "Código:";
             // 
             // splitter1
             // 
             this.splitter1.Cursor = System.Windows.Forms.Cursors.HSplit;
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(0, 115);
+            this.splitter1.Location = new System.Drawing.Point(0, 113);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(731, 5);
             this.splitter1.TabIndex = 5;
@@ -157,15 +167,49 @@
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView.Location = new System.Drawing.Point(0, 120);
+            this.dataGridView.Location = new System.Drawing.Point(0, 118);
             this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(731, 251);
+            this.dataGridView.Size = new System.Drawing.Size(731, 253);
             this.dataGridView.TabIndex = 6;
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             this.dataGridView.DoubleClick += new System.EventHandler(this.dataGridView_DoubleClick);
+            // 
+            // txtbxNome
+            // 
+            this.txtbxNome.Location = new System.Drawing.Point(275, 30);
+            this.txtbxNome.Name = "txtbxNome";
+            this.txtbxNome.Size = new System.Drawing.Size(185, 20);
+            this.txtbxNome.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(226, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Nome:";
+            // 
+            // txtbxCpf
+            // 
+            this.txtbxCpf.Location = new System.Drawing.Point(547, 30);
+            this.txtbxCpf.Name = "txtbxCpf";
+            this.txtbxCpf.Size = new System.Drawing.Size(100, 20);
+            this.txtbxCpf.TabIndex = 2;
+            this.txtbxCpf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbxCodigo_KeyDown);
+            this.txtbxCpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxCodigo_KeyPress);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(498, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "CPF:";
             // 
             // FrmCliente
             // 
@@ -198,9 +242,13 @@
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnNovo;
-        private System.Windows.Forms.TextBox txtbxDescricao;
+        private System.Windows.Forms.TextBox txtbxCodigo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.TextBox txtbxCpf;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtbxNome;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -20,6 +20,8 @@ namespace FACliente
         private ToolStripMenuItem miShellAlterar;
         private ToolStripMenuItem miShellExcluir;
 
+        private bool teclaNaoNumericaPressionda = false;
+
         public FrmCliente()
         {
             InitializeComponent();
@@ -66,8 +68,14 @@ namespace FACliente
         {
             Cliente[] clientes;
             Cliente obj = new Cliente();
-            obj.Codigo = 0;
-            obj.Nome = txtbxDescricao.Text;
+            if (txtbxCodigo.Text != "")
+                obj.Codigo = Convert.ToInt32(txtbxCodigo.Text);
+            else
+                obj.Codigo = 0;
+            if (txtbxNome.Text.Length > 0)
+                obj.Nome = txtbxNome.Text;
+            if (txtbxCpf.Text.Length > 0)
+                obj.Cpf = txtbxCpf.Text;
             clientes = srv1.consultarCliente(obj);
             UnBindingList();
             lista.Clear();
@@ -161,6 +169,31 @@ namespace FACliente
         private void btnConsultar_Click(object sender, EventArgs e)
         {
             pesquisar();
+        }
+
+        private void txtbxCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (teclaNaoNumericaPressionda)
+                e.Handled = true;
+        }
+
+        private void txtbxCodigo_KeyDown(object sender, KeyEventArgs e)
+        {
+            teclaNaoNumericaPressionda = false;
+            if (e.KeyCode < Keys.D0 || e.KeyCode > Keys.D9)
+            {
+                if (e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9)
+                {
+                    if (e.KeyCode != Keys.Back)
+                    {
+                        teclaNaoNumericaPressionda = true;
+                    }
+                }
+            }
+            if (Control.ModifierKeys == Keys.Shift)
+            {
+                teclaNaoNumericaPressionda = true;
+            }
         }
 
     }

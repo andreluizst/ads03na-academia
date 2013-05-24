@@ -34,13 +34,15 @@ namespace BibliotecaDeClasses.regra
                 throw new ErroValidacao(msgCampoObrigatorio + "nome do cliente.");
             if (c.Nome.Length > 100)
                 throw new ErroValidacao(msg + "O nome do cliente não deve ter mais de 100 caracteres.");
+            if (c.Codigo == 0)
+            {
+                Cliente cliente = new Cliente();
+                cliente.Cpf = c.Cpf;
+                List<Cliente> lista = rpC.consultar(cliente);
+                if (lista.Count > 0)
+                    throw new ErroValidacao(msg + "CPF já cadastrado!");
+            }
 
-            
-            
-
-            List<Cliente> lista = rpC.consultar(c);
-            if (lista.Count > 0)
-                throw new ErroValidacao(msg + "CPF já cadastrado!");
             if (Util.validarCpf(c.Cpf)==false)
                 throw new ErroValidacao(msg + "CPF inválido!");
             if ((c.Rg == null) || (c.Rg.Length == 0))
@@ -93,6 +95,7 @@ namespace BibliotecaDeClasses.regra
 
             if ((c.Sexo != null) && (c.Sexo.Length == 0 || c.Sexo.Length > 1))
                 throw new ErroValidacao("Erro ao validar Complemento");
+            /*
             if (c.Telefone != null )
                 if ((c.Telefone.Length > 0) && (c.Telefone.Length != 11))
                     throw new ErroValidacao(msg + "Número de telefone incompleto.");
@@ -100,7 +103,7 @@ namespace BibliotecaDeClasses.regra
             if (c.Celular != null)
                 if (c.Celular.Length > 0 && c.Celular.Length != 11)
                     throw new ErroValidacao(msg + "Número de celular incompleto.");
-
+            */
             if (c.Email != null)
                 if (c.Email.Length > 100)
                     throw new ErroValidacao(msg + "O e-mail não deve ter mais de 100 caracteres.");                    
