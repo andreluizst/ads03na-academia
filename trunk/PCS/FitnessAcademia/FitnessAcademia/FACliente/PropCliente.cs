@@ -16,6 +16,9 @@ namespace FACliente
         private Cliente obj;
         private FACliente.localhost.Service1 srvGeral;
         private bool isInsert = false;
+
+        private bool teclaNaoNumericaPressionda = false;
+
         private string nome = "Cliente";
         public string Nome
         {
@@ -81,7 +84,10 @@ namespace FACliente
         private void preencherObj()
         {
             if (isInsert)
+            {
                 obj = new Cliente();
+                obj.Codigo = 0;
+            }
             else
                 obj.Codigo = Convert.ToInt32(txtbxCodigo.Text);
             obj.Nome = txtbxNome.Text;
@@ -124,6 +130,31 @@ namespace FACliente
         private void PropCliente_KeyDown(object sender, KeyEventArgs e)
         {
             guiBehavior.FrmDlg_KeyDown(sender, e);
+        }
+
+        private void txtbxCpf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (teclaNaoNumericaPressionda)
+                e.Handled = true;
+        }
+
+        private void txtbxCpf_KeyDown(object sender, KeyEventArgs e)
+        {
+            teclaNaoNumericaPressionda = false;
+            if (e.KeyCode < Keys.D0 || e.KeyCode > Keys.D9)
+            {
+                if (e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9)
+                {
+                    if (e.KeyCode != Keys.Back)
+                    {
+                        teclaNaoNumericaPressionda = true;
+                    }
+                }
+            }
+            if (Control.ModifierKeys == Keys.Shift)
+            {
+                teclaNaoNumericaPressionda = true;
+            }
         }
 
     }

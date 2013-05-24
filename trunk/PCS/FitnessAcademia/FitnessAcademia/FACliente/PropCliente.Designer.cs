@@ -120,9 +120,9 @@
             // txtbxCodigo
             // 
             this.txtbxCodigo.Enabled = false;
-            this.txtbxCodigo.Location = new System.Drawing.Point(91, 21);
+            this.txtbxCodigo.Location = new System.Drawing.Point(72, 21);
             this.txtbxCodigo.Name = "txtbxCodigo";
-            this.txtbxCodigo.Size = new System.Drawing.Size(64, 20);
+            this.txtbxCodigo.Size = new System.Drawing.Size(83, 20);
             this.txtbxCodigo.TabIndex = 0;
             this.txtbxCodigo.TabStop = false;
             // 
@@ -222,6 +222,8 @@
             this.txtbxCpf.Name = "txtbxCpf";
             this.txtbxCpf.Size = new System.Drawing.Size(100, 20);
             this.txtbxCpf.TabIndex = 2;
+            this.txtbxCpf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbxCpf_KeyDown);
+            this.txtbxCpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxCpf_KeyPress);
             // 
             // txtbxRg
             // 
@@ -229,6 +231,8 @@
             this.txtbxRg.Name = "txtbxRg";
             this.txtbxRg.Size = new System.Drawing.Size(100, 20);
             this.txtbxRg.TabIndex = 3;
+            this.txtbxRg.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbxCpf_KeyDown);
+            this.txtbxRg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxCpf_KeyPress);
             // 
             // txtbxLogradouro
             // 
@@ -350,6 +354,8 @@
             this.txtbxCep.Name = "txtbxCep";
             this.txtbxCep.Size = new System.Drawing.Size(100, 20);
             this.txtbxCep.TabIndex = 11;
+            this.txtbxCep.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbxCpf_KeyDown);
+            this.txtbxCep.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxCpf_KeyPress);
             // 
             // txtbxEstCivil
             // 
@@ -371,6 +377,8 @@
             this.txtbxTelefone.Name = "txtbxTelefone";
             this.txtbxTelefone.Size = new System.Drawing.Size(100, 20);
             this.txtbxTelefone.TabIndex = 14;
+            this.txtbxTelefone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbxCpf_KeyDown);
+            this.txtbxTelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxCpf_KeyPress);
             // 
             // txtbxCelular
             // 
@@ -378,6 +386,8 @@
             this.txtbxCelular.Name = "txtbxCelular";
             this.txtbxCelular.Size = new System.Drawing.Size(100, 20);
             this.txtbxCelular.TabIndex = 15;
+            this.txtbxCelular.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbxCpf_KeyDown);
+            this.txtbxCelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxCpf_KeyPress);
             // 
             // txtbxEmail
             // 

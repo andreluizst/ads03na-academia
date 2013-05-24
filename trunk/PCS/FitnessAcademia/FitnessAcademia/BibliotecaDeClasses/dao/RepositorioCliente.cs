@@ -12,7 +12,6 @@ namespace BibliotecaDeClasses.dao
 {
     public class RepositorioCliente : IRepositorioCliente
     {
-        //private static IRepositorioCliente instancia;
         private Conexao con;
 
 
@@ -20,13 +19,6 @@ namespace BibliotecaDeClasses.dao
         {
             con = Conexao.getInstancia();
         }
-
-        /*public static IRepositorioCliente obterInstancia()
-        {
-            if (instancia == null)
-                instancia = new RepositorioCliente();
-            return instancia;
-        }*/
 
         public void incluir(Cliente c)
         {
@@ -179,25 +171,48 @@ namespace BibliotecaDeClasses.dao
         public List<Cliente> consultar(Cliente c, int toStringBehavior)
         {
             List<Cliente> lista = new List<Cliente>();
-            string sql = "select * from Cliente where nome like @nome";
-            //bool existeParametro = false;
+            string sql = "select * from Cliente";// where nome like @nome";
+            bool existeParametro = false;
+            bool codigoExiste = false;
+            bool cpfExiste = false;
+            bool nomeExiste = false;
             try
             {
                 con.abrir();
 
                 if (c.Codigo > 0)
                 {
-                    sql += " and codigo = " + c.Codigo.ToString();
+                    sql += " where codigo = @codigo";// +c.Codigo.ToString();
+                    existeParametro = true;
+                    codigoExiste = true;
                 }
                 if (c.Cpf != null)
                 {
-                    sql += " and cpf like '%" + c.Cpf + "%'";
+                    if (existeParametro)
+                        sql += " and";//cpf like '%" + c.Cpf + "%'";
+                    else
+                        sql += " where";
+                    sql += " cpf like @cpf";
+                    existeParametro =true;
+                    cpfExiste = true;
                 }
-                if (c.Nome == null)
-                    c.Nome = "%";
+                if (c.Nome != null)
+                {
+                    if (existeParametro)
+                        sql += " and";
+                    else
+                        sql += " where";
+                    sql += " nome like @nome";
+                    nomeExiste = true;
+                }
                 sql += " order by nome";
                 SqlCommand sqlCmd = new SqlCommand(sql, con.sqlConnection);
-                sqlCmd.Parameters.AddWithValue("@nome", c.Nome);
+                if (codigoExiste)
+                    sqlCmd.Parameters.AddWithValue("@codigo", c.Codigo);
+                if (cpfExiste)
+                    sqlCmd.Parameters.AddWithValue("@cpf", c.Cpf);
+                if (nomeExiste)
+                    sqlCmd.Parameters.AddWithValue("@nome", c.Nome);
                 SqlDataReader reader = sqlCmd.ExecuteReader();
                 /*if ((toStringBehavior == Cliente.TO_STRING_NOME) || (toStringBehavior == Cliente.TO_STRING_NOME_CPF))
                 {
