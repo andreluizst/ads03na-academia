@@ -137,7 +137,7 @@ namespace FACliente
                 alterar();
         }
 
-        private void updateActions()
+        public void updateActions()
         {
             btnAlterar.Enabled = dataGridView.RowCount > 0 ? true : false;
             btnExcluir.Enabled = btnAlterar.Enabled;

@@ -13,11 +13,14 @@ namespace FACliente
             int idxInicio = 0;
             int idxFim = 0;
             idxInicio = msg.LastIndexOf("System.Exception:");
-            idxFim = msg.IndexOf("\n");
-            idxInicio += "System.Exception:".Length;
-            msg = msg.Substring(idxInicio, idxFim - idxInicio);
-            msg = msg.Replace('>', ' ');
-            msg = msg.Replace('-', ':');
+            if (idxInicio >= 0)
+            {
+                idxFim = msg.IndexOf("\n");
+                idxInicio += "System.Exception:".Length;
+                msg = msg.Substring(idxInicio, idxFim - idxInicio);
+                msg = msg.Replace('>', ' ');
+                msg = msg.Replace('-', ':');
+            }
             /*string[] vetor = msgErro.Split(':');
             int index = vetor[2].IndexOf("\n");
             msg = vetor[2].Substring(0, index);*/

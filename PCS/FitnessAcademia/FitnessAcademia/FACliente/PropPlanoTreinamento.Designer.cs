@@ -44,7 +44,6 @@
             this.dtpkData = new System.Windows.Forms.DateTimePicker();
             this.txtbxNumPlano = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
@@ -58,14 +57,20 @@
             this.btnOrdMvPrimeiro = new System.Windows.Forms.Button();
             this.bdsObjetivos = new System.Windows.Forms.BindingSource(this.components);
             this.bdsClientes = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.clmnSeq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnExercicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnSeries = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnRepeticoes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnPeso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.pnlOrdem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsObjetivos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // imglstBotoes
@@ -97,6 +102,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.ImageKey = "btnCancelarHot.bmp";
             this.btnCancelar.ImageList = this.imglstBotoes;
@@ -118,6 +124,7 @@
             this.btnSalvar.TabIndex = 0;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click_1);
             // 
             // panel2
             // 
@@ -217,18 +224,6 @@
             this.splitter1.TabIndex = 30;
             this.splitter1.TabStop = false;
             // 
-            // dataGridView
-            // 
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView.Location = new System.Drawing.Point(0, 97);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.ReadOnly = true;
-            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(782, 277);
-            this.dataGridView.TabIndex = 0;
-            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
-            // 
             // panel3
             // 
             this.panel3.AutoScroll = true;
@@ -254,6 +249,7 @@
             this.btnExcluir.Text = "E&xcluir exercício";
             this.btnExcluir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnAlterar
             // 
@@ -268,6 +264,7 @@
             this.btnAlterar.Text = "A&lterar exercício";
             this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnNovo
             // 
@@ -358,14 +355,62 @@
             // 
             this.bdsClientes.DataSource = typeof(FACliente.localhostSrvPlano.Cliente);
             // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmnSeq,
+            this.clmnExercicio,
+            this.clmnSeries,
+            this.clmnRepeticoes,
+            this.clmnPeso});
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView.Location = new System.Drawing.Point(83, 97);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.ReadOnly = true;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView.Size = new System.Drawing.Size(646, 277);
+            this.dataGridView.TabIndex = 34;
+            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged_1);
+            // 
+            // clmnSeq
+            // 
+            this.clmnSeq.HeaderText = "Seq";
+            this.clmnSeq.Name = "clmnSeq";
+            this.clmnSeq.ReadOnly = true;
+            // 
+            // clmnExercicio
+            // 
+            this.clmnExercicio.HeaderText = "Exercício";
+            this.clmnExercicio.Name = "clmnExercicio";
+            this.clmnExercicio.ReadOnly = true;
+            // 
+            // clmnSeries
+            // 
+            this.clmnSeries.HeaderText = "Séries";
+            this.clmnSeries.Name = "clmnSeries";
+            this.clmnSeries.ReadOnly = true;
+            // 
+            // clmnRepeticoes
+            // 
+            this.clmnRepeticoes.HeaderText = "Nº Repetições";
+            this.clmnRepeticoes.Name = "clmnRepeticoes";
+            this.clmnRepeticoes.ReadOnly = true;
+            // 
+            // clmnPeso
+            // 
+            this.clmnPeso.HeaderText = "Peso (kg)";
+            this.clmnPeso.Name = "clmnPeso";
+            this.clmnPeso.ReadOnly = true;
+            // 
             // PropPlanoTreinamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 423);
+            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.pnlOrdem);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -379,13 +424,13 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.pnlOrdem.ResumeLayout(false);
             this.pnlOrdem.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsObjetivos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -406,7 +451,6 @@
         private System.Windows.Forms.TextBox txtbxNumPlano;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Splitter splitter1;
-        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnAlterar;
@@ -420,5 +464,11 @@
         private System.Windows.Forms.Label lblOrdenacao;
         private System.Windows.Forms.BindingSource bdsObjetivos;
         private System.Windows.Forms.BindingSource bdsClientes;
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnSeq;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnExercicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnSeries;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnRepeticoes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnPeso;
     }
 }
