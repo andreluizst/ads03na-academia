@@ -17,6 +17,7 @@ namespace FACliente
         void setOpenMenuShell(ToolStripMenuItem miOpenGui);
         void setActionsMenuShell(ToolStripMenuItem mnNovo, 
             ToolStripMenuItem mnAlterar, ToolStripMenuItem mnExcluir);
+        void updateActions();
         //string getActivationName();
     }
 }

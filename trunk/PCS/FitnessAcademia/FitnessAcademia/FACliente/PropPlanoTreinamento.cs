@@ -78,6 +78,17 @@ namespace FACliente
                 lstObjetivos.Insert(0, new ComboBoxItemEx(0, "<Selecione um objetivo>"));
             bdsObjetivos.DataSource = lstObjetivos;
             cbxObetivo.DataSource = bdsObjetivos;
+            lista.Clear();
+            if (obj != null)
+            {
+                foreach (ExercicioDoPlano item in obj.Exercicios)
+                {
+                    lista.Add(item);
+                }
+                preencherCampos();
+                refreshDataGrid();
+                //BindingList();
+            }
         }
 
         private void preencherCampos()
@@ -100,7 +111,7 @@ namespace FACliente
                     break;
                 }
             }
-            BindingList();
+            //BindingList();
         }
 
         private void preencherObj()
@@ -110,7 +121,9 @@ namespace FACliente
             else
                 obj.Numplano = Convert.ToInt32(txtbxNumPlano.Text);
             obj.Data = dtpkData.Value;
+            obj.ObjetivoDoPlano = new Objetivo();
             obj.ObjetivoDoPlano.Codigo = lstObjetivos[cbxObetivo.SelectedIndex].Id;
+            obj.ClienteDoPlano = new Cliente();
             obj.ClienteDoPlano.Codigo = lstClientes[cbxCliente.SelectedIndex].Id;
             obj.Exercicios = lista.ToArray();
         }
@@ -119,15 +132,16 @@ namespace FACliente
         {
             try
             {
+                preencherObj();
                 srvPlano.salvarPlanoTreinamento(obj);
+                this.DialogResult = DialogResult.OK;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 string msg;
-                msg = FiltrarMsgErroWebSrv.execute(e.Message);
+                msg = FiltrarMsgErroWebSrv.execute(ex.Message);
                 MessageBox.Show(msg, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.DialogResult = System.Windows.Forms.DialogResult.None;
-                return;
+                this.DialogResult = DialogResult.None;
             }
         }
 
@@ -167,7 +181,7 @@ namespace FACliente
             updateActions();
         }
 
-        private void UnBindingList()
+        /*private void UnBindingList()
         {
             bindingSource1.DataSource = null;
             dataGridView.DataSource = null;
@@ -178,31 +192,43 @@ namespace FACliente
             bindingSource1.DataSource = lista;
             dataGridView.DataSource = bindingSource1;
             dataGridView.AutoResizeColumns();
-        }
+        }*/
 
         private void btnOrdMvPrimeiro_Click(object sender, EventArgs e)
         {
             if (lista.Count > 0)
-                moverDePara(dataGridView.CurrentRow.Index, 0);
+                moverDePara(dataGridView.SelectedRows[0].Index, 0);
         }
 
         private void moverDePara(int indexOrigem, int indexDestino)
         {
             ExercicioDoPlano ep;
-            int selectRowIndex = indexDestino;// dataGridView.CurrentRow.Index;
+            if (indexDestino < 0)
+                indexDestino = 0;
+            int selectRowIndex = indexDestino;
+            //MessageBox.Show("dataGridView.SelectedRows[0].Index = " + dataGridView.SelectedRows[0].Index.ToString()
+              //  + "\n" + "indexDestino = " + indexDestino.ToString());
             if (lista.Count() > 1)
             {
-                UnBindingList();
-                ep = lista[indexOrigem];//dataGridView.CurrentRow.Index];
-                lista.RemoveAt(indexOrigem);//dataGridView.CurrentRow.Index);
-                lista.Insert(indexDestino, ep);
-                reordenarListaDeExercicios(ref lista);
-                BindingList();
+                //UnBindingList();
+                ep = lista[indexOrigem];
+                lista.RemoveAt(indexOrigem);
+                if (indexDestino <= lista.Count)
+                    lista.Insert(indexDestino, ep);
+                else
+                {
+                    lista.Add(ep);
+                    selectRowIndex = lista.Count - 1;
+                }
+                reordenarListaDeExercicios();
+                refreshDataGrid();
+                //BindingList();
+                dataGridView.Rows[0].Selected = false;
                 dataGridView.Rows[selectRowIndex].Selected = true;
             }
         }
 
-        private void reordenarListaDeExercicios(ref List<ExercicioDoPlano> lista)
+        private void reordenarListaDeExercicios()
         {
             if (lista.Count() > 1)
             {
@@ -216,26 +242,80 @@ namespace FACliente
         private void btnOrdMvUltimo_Click(object sender, EventArgs e)
         {
             if (lista.Count > 0)
-                moverDePara(dataGridView.CurrentRow.Index, dataGridView.Rows.Count - 1);
+                moverDePara(dataGridView.SelectedRows[0].Index, dataGridView.Rows.Count - 1);
         }
 
         private void btnOrdMvCima_Click(object sender, EventArgs e)
         {
             if (lista.Count > 0)
-                moverDePara(dataGridView.CurrentRow.Index, dataGridView.CurrentRow.Index - 1);
+                moverDePara(dataGridView.SelectedRows[0].Index, dataGridView.SelectedRows[0].Index - 1);
         }
 
         private void btnOrdMvBaixo_Click(object sender, EventArgs e)
         {
             if (lista.Count > 0)
-                moverDePara(dataGridView.CurrentRow.Index, dataGridView.CurrentRow.Index + 1);
+                moverDePara(dataGridView.SelectedRows[0].Index, dataGridView.SelectedRows[0].Index + 1);
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            PropExerciciosDoPlano frm = new PropExerciciosDoPlano();
-            if (frm.ShowDialog() == DialogResult.OK)
-                MessageBox.Show("A operação foi realizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ExercicioDoPlano exer;
+            exer = PropExerciciosDoPlano.showDialog();
+            if (exer != null)//if (frm.ShowDialog() == DialogResult.OK)
+            {
+                lista.Add(exer);
+                reordenarListaDeExercicios();
+                refreshDataGrid();
+            }
         }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            ExercicioDoPlano oldExer = lista[dataGridView.CurrentRow.Index];
+            ExercicioDoPlano exer;
+            exer = PropExerciciosDoPlano.showDialog(oldExer);
+            if (exer != null)
+            {
+                //oldExer = exer;
+                lista[dataGridView.CurrentRow.Index] = exer;
+                //obj.Exercicios[dataGridView.CurrentRow.Index] = exer;
+                reordenarListaDeExercicios();
+                refreshDataGrid();
+            }
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            lista.RemoveAt(dataGridView.CurrentRow.Index);
+            reordenarListaDeExercicios();
+        }
+
+        private void refreshDataGrid()
+        {
+            dataGridView.Rows.Clear();
+            dataGridView.Rows.Add(lista.Count);
+            //MessageBox.Show("Rows do grid = " + dataGridView.Rows.Count.ToString()
+              //  + "\n" + "lista.Count = " + lista.Count.ToString());
+            for (int i =0; i < lista.Count;i++)// (ExercicioDoPlano item in lista)
+            {
+                dataGridView.Rows[i].Cells[0].Value = lista[i].Seq;
+                dataGridView.Rows[i].Cells[1].Value = lista[i].Exercicio.Descricao;
+                dataGridView.Rows[i].Cells[2].Value = lista[i].Series;
+                dataGridView.Rows[i].Cells[3].Value = lista[i].NumRepeticoes;
+                dataGridView.Rows[i].Cells[4].Value = lista[i].Peso;
+            }
+           
+        }
+
+        private void btnSalvar_Click_1(object sender, EventArgs e)
+        {
+            salvar();
+        }
+
+        private void dataGridView_SelectionChanged_1(object sender, EventArgs e)
+        {
+            updateActions();
+        }
+
     }
 }

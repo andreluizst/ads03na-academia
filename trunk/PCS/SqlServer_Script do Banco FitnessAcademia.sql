@@ -59,6 +59,6 @@ return*/
 --alter table cliente add Telefone varchar(11)
 --update cliente set telefone = Tefone
 --alter table cliente drop column Tefone
-select * from PlanoTreinamento where data >= '2013-01-01' and data <= '2013-05-12' and codCli = 2
+select * from PlanoTreinamento-- where data >= '2013-01-01' and data <= '2013-05-12' and codCli = 2
 select * from PlanoTreinamento as pt left outer join ExercicioDoPlano as ep on ep.numPlano = pt.NumPlano
 select * from cliente

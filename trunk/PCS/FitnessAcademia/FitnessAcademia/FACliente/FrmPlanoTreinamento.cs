@@ -32,6 +32,7 @@ namespace FACliente
             preencherListas();
         }
 
+        #region preencherListas
         private void preencherListas()
         {
             Cliente[] clientes;
@@ -71,6 +72,7 @@ namespace FACliente
                 MessageBox.Show(msg, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        #endregion
 
         private void UnBindingList()
         {
@@ -85,6 +87,21 @@ namespace FACliente
             dataGridView.AutoResizeColumns();
         }
 
+        private void refreshDataGrid()
+        {
+            dataGridView.Rows.Clear();
+            dataGridView.Rows.Add(lista.Count);
+            for (int i = 0; i < lista.Count; i++)
+            {
+                dataGridView.Rows[i].Cells[0].Value = lista[i].Numplano;
+                dataGridView.Rows[i].Cells[1].Value = lista[i].ClienteDoPlano.Nome;
+                dataGridView.Rows[i].Cells[2].Value = lista[i].Data.ToShortDateString();
+                dataGridView.Rows[i].Cells[3].Value = lista[i].ObjetivoDoPlano.Descricao;
+            }
+            dataGridView.AutoResizeColumns();
+        }
+
+        #region pesquisar
         public void pesquisar()
         {
             PlanoTreinamento[] planos;
@@ -104,7 +121,8 @@ namespace FACliente
                 {
                     lista.Add(item);
                 }
-                BindingList();
+                refreshDataGrid();
+                //BindingList();
                 if (lista.Count == 0)
                     MessageBox.Show("A pesquisa não encontrou registros.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -116,7 +134,7 @@ namespace FACliente
             }
             
         }
-
+        #endregion
         public bool pesquisarExiste()
         {
             return true;
@@ -125,6 +143,7 @@ namespace FACliente
         public void fecharPesquisa()
         {
             lista.Clear();
+            dataGridView.Rows.Clear();
             UnBindingList();
         }
 
@@ -142,7 +161,7 @@ namespace FACliente
             miShellExcluir = mnExcluir;
         }
 
-        private void updateActions()
+        public void updateActions()
         {
             btnAlterar.Enabled = dataGridView.RowCount > 0 ? true : false;
             btnExcluir.Enabled = btnAlterar.Enabled;

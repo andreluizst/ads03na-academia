@@ -19,16 +19,40 @@ namespace FACliente
         private string nome = "Exercícios do Plano de Treinamento";
         private Service1 srv;
 
-        public PropExerciciosDoPlano()
+
+        public static ExercicioDoPlano showDialog(ExercicioDoPlano obj)
+        {
+            ExercicioDoPlano exer;
+            PropExerciciosDoPlano frm = new PropExerciciosDoPlano(obj);
+            if (frm.ShowDialog() == DialogResult.OK)
+                exer = frm.pegerExercicio();
+            else
+                exer = null;
+            return exer;
+        }
+
+        public static ExercicioDoPlano showDialog()
+        {
+            ExercicioDoPlano exer;
+            PropExerciciosDoPlano frm = new PropExerciciosDoPlano();
+            if (frm.ShowDialog() == DialogResult.OK)
+                exer = frm.pegerExercicio();
+            else
+                exer = null;
+            return exer;
+        }
+
+        private PropExerciciosDoPlano()
         {
             InitializeComponent();
             this.Text = "NOVO " + this.nome;
             isInsert = true;
             lstExercicios = new List<ComboBoxItemEx>();
             srv = new Service1();
+            preencherLista();
         }
 
-        public PropExerciciosDoPlano(ref ExercicioDoPlano obj)
+        private PropExerciciosDoPlano(ExercicioDoPlano obj)
             :this()
         {
             if (obj != null)
@@ -95,6 +119,41 @@ namespace FACliente
             obj.Peso = (Double)nudPeso.Value;
             obj.Exercicio = new Exercicio();
             obj.Exercicio.Codigo = lstExercicios[cbxExercicio.SelectedIndex].Id;
+            obj.Exercicio.Descricao = lstExercicios[cbxExercicio.SelectedIndex].DisplayValue;
+        }
+
+        public ExercicioDoPlano pegerExercicio()
+        {
+            return obj;
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            if (isInsert)
+                obj = new ExercicioDoPlano();
+            preencherObj();
+            DialogResult = DialogResult.OK;
+        }
+
+        private void PropExerciciosDoPlano_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSalvar_Click(sender, e);
+            }
+            else
+                if (e.KeyCode == Keys.Escape)
+                    DialogResult = DialogResult.Cancel;
+        }
+
+        private void cbxExercicio_DropDown(object sender, EventArgs e)
+        {
+            this.KeyPreview = false;
+        }
+
+        private void cbxExercicio_DropDownClosed(object sender, EventArgs e)
+        {
+            this.KeyPreview = true;
         }
 
 

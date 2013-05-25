@@ -66,13 +66,14 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.ImageKey = "btnCancelarHot.bmp";
             this.btnCancelar.ImageList = this.imglstBotoes;
             this.btnCancelar.Location = new System.Drawing.Point(406, 166);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(112, 23);
-            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -84,9 +85,10 @@
             this.btnSalvar.Location = new System.Drawing.Point(246, 166);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(112, 23);
-            this.btnSalvar.TabIndex = 2;
+            this.btnSalvar.TabIndex = 5;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // label1
             // 
@@ -113,7 +115,9 @@
             this.cbxExercicio.Location = new System.Drawing.Point(94, 69);
             this.cbxExercicio.Name = "cbxExercicio";
             this.cbxExercicio.Size = new System.Drawing.Size(264, 21);
-            this.cbxExercicio.TabIndex = 7;
+            this.cbxExercicio.TabIndex = 1;
+            this.cbxExercicio.DropDown += new System.EventHandler(this.cbxExercicio_DropDown);
+            this.cbxExercicio.DropDownClosed += new System.EventHandler(this.cbxExercicio_DropDownClosed);
             // 
             // label3
             // 
@@ -147,28 +151,28 @@
             this.nudSeq.Location = new System.Drawing.Point(94, 35);
             this.nudSeq.Name = "nudSeq";
             this.nudSeq.Size = new System.Drawing.Size(77, 20);
-            this.nudSeq.TabIndex = 14;
+            this.nudSeq.TabIndex = 0;
             // 
             // nudSeries
             // 
             this.nudSeries.Location = new System.Drawing.Point(94, 106);
             this.nudSeries.Name = "nudSeries";
             this.nudSeries.Size = new System.Drawing.Size(77, 20);
-            this.nudSeries.TabIndex = 15;
+            this.nudSeries.TabIndex = 2;
             // 
             // nudRepeticoes
             // 
             this.nudRepeticoes.Location = new System.Drawing.Point(271, 106);
             this.nudRepeticoes.Name = "nudRepeticoes";
             this.nudRepeticoes.Size = new System.Drawing.Size(77, 20);
-            this.nudRepeticoes.TabIndex = 16;
+            this.nudRepeticoes.TabIndex = 3;
             // 
             // nudPeso
             // 
             this.nudPeso.Location = new System.Drawing.Point(441, 107);
             this.nudPeso.Name = "nudPeso";
             this.nudPeso.Size = new System.Drawing.Size(77, 20);
-            this.nudPeso.TabIndex = 17;
+            this.nudPeso.TabIndex = 4;
             // 
             // PropExerciciosDoPlano
             // 
@@ -192,6 +196,7 @@
             this.Name = "PropExerciciosDoPlano";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PropExerciciosDoPlano";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PropExerciciosDoPlano_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.bdsExercicios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeq)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeries)).EndInit();

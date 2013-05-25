@@ -84,9 +84,10 @@ namespace FACliente
             miPesquisar.Enabled = this.MdiChildren.Length > 0 ? ((IActionsGui)this.ActiveMdiChild).pesquisarExiste() : false;
             miFecharPesquisa.Enabled = miPesquisar.Enabled;
             miNovo.Enabled = this.MdiChildren.Length > 0 ? true : false;
-            //miAlterar.Enabled = miNovo.Enabled;
-            //miExcluir.Enabled = miAlterar.Enabled;
-
+            miAlterar.Enabled = miNovo.Enabled;
+            miExcluir.Enabled = miAlterar.Enabled;
+            if (this.MdiChildren.Length > 0)
+                ((IActionsGui)this.ActiveMdiChild).updateActions();
         }
 
         private void miManterObjetivo_Click(object sender, EventArgs e)
