@@ -169,6 +169,7 @@
             // 
             // nudPeso
             // 
+            this.nudPeso.DecimalPlaces = 3;
             this.nudPeso.Location = new System.Drawing.Point(441, 107);
             this.nudPeso.Name = "nudPeso";
             this.nudPeso.Size = new System.Drawing.Size(77, 20);

@@ -24,7 +24,7 @@ create table PlanoTreinamento(NumPlano int identity(1,1), codCli int not null, D
 							constraint PlanoTreinamento_PKnumPlanoCodCli primary key(NumPlano))
 go
 create table ExercicioDoPlano(numPlano int not null, seq int not null, codExercicio int not null,
-							Series int not null, numRepeticoes int not null, peso numeric(3,3),
+							Series int not null, numRepeticoes int not null, peso real,
 							constraint ExercicioDoPlano_FKcodExercicio foreign key(codExercicio) references Exercicio(Codigo),
 							constraint ExercicioDoPlano_FKnumPlano foreign key(numPlano) references PlanoTreinamento(NumPlano),
 							constraint ExercicioDoPlano_PKcodCliNumPlano primary key(numPlano, seq))*/
@@ -68,6 +68,20 @@ delete from ExercicioDoPlano
 delete from PlanoTreinamento
 delete from Exercicio where Codigo > 0
 */
+/*
+--
+--**************** ATUALIZAR TABELA ExercicioDoPlano **************************
+--
+alter table ExercicioDoPlano drop column peso
+go
+alter table ExercicioDoPlano add peso real
+go
+update ExercicioDoPlano set peso = 0
+go
+update ExercicioDoPlano set peso = 3.5 where numPlano = 21
+go
+*/
+--**************** FIM DA ATUALIZAÇÃO DA TABELA ExercicioDoPlano **************************
 select * from PlanoTreinamento where ((data >= '2013-05-01') and (data <= '2013-05-31')) and codCli = 2
 select * from ExercicioDoPlano
 select * from PlanoTreinamento as pt left outer join ExercicioDoPlano as ep on ep.numPlano = pt.NumPlano
