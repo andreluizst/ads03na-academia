@@ -302,6 +302,7 @@ namespace FACliente
         {
             lista.RemoveAt(dataGridView.CurrentRow.Index);
             reordenarListaDeExercicios();
+            refreshDataGrid();
         }
 
         private void btnSalvar_Click_1(object sender, EventArgs e)
