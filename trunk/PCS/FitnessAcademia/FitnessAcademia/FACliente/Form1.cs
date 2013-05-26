@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FACliente.localhostSrvPlano;
 
 namespace FACliente
 {
@@ -48,12 +49,6 @@ namespace FACliente
                     }
                 }
             }
-        }
-
-        
-        private void miJanela_Click(object sender, EventArgs e)
-        {
-            activeNextWindow();
         }
 
         private void miFecharJanelaAtual_Click(object sender, EventArgs e)
@@ -137,8 +132,31 @@ namespace FACliente
 
         private void miPlano_Click(object sender, EventArgs e)
         {
-            FrmPlanoTreinamento frm = new FrmPlanoTreinamento();
-            showMdiChildren(frm, (ToolStripMenuItem)sender);
+            try
+            {
+                Service1 srvPlano = new Service1();
+                srvPlano.iniciarPlanoTreinamento();
+                FrmPlanoTreinamento frm = new FrmPlanoTreinamento();
+                showMdiChildren(frm, (ToolStripMenuItem)sender);
+            }
+            catch (Exception ex)
+            {
+                string msg;
+                msg = FiltrarMsgErroWebSrv.execute(ex.Message);
+                MessageBox.Show(msg, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void mnJanela_DropDownOpening(object sender, EventArgs e)
+        {
+            miFecharJanelaAtual.Enabled = this.MdiChildren.Length > 0 ? true : false;
+            miProximaJanela.Enabled = this.MdiChildren.Length > 1 ? true : false;
+            
+        }
+
+        private void miProximaJanela_Click(object sender, EventArgs e)
+        {
+            activeNextWindow();
         }
 
     }

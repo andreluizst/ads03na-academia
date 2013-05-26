@@ -7,15 +7,23 @@ using FACliente.localhost;
 
 namespace FACliente
 {
+    /*
+     * Classe usada pelas janelas de manuteção de dados do servidor geral.
+     * Essa classe é responsável pelo comportamento padrão de inclusão, alterão e exclusão
+     * das classes básicas do servidor geral
+    */
     public class GuiBehavior<T>
     {
+        /* Os delegates são usados para que os métodos e inclusão, alteração e exclusão possam ter seu comportamento
+         * alterado sem a necessidade de alterar a classe, adicionando código ou substituindo o existente.
+        */
         public delegate void EventEditDelegate(Form frm, T obj);
         public delegate void EventNewDelegate(Form frm);
         public delegate void EventObjDelegate(T obj);
         public delegate List<T> EventConsultar(T obj);
 
+        #region atributos e propriedades
         private object objeto;
-        //System.Web.Services.WebService
         private Service1 servidor;
         public Service1 Servidor
         {
@@ -57,21 +65,15 @@ namespace FACliente
             get { return excluir; }
             set { excluir = value; }
         }
+        #endregion
 
-        private EventConsultar consultar;
-        public EventConsultar Consultar
-        {
-            get { return consultar; }
-            set { consultar = value; }
-        }
-
+        #region contrutores
         public GuiBehavior()
         {
             salvar = salvarDefaultEx;
             novo = novoDefault;
             alterar = alterarDefault;
             excluir = excluirDefault;
-            consultar = consultarDefault;
         }
 
         public GuiBehavior(Service1 servidor)
@@ -85,6 +87,7 @@ namespace FACliente
         {
             this.frmProprietario = frmProprietario;
         }
+        #endregion
 
         private void salvarDefaultEx(T obj)
         {
@@ -100,11 +103,6 @@ namespace FACliente
                 Servidor.salvarObjetivo((Objetivo)objeto);
             if (objeto is Cliente)
                 Servidor.salvarCliente((Cliente)objeto);
-            /*
-            if (objeto is PlanoTreinamento)
-                Servidor.salvarPlanoTreinamento((PlanoTreinamento)objeto); 
-             */
-            
         }
 
         private void salvarDefault()
@@ -167,23 +165,6 @@ namespace FACliente
                     Servidor.excluirCliente((Cliente)objeto);
             }
 
-        }
-
-        private List<T> consultarDefault(T obj)
-        {
-            List<T> lista = new List<T>();
-            this.objeto = obj;
-           /* if (objeto is Exercicio)
-            {
-                T[] exercicios;
-                
-                exercicios = servidor.consultarExercicio((Exercicio)objeto);
-                foreach (T item in exercicios)
-                {
-                    lista.Add(item);
-                }
-            }*/
-            return lista;
         }
 
         public void FrmDlg_KeyDown(object sender, KeyEventArgs e)

@@ -74,6 +74,17 @@ namespace FACliente
         }
         #endregion
 
+        #region métodos de atualização dos controles da gui
+        public void updateActions()
+        {
+            btnAlterar.Enabled = dataGridView.RowCount > 0 ? true : false;
+            btnExcluir.Enabled = btnAlterar.Enabled;
+            if (miShellAlterar != null)
+                miShellAlterar.Enabled = btnAlterar.Enabled;
+            if (miShellExcluir != null)
+                miShellExcluir.Enabled = btnExcluir.Enabled;
+        }
+
         private void UnBindingList()
         {
             bindingSource1.DataSource = null;
@@ -90,16 +101,25 @@ namespace FACliente
         private void refreshDataGrid()
         {
             dataGridView.Rows.Clear();
-            dataGridView.Rows.Add(lista.Count);
-            for (int i = 0; i < lista.Count; i++)
+            dataGridView.Columns.Clear();
+            if (lista.Count > 0)
             {
-                dataGridView.Rows[i].Cells[0].Value = lista[i].Numplano;
-                dataGridView.Rows[i].Cells[1].Value = lista[i].ClienteDoPlano.Nome;
-                dataGridView.Rows[i].Cells[2].Value = lista[i].Data.ToShortDateString();
-                dataGridView.Rows[i].Cells[3].Value = lista[i].ObjetivoDoPlano.Descricao;
+                dataGridView.Columns.Add("clmnNumPlano", "NumPlano");
+                dataGridView.Columns.Add("clmnCliente", "Cliente");
+                dataGridView.Columns.Add("clmnData", "Data");
+                dataGridView.Columns.Add("clmnObjetivo", "Objetivo");
+                dataGridView.Rows.Add(lista.Count);
+                for (int i = 0; i < lista.Count; i++)
+                {
+                    dataGridView.Rows[i].Cells[0].Value = lista[i].Numplano;
+                    dataGridView.Rows[i].Cells[1].Value = lista[i].ClienteDoPlano.Nome;
+                    dataGridView.Rows[i].Cells[2].Value = lista[i].Data.ToShortDateString();
+                    dataGridView.Rows[i].Cells[3].Value = lista[i].ObjetivoDoPlano.Descricao;
+                }
+                dataGridView.AutoResizeColumns();
             }
-            dataGridView.AutoResizeColumns();
         }
+        #endregion
 
         #region pesquisar
         public void pesquisar()
@@ -111,10 +131,10 @@ namespace FACliente
             obj.ClienteDoPlano = new Cliente();
             obj.ObjetivoDoPlano.Codigo = lstObjetivos[cbxObetivo.SelectedIndex].Id;
             obj.ClienteDoPlano.Codigo = lstClientes[cbxCliente.SelectedIndex].Id;
-            obj.Data = dtpkInicial.Value;// Convert.ToDateTime(dtpkInicial.Text);
+            obj.Data = dtpkInicial.Value;
             try
             {
-                planos = srvPlano.consultarPlanoTreinamento(obj, dtpkFinal.Value);//Convert.ToDateTime(dtpkFinal.Text));
+                planos = srvPlano.consultarPlanoTreinamento(obj, dtpkFinal.Value);
                 UnBindingList();
                 lista.Clear();
                 foreach (PlanoTreinamento item in planos)
@@ -134,16 +154,19 @@ namespace FACliente
             }
             
         }
-        #endregion
+        
         public bool pesquisarExiste()
         {
             return true;
         }
+        #endregion
 
         public void fecharPesquisa()
         {
             lista.Clear();
             dataGridView.Rows.Clear();
+            dataGridView.Columns.Clear();
+            updateActions();
             UnBindingList();
         }
 
@@ -159,16 +182,6 @@ namespace FACliente
             miShellNovo = mnNovo;
             miShellAlterar = mnAlterar;
             miShellExcluir = mnExcluir;
-        }
-
-        public void updateActions()
-        {
-            btnAlterar.Enabled = dataGridView.RowCount > 0 ? true : false;
-            btnExcluir.Enabled = btnAlterar.Enabled;
-            if (miShellAlterar != null)
-                miShellAlterar.Enabled = btnAlterar.Enabled;
-            if (miShellExcluir != null)
-                miShellExcluir.Enabled = btnExcluir.Enabled;
         }
 
         private void FrmPlanoTreinamento_FormClosed(object sender, FormClosedEventArgs e)
@@ -192,6 +205,7 @@ namespace FACliente
             updateActions();
         }
 
+        #region incluir, alterar e excluir
         public void novo()
         {
             PropPlanoTreinamento frm = new PropPlanoTreinamento(lstClientes, lstObjetivos);
@@ -225,7 +239,9 @@ namespace FACliente
                 MessageBox.Show(msg, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        #endregion
 
+        #region eventos dos botões incluir, alterar, excluir e pesquisar
         private void btnNovo_Click(object sender, EventArgs e)
         {
             novo();
@@ -245,6 +261,8 @@ namespace FACliente
         {
             pesquisar();
         }
+
+        #endregion
 
     }
 }

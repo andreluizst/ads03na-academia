@@ -22,6 +22,12 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="iniciarPlanoTreinamento">
+        <s:complexType />
+      </s:element>
+      <s:element name="iniciarPlanoTreinamentoResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="consultarPlanoTreinamento">
         <s:complexType>
           <s:sequence>
@@ -224,6 +230,12 @@
   <wsdl:message name="getLastMsgErrorSoapOut">
     <wsdl:part name="parameters" element="tns:getLastMsgErrorResponse" />
   </wsdl:message>
+  <wsdl:message name="iniciarPlanoTreinamentoSoapIn">
+    <wsdl:part name="parameters" element="tns:iniciarPlanoTreinamento" />
+  </wsdl:message>
+  <wsdl:message name="iniciarPlanoTreinamentoSoapOut">
+    <wsdl:part name="parameters" element="tns:iniciarPlanoTreinamentoResponse" />
+  </wsdl:message>
   <wsdl:message name="consultarPlanoTreinamentoSoapIn">
     <wsdl:part name="parameters" element="tns:consultarPlanoTreinamento" />
   </wsdl:message>
@@ -287,6 +299,10 @@
       <wsdl:input message="tns:getLastMsgErrorSoapIn" />
       <wsdl:output message="tns:getLastMsgErrorSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="iniciarPlanoTreinamento">
+      <wsdl:input message="tns:iniciarPlanoTreinamentoSoapIn" />
+      <wsdl:output message="tns:iniciarPlanoTreinamentoSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="consultarPlanoTreinamento">
       <wsdl:input message="tns:consultarPlanoTreinamentoSoapIn" />
       <wsdl:output message="tns:consultarPlanoTreinamentoSoapOut" />
@@ -337,6 +353,15 @@
     </wsdl:operation>
     <wsdl:operation name="getLastMsgError">
       <soap:operation soapAction="http://tempuri.org/getLastMsgError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="iniciarPlanoTreinamento">
+      <soap:operation soapAction="http://tempuri.org/iniciarPlanoTreinamento" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -439,6 +464,15 @@
     </wsdl:operation>
     <wsdl:operation name="getLastMsgError">
       <soap12:operation soapAction="http://tempuri.org/getLastMsgError" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="iniciarPlanoTreinamento">
+      <soap12:operation soapAction="http://tempuri.org/iniciarPlanoTreinamento" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

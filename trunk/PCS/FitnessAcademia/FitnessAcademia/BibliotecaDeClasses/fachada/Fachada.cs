@@ -178,6 +178,11 @@ namespace BibliotecaDeClasses.fachada
 
 
         //-------------------------PLANO DE TREINAMENTO -----------------------
+        public void validarLiberacaoDePlanoDeTreinamento()
+        {
+            ctrlPt.validarLiberacaoDeOperacoes();
+        }
+
         public void salvar(PlanoTreinamento obj)
         {
             try

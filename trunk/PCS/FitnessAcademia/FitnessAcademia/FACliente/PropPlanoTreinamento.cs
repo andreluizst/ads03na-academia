@@ -26,6 +26,8 @@ namespace FACliente
             get { return nome; }
         }
 
+
+        #region construtores
         public PropPlanoTreinamento()
         {
             InitializeComponent();
@@ -61,7 +63,9 @@ namespace FACliente
         {
             preencherListas(clientes, objetivos);
         }
+        #endregion
 
+        #region preenchimento de listas, campos e objeto
         private void preencherListas(List<ComboBoxItemEx> clientes, List<ComboBoxItemEx> objetivos)
         {
             lstClientes.AddRange(clientes);
@@ -87,7 +91,6 @@ namespace FACliente
                 }
                 preencherCampos();
                 refreshDataGrid();
-                //BindingList();
             }
         }
 
@@ -111,7 +114,6 @@ namespace FACliente
                     break;
                 }
             }
-            //BindingList();
         }
 
         private void preencherObj()
@@ -127,6 +129,8 @@ namespace FACliente
             obj.ClienteDoPlano.Codigo = lstClientes[cbxCliente.SelectedIndex].Id;
             obj.Exercicios = lista.ToArray();
         }
+        #endregion
+
 
         private void salvar()
         {
@@ -181,36 +185,16 @@ namespace FACliente
             updateActions();
         }
 
-        /*private void UnBindingList()
-        {
-            bindingSource1.DataSource = null;
-            dataGridView.DataSource = null;
-        }
 
-        private void BindingList()
-        {
-            bindingSource1.DataSource = lista;
-            dataGridView.DataSource = bindingSource1;
-            dataGridView.AutoResizeColumns();
-        }*/
-
-        private void btnOrdMvPrimeiro_Click(object sender, EventArgs e)
-        {
-            if (lista.Count > 0)
-                moverDePara(dataGridView.SelectedRows[0].Index, 0);
-        }
-
+        #region ordenação da lista de exercícios do plano e do dataGridView
         private void moverDePara(int indexOrigem, int indexDestino)
         {
             ExercicioDoPlano ep;
             if (indexDestino < 0)
                 indexDestino = 0;
             int selectRowIndex = indexDestino;
-            //MessageBox.Show("dataGridView.SelectedRows[0].Index = " + dataGridView.SelectedRows[0].Index.ToString()
-              //  + "\n" + "indexDestino = " + indexDestino.ToString());
             if (lista.Count() > 1)
             {
-                //UnBindingList();
                 ep = lista[indexOrigem];
                 lista.RemoveAt(indexOrigem);
                 if (indexDestino <= lista.Count)
@@ -222,7 +206,6 @@ namespace FACliente
                 }
                 reordenarListaDeExercicios();
                 refreshDataGrid();
-                //BindingList();
                 dataGridView.Rows[0].Selected = false;
                 dataGridView.Rows[selectRowIndex].Selected = true;
             }
@@ -230,7 +213,7 @@ namespace FACliente
 
         private void reordenarListaDeExercicios()
         {
-            if (lista.Count() > 1)
+            if (lista.Count() > 0)
             {
                 for (int i = 0; i < lista.Count(); i++)
                 {
@@ -239,6 +222,39 @@ namespace FACliente
             }
         }
 
+        private void refreshDataGrid()
+        {
+            dataGridView.Rows.Clear();
+            dataGridView.Columns.Clear();
+            if (lista.Count > 0)
+            {
+                dataGridView.Columns.Add("clmnSeq", "Seq");
+                dataGridView.Columns.Add("clmnExercicio", "Exercício");
+                dataGridView.Columns.Add("clmnSeries", "Séries");
+                dataGridView.Columns.Add("clmnNumRepeticoes", "Nº Repetições");
+                dataGridView.Columns.Add("clmnPeso", "Peso (kg)");
+                dataGridView.AutoResizeColumns();
+                dataGridView.Rows.Add(lista.Count);
+                for (int i = 0; i < lista.Count; i++)
+                {
+                    dataGridView.Rows[i].Cells[0].Value = lista[i].Seq;
+                    dataGridView.Rows[i].Cells[1].Value = lista[i].Exercicio.Descricao;
+                    dataGridView.Rows[i].Cells[2].Value = lista[i].Series;
+                    dataGridView.Rows[i].Cells[3].Value = lista[i].NumRepeticoes;
+                    dataGridView.Rows[i].Cells[4].Value = lista[i].Peso;
+                }
+                dataGridView.AutoResizeColumns();
+            }
+        }
+        #endregion
+
+
+        private void btnOrdMvPrimeiro_Click(object sender, EventArgs e)
+        {
+            if (lista.Count > 0)
+                moverDePara(dataGridView.SelectedRows[0].Index, 0);
+        }
+        
         private void btnOrdMvUltimo_Click(object sender, EventArgs e)
         {
             if (lista.Count > 0)
@@ -261,7 +277,7 @@ namespace FACliente
         {
             ExercicioDoPlano exer;
             exer = PropExerciciosDoPlano.showDialog();
-            if (exer != null)//if (frm.ShowDialog() == DialogResult.OK)
+            if (exer != null)
             {
                 lista.Add(exer);
                 reordenarListaDeExercicios();
@@ -276,9 +292,7 @@ namespace FACliente
             exer = PropExerciciosDoPlano.showDialog(oldExer);
             if (exer != null)
             {
-                //oldExer = exer;
                 lista[dataGridView.CurrentRow.Index] = exer;
-                //obj.Exercicios[dataGridView.CurrentRow.Index] = exer;
                 reordenarListaDeExercicios();
                 refreshDataGrid();
             }
@@ -290,23 +304,6 @@ namespace FACliente
             reordenarListaDeExercicios();
         }
 
-        private void refreshDataGrid()
-        {
-            dataGridView.Rows.Clear();
-            dataGridView.Rows.Add(lista.Count);
-            //MessageBox.Show("Rows do grid = " + dataGridView.Rows.Count.ToString()
-              //  + "\n" + "lista.Count = " + lista.Count.ToString());
-            for (int i =0; i < lista.Count;i++)// (ExercicioDoPlano item in lista)
-            {
-                dataGridView.Rows[i].Cells[0].Value = lista[i].Seq;
-                dataGridView.Rows[i].Cells[1].Value = lista[i].Exercicio.Descricao;
-                dataGridView.Rows[i].Cells[2].Value = lista[i].Series;
-                dataGridView.Rows[i].Cells[3].Value = lista[i].NumRepeticoes;
-                dataGridView.Rows[i].Cells[4].Value = lista[i].Peso;
-            }
-           
-        }
-
         private void btnSalvar_Click_1(object sender, EventArgs e)
         {
             salvar();
@@ -315,6 +312,11 @@ namespace FACliente
         private void dataGridView_SelectionChanged_1(object sender, EventArgs e)
         {
             updateActions();
+        }
+
+        private void PropPlanoTreinamento_Shown(object sender, EventArgs e)
+        {
+            dataGridView.AutoResizeColumns();
         }
 
     }

@@ -50,10 +50,6 @@
             this.bdsCliente = new System.Windows.Forms.BindingSource(this.components);
             this.bdsObjetivo = new System.Windows.Forms.BindingSource(this.components);
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clmnNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnData = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnObjetivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -232,11 +228,6 @@
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmnNum,
-            this.clmnCliente,
-            this.clmnData,
-            this.clmnObjetivo});
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(0, 155);
             this.dataGridView.MultiSelect = false;
@@ -250,30 +241,6 @@
             // clienteBindingSource
             // 
             this.clienteBindingSource.DataSource = typeof(FACliente.localhostSrvPlano.Cliente);
-            // 
-            // clmnNum
-            // 
-            this.clmnNum.HeaderText = "Número";
-            this.clmnNum.Name = "clmnNum";
-            this.clmnNum.ReadOnly = true;
-            // 
-            // clmnCliente
-            // 
-            this.clmnCliente.HeaderText = "Cliente";
-            this.clmnCliente.Name = "clmnCliente";
-            this.clmnCliente.ReadOnly = true;
-            // 
-            // clmnData
-            // 
-            this.clmnData.HeaderText = "Data";
-            this.clmnData.Name = "clmnData";
-            this.clmnData.ReadOnly = true;
-            // 
-            // clmnObjetivo
-            // 
-            this.clmnObjetivo.HeaderText = "Objetivo";
-            this.clmnObjetivo.Name = "clmnObjetivo";
-            this.clmnObjetivo.ReadOnly = true;
             // 
             // FrmPlanoTreinamento
             // 
@@ -322,9 +289,5 @@
         private System.Windows.Forms.BindingSource bdsCliente;
         private System.Windows.Forms.BindingSource bdsObjetivo;
         private System.Windows.Forms.BindingSource clienteBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnObjetivo;
     }
 }

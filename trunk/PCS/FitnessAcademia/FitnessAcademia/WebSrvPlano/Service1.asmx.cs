@@ -37,6 +37,12 @@ namespace WebSrvPlano
 
         //******************************* PLANO DE TREINAMENTO *******************************
         [WebMethod]
+        public void iniciarPlanoTreinamento()
+        {
+            Fachada.obterInstancia().validarLiberacaoDePlanoDeTreinamento();
+        }
+
+        [WebMethod]
         public PlanoTreinamento[] consultarPlanoTreinamento(PlanoTreinamento obj, DateTime dataFinal)
         {
             return Fachada.obterInstancia().consultar(obj, dataFinal).ToArray();

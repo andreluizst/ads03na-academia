@@ -56,12 +56,12 @@ namespace BibliotecaDeClasses.dao
             catch (ErroConexao e)
             {
                 con.reverterTransacao(transName);
-                throw new ErroInclusao("A operação de inclusão não está disponível no momento! Erro-> " + e.Message);
+                throw new ErroConexao("A operação de inclusão não está disponível no momento! Erro-> " + e.Message);
             }
             catch (SqlException e)
             {
                 con.reverterTransacao(transName);
-                throw new ErroInclusao("Erro ao tentar incluir cliente-> " + e.Message);
+                throw new ErroInclusao(e.Message);
             }
             finally
             {
@@ -107,12 +107,12 @@ namespace BibliotecaDeClasses.dao
             catch (ErroConexao e)
             {
                 con.reverterTransacao(transName);
-                throw new ErroInclusao("A operação de alteração não está disponível no momento! Erro-> " + e.Message);
+                throw new ErroConexao("A operação de alteração não está disponível no momento! Erro-> " + e.Message);
             }
             catch (SqlException e)
             {
                 con.reverterTransacao(transName);
-                throw new ErroInclusao("Erro ao tentar alterar cliente-> " + e.Message);
+                throw new ErroAlteracao(e.Message);
             }
             finally
             {
@@ -135,12 +135,16 @@ namespace BibliotecaDeClasses.dao
             catch (ErroConexao e)
             {
                 con.reverterTransacao(transName);
-                throw new ErroInclusao("A operação de exclusão não está disponível no momento: " + e.Message);
+                throw new ErroConexao("A operação de exclusão não está disponível no momento: " + e.Message);
             }
             catch (SqlException e)
             {
+                string msg = e.Message;
                 con.reverterTransacao(transName);
-                throw new ErroInclusao("Erro ao tentar excluir cliente-> " + e.Message);
+                if ((msg.IndexOf("DELETE") >= 0) && (msg.IndexOf("PlanoTreinamento_FKcodCli") >= 0))
+                    msg = "Não é possível excluir o cliente selecionado porque o mesmo"
+                        + " já está sendo utilizado em um ou mais Plano(s) de Treinamento!";
+                throw new ErroExclusao(msg);
             }
             finally
             {
@@ -214,16 +218,16 @@ namespace BibliotecaDeClasses.dao
                 if (nomeExiste)
                     sqlCmd.Parameters.AddWithValue("@nome", c.Nome);
                 SqlDataReader reader = sqlCmd.ExecuteReader();
-                /*if ((toStringBehavior == Cliente.TO_STRING_NOME) || (toStringBehavior == Cliente.TO_STRING_NOME_CPF))
+                if ((toStringBehavior == Cliente.TO_STRING_NOME) || (toStringBehavior == Cliente.TO_STRING_NOME_CPF))
                 {
                     while (reader.Read())
                     {
                         lista.Add(new Cliente(Util.GetIntRead(reader, "codigo"),
                             Util.GetStringRead(reader, "nome"), Util.GetStringRead(reader, "Cpf"), toStringBehavior));
                     }
-                }*/
-                //else
-                //{
+                }
+                else
+                {
                     while (reader.Read())
                     {
                         Cliente cli = new Cliente(Util.GetIntRead(reader, "Codigo"),
@@ -247,7 +251,7 @@ namespace BibliotecaDeClasses.dao
                         cli.SetToStringBehavior(toStringBehavior);
                         lista.Add(cli);
                     }
-                //}
+                }
                 reader.Close();
                 sqlCmd.Dispose();
             }
@@ -257,11 +261,11 @@ namespace BibliotecaDeClasses.dao
             }
             catch (SqlException e)
             {
-                throw new ErroPesquisar("Erro ao consultar cliente(s)-> " + e.Message);
+                throw new ErroPesquisar(e.Message);
             }
             catch (Exception e)
             {
-                throw new ErroPesquisar("Erro ao consultar cliente(s)-> " + e.Message);
+                throw new ErroPesquisar(e.Message);
             }
             finally
             {

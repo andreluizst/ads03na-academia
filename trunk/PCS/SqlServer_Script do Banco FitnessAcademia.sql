@@ -52,13 +52,23 @@ return*/
 --insert into Exercicio values('Agachamento em pé')
 --insert into Exercicio values('Agachamento na barra guiada')
 --insert into Exercicio values('Crucifixo')
+--go
 --insert into cliente(nome, cpf, rg, DataNasc, Logradouro, numLog, Bairro, Cidade, UF, CEP,
 --					 EstCivil, Sexo, Tefone, Celular, Email, ValExameMedico)
 --			values('Mariana Lima', '11122233344', '324354245', '25/05/1979', 'Rua 27 de maio', '23', 'Santo Antônio',
 --					'Recife', 'PE', '50002654', 'S', 'F', '8134756895', '8199751423', 'mariana.lima@gmail.com', '05/08/2013')
+--go
 --alter table cliente add Telefone varchar(11)
 --update cliente set telefone = Tefone
 --alter table cliente drop column Tefone
-select * from PlanoTreinamento-- where data >= '2013-01-01' and data <= '2013-05-12' and codCli = 2
+/*
+--Para testar o método iniciarPlanoDeTreinamento do webService WebSrvPlano que chama 
+----Fachada.obterInstancia().validarLiberacaoDePlanoDeTreinamento(); => OK
+delete from ExercicioDoPlano
+delete from PlanoTreinamento
+delete from Exercicio where Codigo > 0
+*/
+select * from PlanoTreinamento where ((data >= '2013-05-01') and (data <= '2013-05-31')) and codCli = 2
+select * from ExercicioDoPlano
 select * from PlanoTreinamento as pt left outer join ExercicioDoPlano as ep on ep.numPlano = pt.NumPlano
-select * from cliente
+select * from Cliente

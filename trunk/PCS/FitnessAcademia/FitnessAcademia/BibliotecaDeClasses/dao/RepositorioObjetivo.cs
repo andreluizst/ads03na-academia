@@ -12,20 +12,12 @@ namespace BibliotecaDeClasses.dao
 {
     public class RepositorioObjetivo : IRepositorioObjetivo
     {
-        //private static IRepositorioObjetivo instancia;
         private Conexao con;
 
         public RepositorioObjetivo()
         {
             con = Conexao.getInstancia();
         }
-
-        /*public static IRepositorioObjetivo obterInstancia()
-        {
-            if (instancia == null)
-                instancia = new RepositorioObjetivo();
-            return instancia;
-        }*/
 
         public void incluir(Objetivo o)
         {
@@ -49,7 +41,7 @@ namespace BibliotecaDeClasses.dao
             catch (SqlException e)
             {
                 con.reverterTransacao(transName);
-                throw new ErroPesquisar("Erro ao tentar incluir objetivo: " + e.Message);
+                throw new ErroInclusao(e.Message);
             }
             finally
             {
@@ -82,7 +74,7 @@ namespace BibliotecaDeClasses.dao
             catch (SqlException e)
             {
                 con.reverterTransacao(transName);
-                throw new ErroPesquisar("Erro ao tentar alterar objetivo: " + e.Message);
+                throw new ErroAlteracao(e.Message);
             }
             finally
             {
@@ -111,8 +103,12 @@ namespace BibliotecaDeClasses.dao
             }
             catch (SqlException e)
             {
+                string msg = e.Message;
                 con.reverterTransacao(transName);
-                throw new ErroPesquisar("Erro ao tentar excluir objetivo: " + e.Message);
+                if ((msg.IndexOf("DELETE") >= 0) &&  (msg.IndexOf("PlanoTreinamento_FKcodObjetivo") >= 0))
+                    msg = "Não é possível excluir o objetivo selecionado porque o mesmo"
+                        + " já está sendo utilizado em um ou mais Plano(s) de Treinamento!";
+                throw new ErroExclusao(msg);
             }
             finally
             {
@@ -140,33 +136,49 @@ namespace BibliotecaDeClasses.dao
             List<Objetivo> lst = new List<Objetivo>();
             string sql = "select * from Objetivo";
             bool existeParametro = false;
+            bool existeParametroCodigo = false;
+            bool existeParametroDescricao = false;
             try
             {
                 con.abrir();
                 if (o.Codigo > 0)
                 {
-                    sql += " where codigo = " + o.Codigo.ToString();
+                    sql += " where codigo = @codigo";
                     existeParametro = true;
+                    existeParametroCodigo = true;
                 }
                 if (o.Descricao != null)
                 {
-                    if (existeParametro)
+                    if (o.Descricao.Length > 0)
                     {
-                        sql += " and ";
+                        if (existeParametro)
+                        {
+                            sql += " and ";
+                        }
+                        else
+                        {
+                            sql += " where ";
+                        }
+                        sql += " descricao like @descricao";
+                        existeParametroDescricao = true;
                     }
-                    else
-                    {
-                        sql += " where ";
-                    }
-                    sql += " descricao like '" + o.Descricao + "'";
                 }
                 sql += " order by descricao";
                 SqlCommand sqlCmd = new SqlCommand(sql, con.sqlConnection);
+                if (existeParametroCodigo)
+                {
+                    sqlCmd.Parameters.Add("@codigo", SqlDbType.Int);
+                    sqlCmd.Parameters["@codigo"].Value = o.Codigo;
+                }
+                if (existeParametroDescricao)
+                {
+                    sqlCmd.Parameters.Add("@descricao", SqlDbType.VarChar);
+                    sqlCmd.Parameters["@descricao"].Value = "%"+o.Descricao+"%";
+                }
                 SqlDataReader reader = sqlCmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    lst.Add(new Objetivo(reader.GetInt32(reader.GetOrdinal("codigo")),
-                        reader.GetString(reader.GetOrdinal("descricao")), toStringBehavior));
+                    lst.Add(new Objetivo(Util.GetIntRead(reader, "codigo"), Util.GetStringRead(reader, "descricao")));
                 }
                 reader.Close();
                 sqlCmd.Dispose();
@@ -177,11 +189,11 @@ namespace BibliotecaDeClasses.dao
             }
             catch (SqlException e)
             {
-                throw new ErroPesquisar("Erro ao consultar objetivo(s): " + e.Message);
+                throw new ErroPesquisar(e.Message);
             }
             catch (Exception e)
             {
-                throw new ErroPesquisar("Erro ao consultar objetivo(s): " + e.Message);
+                throw new ErroPesquisar(e.Message);
             }
             finally
             {

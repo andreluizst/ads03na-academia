@@ -33,6 +33,8 @@ namespace FACliente.localhostSrvPlano {
         
         private System.Threading.SendOrPostCallback getLastMsgErrorOperationCompleted;
         
+        private System.Threading.SendOrPostCallback iniciarPlanoTreinamentoOperationCompleted;
+        
         private System.Threading.SendOrPostCallback consultarPlanoTreinamentoOperationCompleted;
         
         private System.Threading.SendOrPostCallback consultarPlanoTreinamentoExOperationCompleted;
@@ -94,6 +96,9 @@ namespace FACliente.localhostSrvPlano {
         
         /// <remarks/>
         public event getLastMsgErrorCompletedEventHandler getLastMsgErrorCompleted;
+        
+        /// <remarks/>
+        public event iniciarPlanoTreinamentoCompletedEventHandler iniciarPlanoTreinamentoCompleted;
         
         /// <remarks/>
         public event consultarPlanoTreinamentoCompletedEventHandler consultarPlanoTreinamentoCompleted;
@@ -173,6 +178,32 @@ namespace FACliente.localhostSrvPlano {
             if ((this.getLastMsgErrorCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getLastMsgErrorCompleted(this, new getLastMsgErrorCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/iniciarPlanoTreinamento", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void iniciarPlanoTreinamento() {
+            this.Invoke("iniciarPlanoTreinamento", new object[0]);
+        }
+        
+        /// <remarks/>
+        public void iniciarPlanoTreinamentoAsync() {
+            this.iniciarPlanoTreinamentoAsync(null);
+        }
+        
+        /// <remarks/>
+        public void iniciarPlanoTreinamentoAsync(object userState) {
+            if ((this.iniciarPlanoTreinamentoOperationCompleted == null)) {
+                this.iniciarPlanoTreinamentoOperationCompleted = new System.Threading.SendOrPostCallback(this.OniniciarPlanoTreinamentoOperationCompleted);
+            }
+            this.InvokeAsync("iniciarPlanoTreinamento", new object[0], this.iniciarPlanoTreinamentoOperationCompleted, userState);
+        }
+        
+        private void OniniciarPlanoTreinamentoOperationCompleted(object arg) {
+            if ((this.iniciarPlanoTreinamentoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.iniciarPlanoTreinamentoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -948,6 +979,10 @@ namespace FACliente.localhostSrvPlano {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void iniciarPlanoTreinamentoCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
