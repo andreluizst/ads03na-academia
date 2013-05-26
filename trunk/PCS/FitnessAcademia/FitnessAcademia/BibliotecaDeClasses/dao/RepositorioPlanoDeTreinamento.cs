@@ -26,7 +26,7 @@ namespace BibliotecaDeClasses.dao
             sqlCmdEx.Parameters.Add("@codExercicio", SqlDbType.Int);
             sqlCmdEx.Parameters.Add("@series", SqlDbType.Int);
             sqlCmdEx.Parameters.Add("@numRepeticoes", SqlDbType.Int);
-            sqlCmdEx.Parameters.Add("@peso", SqlDbType.Decimal);
+            sqlCmdEx.Parameters.Add("@peso", SqlDbType.Real);
             foreach (ExercicioDoPlano item in pt.Exercicios)
             {
                 sqlCmdEx.Parameters["@plano"].Value = pt.Numplano;// pNumPlano.Value;
@@ -34,7 +34,7 @@ namespace BibliotecaDeClasses.dao
                 sqlCmdEx.Parameters["@codExercicio"].Value = item.Exercicio.Codigo;
                 sqlCmdEx.Parameters["@series"].Value = item.Series;
                 sqlCmdEx.Parameters["@numRepeticoes"].Value = item.NumRepeticoes;
-                sqlCmdEx.Parameters["@peso"].Value = item.Peso;
+                sqlCmdEx.Parameters["@peso"].Value = item.Peso;// Convert.ToDecimal(item.Peso);
                 sqlCmdEx.ExecuteNonQuery();
             }
         }
@@ -274,7 +274,7 @@ namespace BibliotecaDeClasses.dao
                         ep.Exercicio = rpE.pegar(sdrExercicios.GetInt32(sdrExercicios.GetOrdinal("codExercicio")));
                         ep.Series = Util.GetIntRead(sdrExercicios, "series");
                         ep.NumRepeticoes = Util.GetIntRead(sdrExercicios, "numRepeticoes");
-                        ep.Peso = Util.GetDoubleRead(sdrExercicios, "peso");
+                        ep.Peso = Convert.ToDouble(Util.GetRealRead(sdrExercicios, "peso"));
                         plano.Exercicios.Add(ep);
                     }
                     sdrExercicios.Close();

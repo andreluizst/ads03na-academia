@@ -75,6 +75,28 @@ namespace BibliotecaDeClasses
             return retorno;
         }
 
+        public static float GetRealRead(SqlDataReader reader, string columnName)
+        {
+            int ord = -1;
+            float retorno = 0;
+            try
+            {
+                ord = reader.GetOrdinal(columnName);
+                if (reader.IsDBNull(ord))
+                    return 0;
+                retorno = reader.GetFloat(ord);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                throw new Exception("Campo não encontrado-> " + e.Message);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+            return retorno;
+        }
+
         public static bool validarCpf(string cpf)
         {
             int k = 0;
