@@ -60,7 +60,7 @@ namespace BibliotecaDeClasses.regra
         {
             DateTime dataValida;
 
-            if (!DateTime.TryParse(pt.Data.ToShortDateString(), out dataValida) || (dataValida < DateTime.Today))
+            if (!DateTime.TryParse(pt.Data.ToShortDateString(), out dataValida))// || (dataValida < DateTime.Today))
                 throw new ErroValidacao("Erro ao validar data do Plano de Treinamento");
 
         }
