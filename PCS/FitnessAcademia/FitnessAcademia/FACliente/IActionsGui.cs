@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace FACliente
 {
+    //Interface implementada pelas janelas filhas (MDIChildren) MDI para que possam interagir com a janela mãe MDI
     public interface IActionsGui
     {
         void novo();

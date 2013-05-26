@@ -155,7 +155,7 @@ namespace BibliotecaDeClasses.regra
             }
             catch (Exception e)
             {
-                throw new ErroExclusao("Erro ao tentar excluir Clienteo-> " + e.Message);
+                throw new ErroExclusao("Erro ao tentar excluir Cliente-> " + e.Message);
             }
         }
         public List<Cliente> consultar(Cliente c)

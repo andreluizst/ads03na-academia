@@ -11,10 +11,30 @@ namespace BibliotecaDeClasses.regra
     public class ControladorPlanoTreinamento
     {
         private IRepositorioPlanoDeTreinamento rpPT;
+        private bool operacoesLiberadas;
+        private ControladorCliente ctrlC;
+        private ControladorExercicio ctrlE;
+        private ControladorObjetivo ctrlO;
+        private string msgOperacoesBloqueadas = "Para iniciar Plano de Treinamento, clientes, objetivos e exercícios"
+            + " devem estar previamente cadastrados!";
+            //+ "\nClientes;\nObjetivos\nExercícios.";
 
         public ControladorPlanoTreinamento()
         {
             rpPT = new RepositorioPlanoDeTreinamento();
+            operacoesLiberadas = false;
+        }
+
+        public void validarLiberacaoDeOperacoes()
+        {
+            ctrlC = new ControladorCliente();
+            ctrlO = new ControladorObjetivo();
+            ctrlE = new ControladorExercicio();
+            operacoesLiberadas = ctrlC.consultar(new Cliente("%")).Count > 0 ? true : false;
+            operacoesLiberadas = operacoesLiberadas == true ? ctrlO.consultar(new Objetivo(0, "%")).Count > 0 : false;
+            operacoesLiberadas = operacoesLiberadas == true ? ctrlE.consultar(new Exercicio(0, "%")).Count > 0 : false;
+            if (operacoesLiberadas == false)
+                throw new Exception(msgOperacoesBloqueadas);
         }
 
         public bool existe(PlanoTreinamento obj)
@@ -35,6 +55,7 @@ namespace BibliotecaDeClasses.regra
             return false;
 
         }
+
         public void validarDados(PlanoTreinamento pt)
         {
             DateTime dataValida;
@@ -43,6 +64,7 @@ namespace BibliotecaDeClasses.regra
                 throw new ErroValidacao("Erro ao validar data do Plano de Treinamento");
 
         }
+
         public void incluir(PlanoTreinamento pt)
         {
             try
@@ -58,6 +80,7 @@ namespace BibliotecaDeClasses.regra
                 throw new ErroInclusao("Erro ao tentar incluir Plano de Treinamento-> " + e.Message);
             }
         }
+
         public void alterar(PlanoTreinamento pt)
         {
             try
@@ -73,6 +96,7 @@ namespace BibliotecaDeClasses.regra
                 throw new ErroAlteracao("Erro ao tentar alterar Plano de Treinamento-> " + e.Message);
             }
         }
+
         public void excluir(PlanoTreinamento pt)
         {
             try
@@ -88,6 +112,7 @@ namespace BibliotecaDeClasses.regra
                 throw new ErroExclusao("Erro ao tentar excluir Plano de Treinamento-> " + e.Message);
             }
         }
+
         public List<PlanoTreinamento> consultar(PlanoTreinamento pt, DateTime dataFinal)
         {
             return consultar(pt, dataFinal, PlanoTreinamento.TO_STRING_DEFAULT);

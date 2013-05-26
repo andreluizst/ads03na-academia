@@ -6,26 +6,18 @@ using BibliotecaDeClasses.basica;
 using BibliotecaDeClasses.conexao;
 using BibliotecaDeClasses.erro;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace BibliotecaDeClasses.dao
 {
     public class RepositorioExercicio : IRepositorioExercicio
     {
-        //private static IRepositorioExercicio instancia;
         private Conexao con;
 
         public RepositorioExercicio()
         {
             con = Conexao.getInstancia();
         }
-
-        /*public static IRepositorioExercicio obterInstancia()
-        {
-            if (instancia == null)
-                instancia = new RepositorioExercicio();
-            return instancia;
-        }*/
-
 
         public void incluir(Exercicio e)
         {
@@ -48,7 +40,7 @@ namespace BibliotecaDeClasses.dao
             catch (SqlException ex)
             {
                 con.reverterTransacao(transName);
-                throw new ErroPesquisar("Erro ao tentar incluir exerício: " + ex.Message);
+                throw new ErroInclusao(ex.Message);
             }
             finally
             {
@@ -78,7 +70,7 @@ namespace BibliotecaDeClasses.dao
             catch (SqlException ex)
             {
                 con.reverterTransacao(transName);
-                throw new ErroPesquisar("Erro ao tentar alterar objetivo: " + ex.Message);
+                throw new ErroAlteracao(ex.Message);
             }
             finally
             {
@@ -106,8 +98,12 @@ namespace BibliotecaDeClasses.dao
             }
             catch (SqlException ex)
             {
+                string msg = ex.Message;
                 con.reverterTransacao(transName);
-                throw new ErroPesquisar("Erro ao tentar excluir objetivo: " + ex.Message);
+                if ((msg.IndexOf("DELETE") >= 0) && (msg.IndexOf("FKcodExercicio") >= 0))
+                    msg = "Não é possível excluir o exercício selecionado porque o mesmo"
+                        + " já está sendo utilizado em um ou mais Plano(s) de Treinamento!";
+                throw new ErroExclusao(msg);
             }
             finally
             {
@@ -140,13 +136,16 @@ namespace BibliotecaDeClasses.dao
             List<Exercicio> lista = new List<Exercicio>();
             string sql = "select * from Exercicio";
             bool existeParametro = false;
+            bool existeParametroCodigo = false;
+            bool existeParametroDescricao = false;
             try
             {
                 con.abrir();
                 if (e.Codigo > 0)
                 {
-                    sql += " where codigo = " + e.Codigo.ToString();
+                    sql += " where codigo = @codigo";
                     existeParametro = true;
+                    existeParametroCodigo = true;
                 }
                 if (e.Descricao != null)
                 {
@@ -158,15 +157,26 @@ namespace BibliotecaDeClasses.dao
                     {
                         sql += " where ";
                     }
-                    sql += " descricao like '" + e.Descricao + "'";
+                    sql += " descricao like @descricao";
+                    existeParametroDescricao = true;
                 }
                 sql += " order by descricao";
                 SqlCommand sqlCmd = new SqlCommand(sql, con.sqlConnection);
+                if (existeParametroCodigo)
+                {
+                    sqlCmd.Parameters.Add("@codigo", SqlDbType.Int);
+                    sqlCmd.Parameters["@codigo"].Value = e.Codigo;
+                }
+                if (existeParametroDescricao)
+                {
+                    sqlCmd.Parameters.Add("@descricao", SqlDbType.VarChar);
+                    sqlCmd.Parameters["@descricao"].Value = "%" + e.Descricao + "%";
+                }
                 SqlDataReader reader = sqlCmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    lista.Add(new Exercicio(reader.GetInt32(reader.GetOrdinal("codigo")),
-                        reader.GetString(reader.GetOrdinal("descricao")), toStringBehavior));
+                    lista.Add(new Exercicio(Util.GetIntRead(reader, "codigo"),
+                        Util.GetStringRead(reader, "descricao"), toStringBehavior));
                 }
                 reader.Close();
                 sqlCmd.Dispose();
@@ -178,7 +188,7 @@ namespace BibliotecaDeClasses.dao
             }
             catch (SqlException ex)
             {
-                throw new ErroPesquisar("Erro ao consultar exercício(s): " + ex.Message);
+                throw new ErroPesquisar(ex.Message);
             }
             return lista;
         }

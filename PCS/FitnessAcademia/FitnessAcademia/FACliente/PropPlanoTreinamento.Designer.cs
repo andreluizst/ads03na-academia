@@ -56,21 +56,16 @@
             this.btnOrdMvCima = new System.Windows.Forms.Button();
             this.btnOrdMvPrimeiro = new System.Windows.Forms.Button();
             this.bdsObjetivos = new System.Windows.Forms.BindingSource(this.components);
-            this.bdsClientes = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.clmnSeq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnExercicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnSeries = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnRepeticoes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnPeso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bdsClientes = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.pnlOrdem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsObjetivos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // imglstBotoes
@@ -351,19 +346,9 @@
             this.btnOrdMvPrimeiro.UseVisualStyleBackColor = true;
             this.btnOrdMvPrimeiro.Click += new System.EventHandler(this.btnOrdMvPrimeiro_Click);
             // 
-            // bdsClientes
-            // 
-            this.bdsClientes.DataSource = typeof(FACliente.localhostSrvPlano.Cliente);
-            // 
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmnSeq,
-            this.clmnExercicio,
-            this.clmnSeries,
-            this.clmnRepeticoes,
-            this.clmnPeso});
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(83, 97);
             this.dataGridView.Name = "dataGridView";
@@ -373,35 +358,9 @@
             this.dataGridView.TabIndex = 34;
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged_1);
             // 
-            // clmnSeq
+            // bdsClientes
             // 
-            this.clmnSeq.HeaderText = "Seq";
-            this.clmnSeq.Name = "clmnSeq";
-            this.clmnSeq.ReadOnly = true;
-            // 
-            // clmnExercicio
-            // 
-            this.clmnExercicio.HeaderText = "Exercício";
-            this.clmnExercicio.Name = "clmnExercicio";
-            this.clmnExercicio.ReadOnly = true;
-            // 
-            // clmnSeries
-            // 
-            this.clmnSeries.HeaderText = "Séries";
-            this.clmnSeries.Name = "clmnSeries";
-            this.clmnSeries.ReadOnly = true;
-            // 
-            // clmnRepeticoes
-            // 
-            this.clmnRepeticoes.HeaderText = "Nº Repetições";
-            this.clmnRepeticoes.Name = "clmnRepeticoes";
-            this.clmnRepeticoes.ReadOnly = true;
-            // 
-            // clmnPeso
-            // 
-            this.clmnPeso.HeaderText = "Peso (kg)";
-            this.clmnPeso.Name = "clmnPeso";
-            this.clmnPeso.ReadOnly = true;
+            this.bdsClientes.DataSource = typeof(FACliente.localhostSrvPlano.Cliente);
             // 
             // PropPlanoTreinamento
             // 
@@ -420,6 +379,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PropPlanoTreinamento";
+            this.Shown += new System.EventHandler(this.PropPlanoTreinamento_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PropPlanoTreinamento_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -429,8 +389,8 @@
             this.pnlOrdem.ResumeLayout(false);
             this.pnlOrdem.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsObjetivos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsClientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsClientes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -465,10 +425,5 @@
         private System.Windows.Forms.BindingSource bdsObjetivos;
         private System.Windows.Forms.BindingSource bdsClientes;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnSeq;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnExercicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnSeries;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnRepeticoes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnPeso;
     }
 }

@@ -45,7 +45,7 @@
             this.miExcluir = new System.Windows.Forms.ToolStripMenuItem();
             this.mnJanela = new System.Windows.Forms.ToolStripMenuItem();
             this.miFecharJanelaAtual = new System.Windows.Forms.ToolStripMenuItem();
-            this.miJanela = new System.Windows.Forms.ToolStripMenuItem();
+            this.miProximaJanela = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -180,10 +180,11 @@
             // 
             this.mnJanela.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miFecharJanelaAtual,
-            this.miJanela});
+            this.miProximaJanela});
             this.mnJanela.Name = "mnJanela";
             this.mnJanela.Size = new System.Drawing.Size(51, 20);
             this.mnJanela.Text = "&Janela";
+            this.mnJanela.DropDownOpening += new System.EventHandler(this.mnJanela_DropDownOpening);
             // 
             // miFecharJanelaAtual
             // 
@@ -193,13 +194,13 @@
             this.miFecharJanelaAtual.Text = "&Fechar janela atual";
             this.miFecharJanelaAtual.Click += new System.EventHandler(this.miFecharJanelaAtual_Click);
             // 
-            // miJanela
+            // miProximaJanela
             // 
-            this.miJanela.Name = "miJanela";
-            this.miJanela.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Tab)));
-            this.miJanela.Size = new System.Drawing.Size(218, 22);
-            this.miJanela.Text = "Pró&xima janela";
-            this.miJanela.Click += new System.EventHandler(this.miJanela_Click);
+            this.miProximaJanela.Name = "miProximaJanela";
+            this.miProximaJanela.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Tab)));
+            this.miProximaJanela.Size = new System.Drawing.Size(218, 22);
+            this.miProximaJanela.Text = "Pró&xima janela";
+            this.miProximaJanela.Click += new System.EventHandler(this.miProximaJanela_Click);
             // 
             // frmPrincipal
             // 
@@ -238,7 +239,7 @@
         private System.Windows.Forms.ToolStripMenuItem miAlterar;
         private System.Windows.Forms.ToolStripMenuItem miExcluir;
         private System.Windows.Forms.ToolStripMenuItem miFecharJanelaAtual;
-        private System.Windows.Forms.ToolStripMenuItem miJanela;
+        private System.Windows.Forms.ToolStripMenuItem miProximaJanela;
         private System.Windows.Forms.ToolStripMenuItem miPlano;
     }
 }

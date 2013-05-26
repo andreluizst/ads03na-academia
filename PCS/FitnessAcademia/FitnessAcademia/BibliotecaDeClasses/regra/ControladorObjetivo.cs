@@ -65,7 +65,7 @@ namespace BibliotecaDeClasses.regra
             }
             catch (Exception e)
             {
-                throw new ErroInclusao("Erro ao tentar alterar Objetivo-> " + e.Message);
+                throw new ErroAlteracao("Erro ao tentar alterar Objetivo-> " + e.Message);
             }
         }
         public void excluir(Objetivo obvo)
@@ -80,7 +80,7 @@ namespace BibliotecaDeClasses.regra
             }
             catch (Exception e)
             {
-                throw new ErroInclusao("Erro ao tentar excluir Objetivo-> " + e.Message);
+                throw new ErroExclusao("Erro ao tentar excluir Objetivo-> " + e.Message);
             }
         }
 

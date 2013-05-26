@@ -12,20 +12,12 @@ namespace BibliotecaDeClasses.dao
 {
     public class RepositorioPlanoDeTreinamento : IRepositorioPlanoDeTreinamento
     {
-        //private static IRepositorioPlanoDeTreinamento instancia;
         private Conexao con;
 
         public RepositorioPlanoDeTreinamento()
         {
             con = Conexao.getInstancia();
         }
-
-        /*public static IRepositorioPlanoDeTreinamento obterInstancia()
-        {
-            if (instancia == null)
-                instancia = new RepositorioPlanoDeTreinamento();
-            return instancia;
-        }*/
 
         private void incluirExercicios(SqlCommand sqlCmdEx, PlanoTreinamento pt)
         {
@@ -82,7 +74,7 @@ namespace BibliotecaDeClasses.dao
             catch (SqlException ex)
             {
                 con.reverterTransacao(transName);
-                throw new ErroInclusao("Erro ao tentar incluir exerício: " + ex.Message);
+                throw new ErroInclusao(ex.Message);
             }
             finally
             {
@@ -119,7 +111,7 @@ namespace BibliotecaDeClasses.dao
             catch (SqlException ex)
             {
                 con.reverterTransacao(transName);
-                throw new ErroExclusao("Erro ao tentar excluir: " + ex.Message);
+                throw new ErroExclusao(ex.Message);
             }
             finally
             {
@@ -162,7 +154,7 @@ namespace BibliotecaDeClasses.dao
             catch (Exception e)
             {
                 con.reverterTransacao(transName);
-                throw new ErroAlteracao("AlterarError: " + e.Message);
+                throw new ErroAlteracao(e.Message);
             }
             finally
             {
@@ -221,7 +213,7 @@ namespace BibliotecaDeClasses.dao
                         if (existeParametro)
                             sql += " and codCli = ";
                         else
-                            sql += " where codClli = ";
+                            sql += " where codCli = ";
                         sql += pt.ClienteDoPlano.Codigo.ToString();
                         existeParametro = true;
                         //codCliExiste = true;
@@ -240,25 +232,29 @@ namespace BibliotecaDeClasses.dao
                         //codObjetivoExiste = true;
                     }
                 }
+                
                 if ((pt.Data != null) && (dataFinal != null))
                 {
                     if (existeParametro)
-                    {
-                        if (existeParametro)
-                            sql += " and ((data >= @dataInicial) and (data <= @dataFinal))";
-                        else
-                            sql += "where ((data >= @dataInicial) and (data <= @dataFinal))";
-                        existeParametro = true;
-                        dataExiste = true;
-                    }
+                        sql += " and ((data >= @dataInicial) and (data <= @dataFinal))";
+                    else
+                        sql += " where ((data >= @dataInicial) and (data <= @dataFinal))";
+                    existeParametro = true;
+                    dataExiste = true;
                 }
                 con.abrir();
                 //transacao = con.iniciarTransacao(transName);
                 SqlCommand sqlCmdPlano = new SqlCommand(sql, con.sqlConnection);//, transacao);
                 if (dataExiste)
                 {
-                    sqlCmdPlano.Parameters.AddWithValue("@dataInicial", pt.Data);
-                    sqlCmdPlano.Parameters.AddWithValue("@dataFinal", dataFinal);
+                    /* Se usar o método AddWithValue(parametro, valor) onde o valor for uma DateTime
+                    *  a consulta não retorna registro, pois a data fica incorreta. Por esse motivo deve-se usar
+                    *  os parametros de data conforme abaixo.
+                    */
+                    sqlCmdPlano.Parameters.Add("@dataInicial", SqlDbType.Date);
+                    sqlCmdPlano.Parameters.Add("@dataFinal", SqlDbType.Date);
+                    sqlCmdPlano.Parameters["@dataInicial"].Value = pt.Data;
+                    sqlCmdPlano.Parameters["@dataFinal"].Value = dataFinal;
                 }
                 SqlDataReader readPlano = sqlCmdPlano.ExecuteReader();
                 while (readPlano.Read())
@@ -294,11 +290,11 @@ namespace BibliotecaDeClasses.dao
             }
             catch (SqlException es)
             {
-                throw new ErroPesquisar("Erro ao tentar consultar: " + es.Message);
+                throw new ErroPesquisar(es.Message);
             }
             catch (Exception e)
             {
-                throw new ErroPesquisar("Erro ao tentar consultar: " + e.Message);
+                throw new ErroPesquisar(e.Message);
             }
             finally
             {
