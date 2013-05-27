@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using BibliotecaDeClasses.erro;
+using System.Configuration;
 
 namespace BibliotecaDeClasses.conexao
 {
