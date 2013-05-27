@@ -32,6 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCliente));
             this.imglstBotoes = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtbxCpf = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtbxNome = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
@@ -41,10 +45,6 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.txtbxNome = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtbxCpf = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -80,6 +80,40 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(731, 113);
             this.panel1.TabIndex = 3;
+            // 
+            // txtbxCpf
+            // 
+            this.txtbxCpf.Location = new System.Drawing.Point(547, 30);
+            this.txtbxCpf.Name = "txtbxCpf";
+            this.txtbxCpf.Size = new System.Drawing.Size(100, 20);
+            this.txtbxCpf.TabIndex = 2;
+            this.txtbxCpf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbxCodigo_KeyDown);
+            this.txtbxCpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxCodigo_KeyPress);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(498, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "CPF:";
+            // 
+            // txtbxNome
+            // 
+            this.txtbxNome.Location = new System.Drawing.Point(275, 30);
+            this.txtbxNome.Name = "txtbxNome";
+            this.txtbxNome.Size = new System.Drawing.Size(185, 20);
+            this.txtbxNome.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(226, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Nome:";
             // 
             // btnConsultar
             // 
@@ -177,40 +211,6 @@
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             this.dataGridView.DoubleClick += new System.EventHandler(this.dataGridView_DoubleClick);
             // 
-            // txtbxNome
-            // 
-            this.txtbxNome.Location = new System.Drawing.Point(275, 30);
-            this.txtbxNome.Name = "txtbxNome";
-            this.txtbxNome.Size = new System.Drawing.Size(185, 20);
-            this.txtbxNome.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(226, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Nome:";
-            // 
-            // txtbxCpf
-            // 
-            this.txtbxCpf.Location = new System.Drawing.Point(547, 30);
-            this.txtbxCpf.Name = "txtbxCpf";
-            this.txtbxCpf.Size = new System.Drawing.Size(100, 20);
-            this.txtbxCpf.TabIndex = 2;
-            this.txtbxCpf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbxCodigo_KeyDown);
-            this.txtbxCpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxCodigo_KeyPress);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(498, 33);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "CPF:";
-            // 
             // FrmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,7 +221,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "FrmCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmCliente";
+            this.Text = "Manter Cliente";
             this.Activated += new System.EventHandler(this.FrmCliente_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmCliente_FormClosed);
             this.Shown += new System.EventHandler(this.FrmCliente_Shown);
