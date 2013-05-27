@@ -81,7 +81,22 @@ namespace BibliotecaDeClasses.regra
                 throw new ErroValidacao(msg + "Data inválida.");
             if (pt.Exercicios != null)
             {
-                if (pt.Exercicios.Count <= 0)
+                if (pt.Exercicios.Count > 0)
+                {
+                    foreach (ExercicioDoPlano item in pt.Exercicios)
+                    {
+                        if (item.Exercicio != null)
+                            if (item.Exercicio.Codigo <= 0)
+                                throw new ErroValidacao(msgCampoObrigatorio + "Exercício.");
+                        if (item.Seq <= 0)
+                            throw new ErroValidacao(msgCampoObrigatorio + "Seq.");
+                        if (item.Series <= 0)
+                            throw new ErroValidacao(msgCampoObrigatorio + "Séries.");
+                        if (item.NumRepeticoes <= 0)
+                            throw new ErroValidacao(msgCampoObrigatorio + "Nº Repetições.");
+                    }
+                }
+                else
                     throw new ErroValidacao(msg + "O plano de treinamento deve ter um ou mais exercícios!");
             }
             else

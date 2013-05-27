@@ -43,8 +43,12 @@ namespace BibliotecaDeClasses.regra
                     throw new ErroValidacao(msg + "CPF já cadastrado!");
             }
 
-            if (Util.validarCpf(c.Cpf)==false)
-                throw new ErroValidacao(msg + "CPF inválido!");
+            if (c.Cpf != null)
+            {
+                if (c.Cpf.Length > 0)
+                    if (Util.validarCpf(c.Cpf) == false)
+                        throw new ErroValidacao(msg + "CPF inválido!");
+            }
             if ((c.Rg == null) || (c.Rg.Length == 0))
                 throw new ErroValidacao(msgCampoObrigatorio + "Erro ao validar RG.");
             if (c.Rg.Length > 11)
@@ -99,18 +103,23 @@ namespace BibliotecaDeClasses.regra
             if (c.Telefone != null )
                 if ((c.Telefone.Length > 0) && (c.Telefone.Length != 11))
                     throw new ErroValidacao(msg + "Número de telefone incompleto.");
-
             if (c.Celular != null)
                 if (c.Celular.Length > 0 && c.Celular.Length != 11)
                     throw new ErroValidacao(msg + "Número de celular incompleto.");
             */
             if (c.Email != null)
                 if (c.Email.Length > 100)
-                    throw new ErroValidacao(msg + "O e-mail não deve ter mais de 100 caracteres.");                    
-            
-            if (!DateTime.TryParse(c.ValExameMedico.ToShortDateString(), out dataValida) || (dataValida < DateTime.Today))
-                throw new ErroValidacao(msg + "Data do exame médico");          
-
+                    throw new ErroValidacao(msg + "O e-mail não deve ter mais de 100 caracteres.");
+            if (c.Codigo == 0)
+            {
+                if (!DateTime.TryParse(c.ValExameMedico.ToShortDateString(), out dataValida) || (dataValida < DateTime.Today))
+                    throw new ErroValidacao(msg + "Data do exame médico");
+            }
+            else
+            {
+                if (!DateTime.TryParse(c.ValExameMedico.ToShortDateString(), out dataValida))
+                    throw new ErroValidacao(msg + "Data do exame médico");
+            }
 
         }
         public void incluir(Cliente c)
