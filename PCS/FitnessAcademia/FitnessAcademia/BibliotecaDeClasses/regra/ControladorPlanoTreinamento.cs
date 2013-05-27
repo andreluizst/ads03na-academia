@@ -58,11 +58,34 @@ namespace BibliotecaDeClasses.regra
 
         public void validarDados(PlanoTreinamento pt)
         {
+            string msg = "Erro de validação-> ";
+            string msgCampoObrigatorio = "Campo obrigatório não preenchido-> ";
+            if (pt.ObjetivoDoPlano != null)
+            {
+                if (pt.ObjetivoDoPlano.Codigo <= 0)
+                    throw new ErroValidacao(msgCampoObrigatorio + "Objetivo.");
+            }
+            else
+                throw new ErroValidacao(msgCampoObrigatorio + "Objetivo.");
+            if (pt.ClienteDoPlano != null)
+            {
+                if (pt.ClienteDoPlano.Codigo <= 0)
+                    throw new ErroValidacao(msgCampoObrigatorio + "Cliente.");
+            }
+            else
+                throw new ErroValidacao(msgCampoObrigatorio + "Cliente.");
+
             DateTime dataValida;
 
             if (!DateTime.TryParse(pt.Data.ToShortDateString(), out dataValida))// || (dataValida < DateTime.Today))
-                throw new ErroValidacao("Erro ao validar data do Plano de Treinamento");
-
+                throw new ErroValidacao(msg + "Data inválida.");
+            if (pt.Exercicios != null)
+            {
+                if (pt.Exercicios.Count <= 0)
+                    throw new ErroValidacao(msg + "O plano de treinamento deve ter um ou mais exercícios!");
+            }
+            else
+                throw new ErroValidacao(msg + "O plano de treinamento deve ter um ou mais exercícios!");
         }
 
         public void incluir(PlanoTreinamento pt)
