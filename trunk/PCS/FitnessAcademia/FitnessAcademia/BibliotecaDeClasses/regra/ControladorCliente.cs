@@ -34,7 +34,8 @@ namespace BibliotecaDeClasses.regra
                 throw new ErroValidacao(msgCampoObrigatorio + "nome do cliente.");
             if (c.Nome.Length > 100)
                 throw new ErroValidacao(msg + "O nome do cliente não deve ter mais de 100 caracteres.");
-            if (c.Codigo == 0)
+            
+            if ((c.Codigo == 0) && (c.Cpf.Length > 0))
             {
                 Cliente cliente = new Cliente();
                 cliente.Cpf = c.Cpf;
@@ -70,8 +71,8 @@ namespace BibliotecaDeClasses.regra
                 throw new ErroValidacao(msg + "O número do logradouro não deve ter mais de 15 caracteres.");
 
             if (c.Complemento != null)
-            if (c.Complemento.Length > 50)
-                throw new ErroValidacao(msg + "O complemento não deve ter mais de 50 caracteres.");
+                if (c.Complemento.Length > 50)
+                    throw new ErroValidacao(msg + "O complemento não deve ter mais de 50 caracteres.");
 
             if ((c.Bairro == null) || (c.Bairro.Length == 0))
                 throw new ErroValidacao(msgCampoObrigatorio + "Bairro");
@@ -89,16 +90,19 @@ namespace BibliotecaDeClasses.regra
                 throw new ErroValidacao(msg + "UF deve ter dois caracteres.");
 
             if ((c.Cep == null) || (c.Cep.Length == 0))
-                throw new ErroValidacao(msg = "CEP");
+                throw new ErroValidacao(msgCampoObrigatorio + "CEP");
             if (c.Cep.Length < 8 || c.Cep.Length > 8)
                 throw new ErroValidacao(msg + "CEP incompleto.");
 
+            if ((c.EstCivil == null) || (c.EstCivil.Length == 0))
+                throw new ErroValidacao(msgCampoObrigatorio + "Estado civil");
+            if (c.EstCivil.Length > 1)
+                throw new ErroValidacao(msg + "Estado civil não deve conter mais de um caracter.");
 
-            if ((c.EstCivil != null) && (c.EstCivil.Length == 0 || c.EstCivil.Length > 1))
-                throw new ErroValidacao("Erro ao validar Estado civil");
-
-            if ((c.Sexo != null) && (c.Sexo.Length == 0 || c.Sexo.Length > 1))
-                throw new ErroValidacao("Erro ao validar Complemento");
+            if ((c.Sexo == null) || (c.Sexo.Length == 0))
+                throw new ErroValidacao(msgCampoObrigatorio + "Sexo");
+            if (c.Sexo.Length > 1)
+                throw new ErroValidacao(msg + "Sexo não deve conter mais de um caracter.");
             /*
             if (c.Telefone != null )
                 if ((c.Telefone.Length > 0) && (c.Telefone.Length != 11))
